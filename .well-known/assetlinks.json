@@ -1,0 +1,15 @@
+[
+  {
+    "relation": [
+      "delegate_permission/common.handle_all_urls"
+    ],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.mittohoa.toidi_app",
+      "sha256_cert_fingerprints": [
+        "5F:A8:BD:CF:30:C0:88:C2:C1:5B:C3:88:8C:E1:76:2D:CF:D3:D1:A5:95:16:25:5B:A3:53:9C:29:AF:E8:6F:76",
+        "F2:B7:9F:B2:59:87:17:C9:7F:5F:4A:FC:6C:93:43:52:A1:84:7B:DC:5C:F3:4F:6A:82:99:57:FB:44:66:91:93"
+      ]
+    }
+  }
+]
