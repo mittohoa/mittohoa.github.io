@@ -177,6 +177,199 @@ UI = {
 }
 
 
+# ===================== HIỆU ỨNG NGÀY LỄ (tự bật/tắt theo ngày) =====================
+# Ngày (tháng, ngày) -> lời chúc. Trang tự kiểm tra ngày trên máy người xem,
+# qua ngày là biến mất, không phải sửa hay deploy lại.
+# Mỗi mục là một khoảng thời gian cụ thể. Trang so với giờ trên máy người xem,
+# hết khoảng là tự biến mất — không phải sửa hay deploy lại.
+# Muốn dùng cho dịp sau thì thêm một mục mới vào danh sách.
+FESTIVE = [
+    {
+        "from": "2026-10-20T00:00:00",
+        "to": "2026-10-20T23:59:59",
+        "vi": "20/10 &mdash; Chúc mừng Ngày Phụ nữ Việt Nam",
+        "en": "20 Oct &mdash; Happy Vietnamese Women's Day",
+    },
+]
+
+FESTIVE_CSS = """
+/* Chỉ bật khi <html> có class festive — ngoài ngày lễ thì trang y như cũ */
+html.festive{--accent:#ff4f93;--accent-soft:#ff4f931f}
+@media (prefers-color-scheme:dark){html.festive{--accent:#ff8ab8;--accent-soft:#ff4f932b}}
+
+/* translateZ(0): đẩy canvas thành lớp composite riêng — vẽ mượt và không bắt
+   phần trang phía sau phải vẽ lại theo từng khung hình */
+#petals{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:4;
+  transform:translateZ(0)}
+
+#festive{
+  display:none;position:relative;z-index:5;align-items:center;justify-content:center;
+  gap:12px;padding:14px 56px 14px 20px;text-align:center;color:#fff;font-weight:600;
+  font-size:15px;letter-spacing:.01em;
+  background:linear-gradient(100deg,#ff2d7e,#ff6fa5 42%,#ffab5e);
+  box-shadow:0 2px 18px #ff2d7e40
+}
+#festive.on{display:flex}
+#festive .em{font-size:20px;line-height:1;animation:sway 2.6s ease-in-out infinite}
+@keyframes sway{0%,100%{transform:rotate(-12deg)}50%{transform:rotate(12deg)}}
+#festive .hint{font-weight:400;opacity:.85;font-size:13px}
+#festive .x{
+  position:absolute;right:14px;top:50%;transform:translateY(-50%);
+  border:0;background:transparent;color:#fff;opacity:.8;
+  cursor:pointer;font-size:20px;line-height:1;padding:2px 6px
+}
+#festive .x:hover{opacity:1}
+
+/* chân dung được viền hồng + quầng sáng */
+html.festive .portrait{
+  border-color:#ff4f93;
+  box-shadow:0 0 0 6px #ff4f9322,0 10px 34px #ff2d7e55
+}
+/* chữ trong slogan sáng rực theo tông ngày lễ */
+html.festive .slogan em{text-shadow:0 0 24px #ff4f9366}
+html.festive #lang{top:70px}
+
+@media (prefers-reduced-motion:reduce){
+  #petals{display:none}
+  #festive .em{animation:none}
+}
+@media (max-width:620px){
+  #festive{font-size:13.5px;padding:12px 44px 12px 14px}
+  #festive .hint{display:none}
+}
+"""
+
+FESTIVE_JS = """
+(function(){
+  var EVENTS = __FESTIVE__;
+  var now = Date.now(), day = null, key = '';
+  for (var i = 0; i < EVENTS.length; i++) {
+    var e = EVENTS[i];
+    /* không có Z hay múi giờ -> trình duyệt hiểu là giờ địa phương, đúng ý */
+    if (now >= Date.parse(e.from) && now <= Date.parse(e.to)) { day = e; key = e.from; break; }
+  }
+  if (!day) return;
+
+  document.documentElement.classList.add('festive');
+
+  /* ---- băng rôn ---- */
+  var bar = document.getElementById('festive');
+  var msg = bar.querySelector('.msg');
+  /* ghi sẵn cả hai bản cho nút đổi ngôn ngữ; nó đọc textContent nên phải giải
+     mã thực thể HTML trước, không thì hiện ra chữ "&mdash;" */
+  msg.innerHTML = day.vi;
+  msg.dataset.vi = msg.textContent;
+  var tmp = document.createElement('span');
+  tmp.innerHTML = day.en;
+  msg.dataset.en = tmp.textContent;
+  if (document.documentElement.lang === 'en') msg.textContent = msg.dataset.en;
+  if (sessionStorage.getItem('festive-off') !== key) bar.classList.add('on');
+  bar.querySelector('.x').addEventListener('click', function(){
+    bar.classList.remove('on');
+    document.documentElement.classList.remove('festive');
+    stop();
+    try { sessionStorage.setItem('festive-off', key); } catch(e){}
+  });
+
+  /* ---- mưa cánh hoa + bung hoa khi bấm ---- */
+  var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var cv = document.getElementById('petals'), cx = cv.getContext('2d');
+  var W, H, petals = [], raf = null, DPR = Math.min(devicePixelRatio || 1, 2);
+  /* chỉ hồng và vàng kim: màu trắng trên nền tối trông như tuyết */
+  var COLORS = ['#ff4f93','#ff8fb8','#ffb3cd','#ffd6e4','#ffc46b'];
+
+  function size(){
+    W = cv.width = innerWidth * DPR;
+    H = cv.height = innerHeight * DPR;
+  }
+  function rain(y){
+    return {
+      x: Math.random() * W,
+      /* lần đầu: rải sẵn khắp màn hình để mở trang là thấy hoa ngay;
+         rơi hết thì gọi lại với y âm để thả từ trên xuống */
+      y: y === undefined ? Math.random() * H * 1.15 - H * 0.15 : y,
+      r: (5 + Math.random() * 7) * DPR,
+      vx: 0, vy: (0.5 + Math.random() * 1) * DPR,
+      sway: 0.6 + Math.random() * 1.4, phase: Math.random() * 6.283,
+      spin: (Math.random() - 0.5) * 0.05, ang: Math.random() * 6.283,
+      c: COLORS[(Math.random() * COLORS.length) | 0],
+      a: 0.6 + Math.random() * 0.4, life: 0
+    };
+  }
+  function burst(px, py){
+    for (var i = 0; i < 16; i++){
+      var ang = Math.random() * 6.283, sp = (1.5 + Math.random() * 4) * DPR;
+      petals.push({
+        x: px * DPR, y: py * DPR,
+        r: (4 + Math.random() * 7) * DPR,
+        vx: Math.cos(ang) * sp, vy: Math.sin(ang) * sp - 1.5 * DPR,
+        sway: 0.4 + Math.random(), phase: Math.random() * 6.283,
+        spin: (Math.random() - 0.5) * 0.3, ang: ang,
+        c: COLORS[(Math.random() * COLORS.length) | 0],
+        a: 1, life: 1
+      });
+    }
+    if (!raf) start();
+  }
+  function draw(p){
+    cx.save();
+    cx.translate(p.x, p.y);
+    cx.rotate(p.ang);
+    cx.globalAlpha = p.a;
+    cx.fillStyle = p.c;
+    /* một cánh hoa: hai đường cong khép lại */
+    cx.beginPath();
+    cx.moveTo(0, -p.r);
+    cx.bezierCurveTo(p.r, -p.r * 0.5, p.r * 0.75, p.r * 0.75, 0, p.r);
+    cx.bezierCurveTo(-p.r * 0.75, p.r * 0.75, -p.r, -p.r * 0.5, 0, -p.r);
+    cx.fill();
+    cx.restore();
+  }
+  function tick(){
+    cx.clearRect(0, 0, W, H);
+    for (var i = petals.length - 1; i >= 0; i--){
+      var p = petals[i];
+      p.phase += 0.016;
+      p.ang += p.spin;
+      if (p.life){                      /* cánh hoa bung ra: bay rồi rơi và nhạt dần */
+        p.vy += 0.12 * DPR;
+        p.vx *= 0.985;
+        p.x += p.vx; p.y += p.vy;
+        p.a -= 0.012;
+        if (p.a <= 0 || p.y - p.r > H) { petals.splice(i, 1); continue; }
+      } else {                          /* cánh hoa rơi nền */
+        p.y += p.vy;
+        p.x += Math.sin(p.phase) * p.sway * DPR;
+        if (p.y - p.r > H) petals[i] = rain(-p.r * 2);
+      }
+      draw(petals[i]);
+    }
+    raf = requestAnimationFrame(tick);
+  }
+  function start(){
+    if (raf) return;
+    size();
+    if (!petals.length && !reduce){
+      var n = Math.min(44, Math.round(innerWidth / 28));
+      for (var i = 0; i < n; i++) petals.push(rain());
+    }
+    raf = requestAnimationFrame(tick);
+  }
+  function stop(){ if (raf) { cancelAnimationFrame(raf); raf = null; } cx.clearRect(0,0,W||0,H||0); }
+
+  addEventListener('resize', function(){ stop(); petals = []; start(); });
+  /* tab ẩn thì dừng hẳn, khỏi ngốn pin */
+  addEventListener('visibilitychange', function(){ document.hidden ? stop() : start(); });
+  /* bấm vào chỗ trống -> hoa bung ra tại đó; bấm vào link thì để yên */
+  addEventListener('click', function(ev){
+    if (!document.documentElement.classList.contains('festive')) return;
+    if (ev.target.closest('a,button,input')) return;
+    burst(ev.clientX, ev.clientY);
+  });
+  if (!reduce) start();
+})();
+"""
+
 # ================================ LẤY DỮ LIỆU ================================
 def gh_repos():
     out = subprocess.run(
@@ -563,10 +756,14 @@ def render(groups):
 <meta property="og:description" content="%(intro_short)s">
 <meta property="og:url" content="https://%(owner)s.github.io/">
 <meta property="og:type" content="website">%(og_image)s
-<style>%(css)s</style>
+<style>%(css)s%(festive_css)s</style>
 </head>
 <body>
+<canvas id="petals" aria-hidden="true"></canvas>
 <button id="lang" type="button">English</button>
+<div id="festive"><span class="em">🌸</span><span class="msg"></span>
+<span class="hint" data-en="tap anywhere for petals">bấm vào trang để hoa bung ra</span>
+<button class="x" type="button" aria-label="Đóng">&times;</button></div>
 <div class="wrap">
   <header>
     <div class="hero">
@@ -602,7 +799,7 @@ def render(groups):
     <div class="note" data-en="%(auto_en)s">%(auto_vi)s</div>
   </footer>
 </div>
-<script>%(js)s</script>
+<script>%(js)s%(festive_js)s</script>
 </body>
 </html>
 """ % {
@@ -623,6 +820,9 @@ def render(groups):
         "contact_vi": esc(UI["contact"]["vi"]), "contact_en": esc(UI["contact"]["en"]),
         "auto_vi": esc(UI["auto"]["vi"]), "auto_en": esc(UI["auto"]["en"]),
         "slogan_full": esc(ME["slogan"]["lead"]["vi"] + " " + ME["slogan"]["accent"]["vi"]),
+        "festive_css": FESTIVE_CSS,
+        "festive_js": FESTIVE_JS.replace("__FESTIVE__",
+                                         json.dumps(FESTIVE, ensure_ascii=False)),
         "owner": OWNER, "css": CSS, "js": JS, "links": "".join(links),
         "total": total, "body": "\n\n".join(body),
         "photo": photo_tag, "og_image": og_image, "icon": ICON,
