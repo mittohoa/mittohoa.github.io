@@ -1,68 +1,167 @@
 {
  "cam-coach-web": {
-  "icon": "data:image/svg+xml,%3Csvg xmlns=",
+  "desc": "App camera nói cho bạn biết nên chỉnh gì ngay lúc còn đang giơ máy. Sáu chế độ chụp, chạy hoàn toàn trên máy, không gửi ảnh đi đâu.",
+  "downloads": 45,
+  "icon": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 108 108'%3E%3Crect width='108' height='108' fill='%2312100E'/%3E%3Cg fill='none' stroke='%23F5F3F0' stroke-width='6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M32,47 L32,32 L47,32'/%3E%3Cpath d='M61,32 L76,32 L76,47'/%3E%3Cpath d='M76,61 L76,76 L61,76'/%3E%3Cpath d='M47,76 L32,76 L32,61'/%3E%3C/g%3E%3Ccircle cx='61.3' cy='46.7' r='5.2' fill='%23FF7A1A'/%3E%3C/svg%3E",
+  "play": "com.mittohoa.cam_coach",
   "title": "CAM-Coach"
  },
  "chess-game-web": {
+  "desc": "TỐT thí: game cờ vua tiếng Việt. Bàn cờ ba chiều, luật FIDE đầy đủ, máy đấu 8 mức, 5000 bài tập chiến thuật, phân tích ván. Chơi không cần mạng, không tài khoản, không quảng cáo.",
+  "downloads": 33,
   "icon": "https://mittohoa.github.io/chess-game-web/anh/logo.png",
   "title": "TỐT thí"
  },
  "chinese-chess-web": {
+  "desc": "App cờ tướng tiếng Việt: học luật từ đầu, máy đấu 8 mức, chơi cùng mạng nội bộ. Không tài khoản, không quảng cáo, không máy chủ nào.",
+  "downloads": 8,
   "icon": "https://mittohoa.github.io/chinese-chess-web/anh/logo.png",
+  "play": "com.mittohoa.chinese_chess",
   "title": "PHÁO đầu"
  },
  "el-coach": {
+  "downloads": 0,
   "title": "English Coach"
  },
  "examlab-web": {
+  "desc": "Ứng dụng trắc nghiệm khách quan đa khoá học, nhiều mức độ. Làm bài trên điện thoại hoặc trình duyệt, có chế độ ngoại tuyến.",
+  "downloads": 6,
   "icon": "https://mittohoa.github.io/examlab-web/apple-touch-icon.png",
   "title": "ExamLab"
  },
+ "ghienmuzik-app": {
+  "desc": "Trình phát nhạc Flutter đa nguồn cho Android: nhạc máy, trực tuyến, radio, podcast, trợ lý AI miễn phí.",
+  "downloads": 0,
+  "title": "Ghiền Muzik"
+ },
  "gio-chuan": {
+  "desc": "Đồng hồ chính xác đồng bộ theo giờ nguyên tử, xem giờ mọi múi giờ, chạy được cả khi ngoại tuyến.",
+  "downloads": 0,
   "icon": "https://mittohoa.github.io/gio-chuan/icon.svg",
   "title": "Giờ Chuẩn"
  },
+ "homeassistant-app": {
+  "desc": "Quản Gia: quản lý đồ đạc trong nhà theo vị trí thực tế. Offline-first, AI, QR, bảo hành, đồng bộ. Tìm mọi đồ trong dưới 10 giây.",
+  "downloads": 4,
+  "icon": "https://mittohoa.github.io/homeassistant-app/screenshots/icon.png",
+  "title": "Quản Gia"
+ },
+ "khomi-app": {
+  "desc": "Khomi lưu link, tin nhắn, ảnh, tệp và ghi chú vào một kho trên máy bạn, rồi giúp bạn tìm lại.",
+  "downloads": 60,
+  "play": "com.mittohoa.khomi",
+  "title": "Khomi"
+ },
+ "lyra-player": {
+  "desc": "AURA hiện lời bài hát nổi trên màn hình cho nhạc phát ở bất kỳ app nào, và cũng là một trình nghe nhạc đầy đủ. Cho Windows và Android.",
+  "downloads": 172,
+  "title": "AURA"
+ },
+ "meanything-app": {
+  "desc": "App cá nhân đa nền tảng: lưu, tóm tắt và tìm mọi thứ (video, audio, ảnh, meme, phim) bằng AI. 10 module trong 3 nhóm Xem · Nghe · Nhìn.",
+  "downloads": 4,
+  "title": "MÊ anything"
+ },
  "media-kit": {
-  "icon": "data:image/svg+xml,<svg xmlns=",
+  "desc": "Dọn gọn thư viện ảnh, và chỉ cho bạn ảnh nào có thể đẹp hơn. Toàn bộ phân tích chạy trên máy bạn — không ảnh nào rời khỏi thiết bị.",
+  "downloads": 62,
+  "icon": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✨</text></svg>",
   "title": "Media KIT"
  },
  "media-tool": {
+  "desc": "Hai công cụ cho thư viện ảnh: Winnow tìm ảnh trùng trên Windows, Media Hub quản lý ảnh/video/nhạc trên Android. Tải APK, bản cài Windows.",
+  "downloads": 16,
   "icon": "https://mittohoa.github.io/media-tool/assets/winnow.png",
   "title": "Media Hub"
  },
+ "memora-app": {
+  "desc": "Ném mọi thứ vào — Memora đọc, phân tích, phân loại và nhắc bạn xem lại. Kho lưu trữ cá nhân có AI.",
+  "downloads": 9,
+  "title": "Memora"
+ },
+ "munneh-app": {
+  "desc": "Zenith — ioioRT đa nền tảng: công việc, ÂyAi, tài chính, sức khỏe, phân tích thông báo, smart home… Local-first, riêng tư, mã nguồn mở.",
+  "downloads": 63,
+  "icon": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%90%88%3C/text%3E%3C/svg%3E",
+  "title": "Zenith"
+ },
  "news-hub-releases": {
-  "icon": "data:image/svg+xml,<svg xmlns=",
+  "desc": "App cá nhân gom repo GitHub và tin công nghệ, lập trình, AI, chuyển đổi số về một dòng. Miễn phí, không quảng cáo, dữ liệu nằm trong máy bạn.",
+  "downloads": 8,
+  "icon": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1024 1024'><rect width='1024' height='1024' rx='224' fill='%2316161A'/><g fill='none' stroke='%23EDEDF0' stroke-width='88' stroke-linecap='round' stroke-linejoin='round'><path d='M196 344H470L652 512'/><path d='M196 680H470L652 512'/></g><path d='M640 512H838' stroke='%23E0765A' stroke-width='112' stroke-linecap='round'/></svg>",
   "title": "News HUB"
  },
  "nhipnha": {
+  "desc": "FAM Health - theo dõi sức khỏe gia đình",
+  "downloads": 11,
   "icon": "https://mittohoa.github.io/nhipnha/icons/Icon-192.png",
   "title": "Nhịp Nhà"
  },
  "rubik-resolved": {
+  "desc": "RubikLab: app Android dạy giải Rubik 3x3 từng bước, chụp ảnh khối thật để nhận lời giải, khối ảo chơi ngay trên máy, bấm giờ speedcubing và thử thách mỗi ngày.",
+  "downloads": 40,
   "icon": "https://mittohoa.github.io/rubik-resolved/assets/icon.png",
   "title": "RubikLab"
  },
+ "starvelocity": {
+  "desc": "Ranking open source by total stars puts the same decade-old projects on top forever. StarVelocity measures how fast a repository is gaining stars right now, from its own daily record of every repo it tracks. 5000 repos.",
+  "downloads": 2,
+  "title": "StarVelocity"
+ },
  "toidi": {
+  "desc": "Chỉ đường xe buýt, metro TP.HCM và Hà Nội: nhắc xuống trạm, nhiều điểm dừng, tiện ích quanh đây, chạy cả khi mất mạng. Không quảng cáo.",
+  "downloads": 16,
   "icon": "https://mittohoa.github.io/toidi/assets/img/icon-192.png",
   "title": "TÔI ĐI"
  },
+ "tudu-app": {
+  "desc": "TMA là ứng dụng quản lý công việc và cộng tác nhóm: việc con, dự án, nhắc hạn, ô nhập thông minh (AI), đa nền tảng — xây bằng Flutter + Supabase.",
+  "downloads": 6,
+  "icon": "https://mittohoa.github.io/tudu-app/icon.png",
+  "title": "TMA"
+ },
  "uke-flow": {
-  "icon": "data:image/svg+xml,<svg xmlns=",
+  "desc": "Ứng dụng Android học ukulele bằng tiếng Việt. Lộ trình cho người chưa từng cầm đàn, 28 hợp âm kèm hướng dẫn bấm từng ngón, máy lên dây, metronome. Miễn phí, chạy offline.",
+  "downloads": 18,
+  "icon": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎸</text></svg>",
   "title": "UkeFlow"
  },
  "veo-kam": {
-  "icon": "data:image/svg+xml,<svg xmlns=",
+  "desc": "Veo-Kâm cho phép điều khiển máy tính Windows từ điện thoại Android qua mạng nội bộ. Mã hoá TLS, mã PIN không bao giờ đi qua mạng, không thu thập dữ liệu.",
+  "downloads": 3,
+  "icon": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%232F6FED'/><rect x='18' y='24' width='64' height='44' rx='6' fill='white'/><rect x='44' y='68' width='12' height='10' fill='white'/><rect x='30' y='78' width='40' height='8' rx='4' fill='white'/><circle cx='53' cy='45' r='13' fill='none' stroke='%23FFBA49' stroke-width='5'/><path d='M45 32 L45 54 L50 49 L54 58 L58 56 L54 47 L61 46 Z' fill='%2314245E'/></svg>",
   "title": "Veo-Kâm"
  },
  "vung-dat-tri-thuc": {
+  "desc": "Trò chơi phiêu lưu 3D giúp trẻ 6–11 tuổi vừa chơi vừa học.",
+  "downloads": 0,
   "icon": "https://mittohoa.github.io/vung-dat-tri-thuc/icon.png",
   "title": "Vùng Đất Tri Thức"
+ },
+ "workpilot-app": {
+  "desc": "WorkPilot AI: bấm giờ công việc, ghi số lượng, báo cáo AI, đồng bộ đa thiết bị (realtime, offline-first). Tải cho Android & Windows.",
+  "downloads": 513,
+  "icon": "https://mittohoa.github.io/workpilot-app/assets/icon.png",
+  "play": "com.mittohoa.workpilot_ai",
+  "title": "WorkPilot AI"
+ },
+ "xaxi-app": {
+  "desc": "XAXI (Xa Xỉ): sổ thu chi cá nhân — nhập liệu siêu nhanh, đa tiền tệ, đồng bộ đám mây, xem offline. Smart personal finance app.",
+  "downloads": 31,
+  "title": "XAXI"
  },
  "xaxi-wallet": {
   "icon": "https://mittohoa.github.io/xaxi-wallet/icon.svg",
   "title": "Ví XAXI"
  },
+ "ytb-web": {
+  "desc": "Ứng dụng cá nhân giúp chủ kênh YouTube theo dõi hiệu suất video, chẩn đoán vấn đề và nhận cảnh báo theo ngưỡng tự đặt.",
+  "downloads": 273,
+  "title": "Pulseboard"
+ },
  "zone-game": {
+  "desc": "8 game, 96 chặng chuẩn bị vào lớp 1. Không quảng cáo, không mua trong ứng dụng, không cần Internet, không thu thập dữ liệu.",
+  "downloads": 9,
   "icon": "https://mittohoa.github.io/zone-game/assets/icon.png",
   "title": "Bé Chơi Bé Học"
  }

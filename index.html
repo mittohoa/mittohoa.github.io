@@ -94,6 +94,23 @@ h2{margin:0;font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:u
 .card p{margin:0 0 14px;font-size:14px;color:var(--muted);line-height:1.55;flex:1}
 .card .go{font-size:13px;font-weight:600;color:var(--accent)}
 
+/* huy hiệu lượt tải / Google Play */
+.badges{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 12px}
+.badge{
+  font-size:11.5px;font-weight:600;padding:3px 9px;border-radius:999px;
+  background:var(--accent-soft);color:var(--accent);white-space:nowrap
+}
+.badge.play{background:#1a7f3718;color:#1a9e45}
+
+/* khu Nổi bật: thẻ to hơn, logo lớn hơn */
+.grid.big{grid-template-columns:1fr}
+@media (min-width:620px){.grid.big{grid-template-columns:repeat(3,1fr)}}
+.grid.big .card{padding:22px 22px 18px;border-color:var(--accent);
+  background:linear-gradient(180deg,var(--accent-soft) 0%,var(--surface) 46%)}
+.grid.big .ico{width:58px;height:58px;flex:0 0 58px;border-radius:14px}
+.grid.big h3{font-size:19px}
+.grid.big p{font-size:14.5px}
+
 footer{margin-top:58px;padding:26px 0 56px;border-top:1px solid var(--line);font-size:14px;color:var(--muted)}
 footer a{color:var(--accent);text-decoration:none}
 footer a:hover{text-decoration:underline}
@@ -117,7 +134,7 @@ footer a:hover{text-decoration:underline}
       </div>
     </div>
     <div class="stats">
-      <div class="stat"><b>17</b><span data-en="apps published">ứng dụng đang phát hành</span></div>
+      <div class="stat"><b>28</b><span data-en="apps published">ứng dụng đang phát hành</span></div>
       <div class="stat"><b>3</b><span data-en="platforms: Android · Windows · Web">nền tảng: Android · Windows · Web</span></div>
       <div class="stat"><b data-en="Offline">Offline</b><span data-en="your data stays on your device">dữ liệu nằm trên máy bạn</span></div>
     </div>
@@ -129,26 +146,109 @@ footer a:hover{text-decoration:underline}
   </section>
 
     <section>
-      <h2 data-en="Everyday life">Đi lại &amp; đời sống</h2>
-      <div class="grid">
-        <a class="card" href="https://mittohoa.github.io/nhipnha/">
-          <div class="head"><img class="ico" src="https://mittohoa.github.io/nhipnha/icons/Icon-192.png" alt="" loading="lazy" width="44" height="44"><h3>Nhịp Nhà</h3></div>
-          <p data-en="Web app and public pages (privacy policy, account deletion). Source code lives in a private repo.">web app &amp; trang công khai (chính sách quyền riêng tư, xóa tài khoản). Mã nguồn ở repo riêng tư.</p>
+      <h2 data-en="Featured">Nổi bật</h2>
+      <div class="grid big">
+        <a class="card" href="https://mittohoa.github.io/workpilot-app/">
+          <div class="head"><img class="ico" src="https://mittohoa.github.io/workpilot-app/assets/icon.png" alt="" loading="lazy" width="44" height="44"><h3>WorkPilot AI</h3></div>
+          <div class="badges"><span class="badge" data-en="513 downloads">513 lượt tải</span><span class="badge play">Google Play</span></div><p data-en="Work timer, quantity logging and AI reports, synced across devices in realtime and offline-first. Android and Windows.">Bấm giờ công việc, ghi số lượng, báo cáo AI, đồng bộ đa thiết bị (realtime, offline-first). Tải cho Android &amp; Windows.</p>
           <span class="go" data-en="Visit &rarr;">Xem trang &rarr;</span>
         </a>
-        <a class="card" href="https://mittohoa.github.io/xaxi-wallet/">
-          <div class="head"><img class="ico" src="https://mittohoa.github.io/xaxi-wallet/icon.svg" alt="" loading="lazy" width="44" height="44"><h3>Ví XAXI</h3></div>
-          <p data-en="Personal expense tracking on web, Windows and Android. Offline, your data stays on your device.">Quản lý thu chi cá nhân đa nền tảng — web, Windows, Android. Offline, dữ liệu nằm trên máy bạn.</p>
+        <a class="card" href="https://mittohoa.github.io/ytb-web/">
+          <div class="head"><span class="ico ph">P</span><h3>Pulseboard</h3></div>
+          <div class="badges"><span class="badge" data-en="273 downloads">273 lượt tải</span></div><p data-en="A personal app for YouTube creators: track video performance, diagnose problems and get alerts at thresholds you set.">Ứng dụng cá nhân giúp chủ kênh YouTube theo dõi hiệu suất video, chẩn đoán vấn đề và nhận cảnh báo theo ngưỡng tự đặt.</p>
+          <span class="go" data-en="Visit &rarr;">Xem trang &rarr;</span>
+        </a>
+        <a class="card" href="https://mittohoa.github.io/lyra-player/">
+          <div class="head"><span class="ico ph">A</span><h3>AURA</h3></div>
+          <div class="badges"><span class="badge" data-en="172 downloads">172 lượt tải</span></div><p data-en="AURA floats song lyrics over the screen for music playing in any app, and doubles as a full music player. Windows and Android.">AURA hiện lời bài hát nổi trên màn hình cho nhạc phát ở bất kỳ app nào, và cũng là một trình nghe nhạc đầy đủ. Cho Windows và Android.</p>
+          <span class="go" data-en="Visit &rarr;">Xem trang &rarr;</span>
+        </a>
+      </div>
+    </section>
+
+    <section>
+      <h2 data-en="Work &amp; organising">Công việc &amp; tổ chức</h2>
+      <div class="grid">
+        <a class="card" href="https://mittohoa.github.io/munneh-app/">
+          <div class="head"><img class="ico" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%90%88%3C/text%3E%3C/svg%3E" alt="" loading="lazy" width="44" height="44"><h3>Zenith</h3></div>
+          <div class="badges"><span class="badge" data-en="63 downloads">63 lượt tải</span></div><p data-en="A cross-platform personal hub: tasks, AI, finances, health, notification analysis, smart home. Local-first and private.">IoioRT đa nền tảng: công việc, ÂyAi, tài chính, sức khỏe, phân tích thông báo, smart home… Local-first, riêng tư, mã nguồn mở.</p>
+          <span class="go" data-en="Visit &rarr;">Xem trang &rarr;</span>
+        </a>
+        <a class="card" href="https://mittohoa.github.io/khomi-app/">
+          <div class="head"><span class="ico ph">K</span><h3>Khomi</h3></div>
+          <div class="badges"><span class="badge" data-en="60 downloads">60 lượt tải</span><span class="badge play">Google Play</span></div><p data-en="Khomi keeps links, messages, photos, files and notes in one store on your own device, then helps you find them again.">Khomi lưu link, tin nhắn, ảnh, tệp và ghi chú vào một kho trên máy bạn, rồi giúp bạn tìm lại.</p>
+          <span class="go" data-en="Visit &rarr;">Xem trang &rarr;</span>
+        </a>
+        <a class="card" href="https://mittohoa.github.io/memora-app/">
+          <div class="head"><span class="ico ph">M</span><h3>Memora</h3></div>
+          <p data-en="Throw anything in and Memora reads, analyses, sorts it and reminds you to look again. A personal archive with AI.">Ném mọi thứ vào — Memora đọc, phân tích, phân loại và nhắc bạn xem lại. Kho lưu trữ cá nhân có AI.</p>
+          <span class="go" data-en="Visit &rarr;">Xem trang &rarr;</span>
+        </a>
+        <a class="card" href="https://mittohoa.github.io/tudu-app/">
+          <div class="head"><img class="ico" src="https://mittohoa.github.io/tudu-app/icon.png" alt="" loading="lazy" width="44" height="44"><h3>TMA</h3></div>
+          <p data-en="TMA handles tasks and team collaboration: subtasks, projects, deadlines and an AI-assisted input box. Flutter and Supabase.">TMA là ứng dụng quản lý công việc và cộng tác nhóm: việc con, dự án, nhắc hạn, ô nhập thông minh (AI), đa nền tảng — xây bằng Flutter + Supabase.</p>
+          <span class="go" data-en="Visit &rarr;">Xem trang &rarr;</span>
+        </a>
+        <a class="card" href="https://mittohoa.github.io/meanything-app/">
+          <div class="head"><span class="ico ph">M</span><h3>MÊ anything</h3></div>
+          <p data-en="A cross-platform personal app that saves, summarises and finds anything with AI: video, audio, images, memes, films.">App cá nhân đa nền tảng: lưu, tóm tắt và tìm mọi thứ (video, audio, ảnh, meme, phim) bằng AI. 10 module trong 3 nhóm Xem · Nghe · Nhìn.</p>
+          <span class="go" data-en="Visit &rarr;">Xem trang &rarr;</span>
+        </a>
+      </div>
+    </section>
+
+    <section>
+      <h2 data-en="Everyday life">Đi lại &amp; đời sống</h2>
+      <div class="grid">
+        <a class="card" href="https://mittohoa.github.io/xaxi-app/">
+          <div class="head"><span class="ico ph">X</span><h3>XAXI</h3></div>
+          <p data-en="A personal expense book built for speed: very fast entry, multi-currency, cloud sync, works offline.">XAXI (Xa Xỉ): sổ thu chi cá nhân — nhập liệu siêu nhanh, đa tiền tệ, đồng bộ đám mây, xem offline. Smart personal finance app.</p>
           <span class="go" data-en="Visit &rarr;">Xem trang &rarr;</span>
         </a>
         <a class="card" href="https://mittohoa.github.io/toidi/">
           <div class="head"><img class="ico" src="https://mittohoa.github.io/toidi/assets/img/icon-192.png" alt="" loading="lazy" width="44" height="44"><h3>TÔI ĐI</h3></div>
-          <p data-en="Buses and metro in Ho Chi Minh City and Hanoi: website, policies, downloads.">xe buýt &amp; metro TP.HCM · Hà Nội: website, chính sách, tải về</p>
+          <p data-en="Bus and metro directions for Ho Chi Minh City and Hanoi: stop alerts, multi-leg routes, nearby places, works without a signal.">Chỉ đường xe buýt, metro TP.HCM và Hà Nội: nhắc xuống trạm, nhiều điểm dừng, tiện ích quanh đây, chạy cả khi mất mạng. Không quảng cáo.</p>
+          <span class="go" data-en="Visit &rarr;">Xem trang &rarr;</span>
+        </a>
+        <a class="card" href="https://mittohoa.github.io/nhipnha/">
+          <div class="head"><img class="ico" src="https://mittohoa.github.io/nhipnha/icons/Icon-192.png" alt="" loading="lazy" width="44" height="44"><h3>Nhịp Nhà</h3></div>
+          <p data-en="FAM Health - keeping track of your family's health.">FAM Health - theo dõi sức khỏe gia đình</p>
+          <span class="go" data-en="Visit &rarr;">Xem trang &rarr;</span>
+        </a>
+        <a class="card" href="https://mittohoa.github.io/homeassistant-app/">
+          <div class="head"><img class="ico" src="https://mittohoa.github.io/homeassistant-app/screenshots/icon.png" alt="" loading="lazy" width="44" height="44"><h3>Quản Gia</h3></div>
+          <p data-en="Keeps track of where your household things really are. Offline-first, AI, QR codes, warranties, sync. Find anything in under 10 seconds.">Quản lý đồ đạc trong nhà theo vị trí thực tế. Offline-first, AI, QR, bảo hành, đồng bộ. Tìm mọi đồ trong dưới 10 giây.</p>
           <span class="go" data-en="Visit &rarr;">Xem trang &rarr;</span>
         </a>
         <a class="card" href="https://mittohoa.github.io/gio-chuan/">
           <div class="head"><img class="ico" src="https://mittohoa.github.io/gio-chuan/icon.svg" alt="" loading="lazy" width="44" height="44"><h3>Giờ Chuẩn</h3></div>
-          <p data-en="An accurate clock for web, Android and Windows. It measures and publishes its own real sync error.">Đồng hồ chính xác đa nền tảng — web, Android, Windows. Đo và công bố sai số đồng bộ thật của chính nó.</p>
+          <p data-en="An accurate clock synced to atomic time, every time zone at hand, working even when you are offline.">Đồng hồ chính xác đồng bộ theo giờ nguyên tử, xem giờ mọi múi giờ, chạy được cả khi ngoại tuyến.</p>
+          <span class="go" data-en="Visit &rarr;">Xem trang &rarr;</span>
+        </a>
+      </div>
+    </section>
+
+    <section>
+      <h2 data-en="Photos, music &amp; video">Ảnh, nhạc &amp; video</h2>
+      <div class="grid">
+        <a class="card" href="https://mittohoa.github.io/media-kit/">
+          <div class="head"><img class="ico" src="data:image/svg+xml,&lt;svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'&gt;&lt;text y='.9em' font-size='90'&gt;✨&lt;/text&gt;&lt;/svg&gt;" alt="" loading="lazy" width="44" height="44"><h3>Media KIT</h3></div>
+          <div class="badges"><span class="badge" data-en="62 downloads">62 lượt tải</span></div><p data-en="Tidies your photo library and shows you which shots could look better. Every bit of analysis runs on your device.">Dọn gọn thư viện ảnh, và chỉ cho bạn ảnh nào có thể đẹp hơn. Toàn bộ phân tích chạy trên máy bạn — không ảnh nào rời khỏi thiết bị.</p>
+          <span class="go" data-en="Visit &rarr;">Xem trang &rarr;</span>
+        </a>
+        <a class="card" href="https://mittohoa.github.io/cam-coach-web/">
+          <div class="head"><img class="ico" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 108 108'%3E%3Crect width='108' height='108' fill='%2312100E'/%3E%3Cg fill='none' stroke='%23F5F3F0' stroke-width='6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M32,47 L32,32 L47,32'/%3E%3Cpath d='M61,32 L76,32 L76,47'/%3E%3Cpath d='M76,61 L76,76 L61,76'/%3E%3Cpath d='M47,76 L32,76 L32,61'/%3E%3C/g%3E%3Ccircle cx='61.3' cy='46.7' r='5.2' fill='%23FF7A1A'/%3E%3C/svg%3E" alt="" loading="lazy" width="44" height="44"><h3>CAM-Coach</h3></div>
+          <div class="badges"><span class="badge play">Google Play</span></div><p data-en="A camera app that tells you what to adjust while you are still holding the phone up. Six modes, fully on-device.">App camera nói cho bạn biết nên chỉnh gì ngay lúc còn đang giơ máy. Sáu chế độ chụp, chạy hoàn toàn trên máy, không gửi ảnh đi đâu.</p>
+          <span class="go" data-en="Visit &rarr;">Xem trang &rarr;</span>
+        </a>
+        <a class="card" href="https://mittohoa.github.io/media-tool/">
+          <div class="head"><img class="ico" src="https://mittohoa.github.io/media-tool/assets/winnow.png" alt="" loading="lazy" width="44" height="44"><h3>Media Hub</h3></div>
+          <p data-en="Two tools for photo libraries: Winnow finds duplicates on Windows, Media Hub manages photos, video and music on Android.">Hai công cụ cho thư viện ảnh: Winnow tìm ảnh trùng trên Windows, Media Hub quản lý ảnh/video/nhạc trên Android. Tải APK, bản cài Windows.</p>
+          <span class="go" data-en="Visit &rarr;">Xem trang &rarr;</span>
+        </a>
+        <a class="card" href="https://mittohoa.github.io/ghienmuzik-app/">
+          <div class="head"><span class="ico ph">G</span><h3>Ghiền Muzik</h3></div>
+          <p data-en="A multi-source Flutter music player for Android: local files, streaming, radio, podcasts and a free AI assistant.">Trình phát nhạc Flutter đa nguồn cho Android: nhạc máy, trực tuyến, radio, podcast, trợ lý AI miễn phí.</p>
           <span class="go" data-en="Visit &rarr;">Xem trang &rarr;</span>
         </a>
       </div>
@@ -157,65 +257,34 @@ footer a:hover{text-decoration:underline}
     <section>
       <h2 data-en="Learn &amp; practice">Học &amp; luyện tập</h2>
       <div class="grid">
+        <a class="card" href="https://mittohoa.github.io/rubik-resolved/">
+          <div class="head"><img class="ico" src="https://mittohoa.github.io/rubik-resolved/assets/icon.png" alt="" loading="lazy" width="44" height="44"><h3>RubikLab</h3></div>
+          <p data-en="An Android app that teaches 3x3 Rubik solving step by step, reads a real cube from a photo, and times your speedsolves.">App Android dạy giải Rubik 3x3 từng bước, chụp ảnh khối thật để nhận lời giải, khối ảo chơi ngay trên máy, bấm giờ speedcubing và thử thách mỗi ngày.</p>
+          <span class="go" data-en="Visit &rarr;">Xem trang &rarr;</span>
+        </a>
+        <a class="card" href="https://mittohoa.github.io/uke-flow/">
+          <div class="head"><img class="ico" src="data:image/svg+xml,&lt;svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'&gt;&lt;text y='.9em' font-size='90'&gt;🎸&lt;/text&gt;&lt;/svg&gt;" alt="" loading="lazy" width="44" height="44"><h3>UkeFlow</h3></div>
+          <p data-en="Learn ukulele in Vietnamese on Android. A path for absolute beginners, 28 chords with finger-by-finger guidance.">Ứng dụng Android học ukulele bằng tiếng Việt. Lộ trình cho người chưa từng cầm đàn, 28 hợp âm kèm hướng dẫn bấm từng ngón, máy lên dây, metronome. Miễn phí, chạy offline.</p>
+          <span class="go" data-en="Visit &rarr;">Xem trang &rarr;</span>
+        </a>
+        <a class="card" href="https://mittohoa.github.io/zone-game/">
+          <div class="head"><img class="ico" src="https://mittohoa.github.io/zone-game/assets/icon.png" alt="" loading="lazy" width="44" height="44"><h3>Bé Chơi Bé Học</h3></div>
+          <p data-en="8 games and 96 stages to get ready for first grade. No ads, no in-app purchases, no internet needed, no data collected.">8 game, 96 chặng chuẩn bị vào lớp 1. Không quảng cáo, không mua trong ứng dụng, không cần Internet, không thu thập dữ liệu.</p>
+          <span class="go" data-en="Visit &rarr;">Xem trang &rarr;</span>
+        </a>
+        <a class="card" href="https://mittohoa.github.io/examlab-web/">
+          <div class="head"><img class="ico" src="https://mittohoa.github.io/examlab-web/apple-touch-icon.png" alt="" loading="lazy" width="44" height="44"><h3>ExamLab</h3></div>
+          <p data-en="Multiple-choice practice across courses and difficulty levels. Take tests on your phone or in a browser, offline included.">Ứng dụng trắc nghiệm khách quan đa khoá học, nhiều mức độ. Làm bài trên điện thoại hoặc trình duyệt, có chế độ ngoại tuyến.</p>
+          <span class="go" data-en="Visit &rarr;">Xem trang &rarr;</span>
+        </a>
         <a class="card" href="https://mittohoa.github.io/vung-dat-tri-thuc/">
           <div class="head"><img class="ico" src="https://mittohoa.github.io/vung-dat-tri-thuc/icon.png" alt="" loading="lazy" width="44" height="44"><h3>Vùng Đất Tri Thức</h3></div>
-          <p data-en="Landing page and privacy policy for the Vùng Đất Tri Thức game.">Trang giới thiệu và chính sách quyền riêng tư của game Vùng Đất Tri Thức</p>
+          <p data-en="A 3D adventure game where children aged 6 to 11 learn while they play.">Trò chơi phiêu lưu 3D giúp trẻ 6–11 tuổi vừa chơi vừa học.</p>
           <span class="go" data-en="Visit &rarr;">Xem trang &rarr;</span>
         </a>
         <a class="card" href="https://mittohoa.github.io/el-coach/">
           <div class="head"><span class="ico ph">E</span><h3>English Coach</h3></div>
           <p data-en="Public pages for the English Coach Android app.">Public pages for the English Coach Android app</p>
-          <span class="go" data-en="Visit &rarr;">Xem trang &rarr;</span>
-        </a>
-        <a class="card" href="https://mittohoa.github.io/examlab-web/">
-          <div class="head"><img class="ico" src="https://mittohoa.github.io/examlab-web/apple-touch-icon.png" alt="" loading="lazy" width="44" height="44"><h3>ExamLab</h3></div>
-          <p data-en="Prebuilt web version of ExamLab. Source in a private repo, updated by CI.">Bản web đã build của ExamLab. Mã nguồn ở repo riêng (private). Tự động cập nhật bởi CI.</p>
-          <span class="go" data-en="Visit &rarr;">Xem trang &rarr;</span>
-        </a>
-        <a class="card" href="https://mittohoa.github.io/rubik-resolved/">
-          <div class="head"><img class="ico" src="https://mittohoa.github.io/rubik-resolved/assets/icon.png" alt="" loading="lazy" width="44" height="44"><h3>RubikLab</h3></div>
-          <p data-en="Landing and download page for the 3x3 Rubik learn, solve and practice app.">trang gioi thieu va noi tai app hoc, giai va luyen Rubik 3x3</p>
-          <span class="go" data-en="Visit &rarr;">Xem trang &rarr;</span>
-        </a>
-        <a class="card" href="https://mittohoa.github.io/uke-flow/">
-          <div class="head"><img class="ico" src="data:image/svg+xml,&lt;svg xmlns=" alt="" loading="lazy" width="44" height="44"><h3>UkeFlow</h3></div>
-          <p data-en="A Vietnamese ukulele learning app. Landing page and installers.">ung dung hoc ukulele tieng Viet. Trang gioi thieu va tai ban cai.</p>
-          <span class="go" data-en="Visit &rarr;">Xem trang &rarr;</span>
-        </a>
-        <a class="card" href="https://mittohoa.github.io/zone-game/">
-          <div class="head"><img class="ico" src="https://mittohoa.github.io/zone-game/assets/icon.png" alt="" loading="lazy" width="44" height="44"><h3>Bé Chơi Bé Học</h3></div>
-          <p data-en="A Vietnamese educational game for ages 3-6. APK download and overview.">game giáo dục tiếng Việt cho trẻ 3-6 tuổi. Tải APK và xem giới thiệu.</p>
-          <span class="go" data-en="Visit &rarr;">Xem trang &rarr;</span>
-        </a>
-      </div>
-    </section>
-
-    <section>
-      <h2 data-en="Photos &amp; desktop tools">Ảnh &amp; công cụ máy tính</h2>
-      <div class="grid">
-        <a class="card" href="https://mittohoa.github.io/cam-coach-web/">
-          <div class="head"><img class="ico" src="data:image/svg+xml,%3Csvg xmlns=" alt="" loading="lazy" width="44" height="44"><h3>CAM-Coach</h3></div>
-          <p data-en="Overview, downloads and update channel.">trang giới thiệu, bản tải về và kênh cập nhật</p>
-          <span class="go" data-en="Visit &rarr;">Xem trang &rarr;</span>
-        </a>
-        <a class="card" href="https://mittohoa.github.io/media-tool/">
-          <div class="head"><img class="ico" src="https://mittohoa.github.io/media-tool/assets/winnow.png" alt="" loading="lazy" width="44" height="44"><h3>Media Hub</h3></div>
-          <p data-en="Winnow for Windows: finds duplicate photos, even the ones stripped of their metadata.">Winnow - tim anh trung tren Windows, bat duoc ca ban da bi xoa metadata</p>
-          <span class="go" data-en="Visit &rarr;">Xem trang &rarr;</span>
-        </a>
-        <a class="card" href="https://mittohoa.github.io/news-hub-releases/">
-          <div class="head"><img class="ico" src="data:image/svg+xml,&lt;svg xmlns=" alt="" loading="lazy" width="44" height="44"><h3>News HUB</h3></div>
-          <p data-en="Downloads and releases. A personal app that pulls GitHub repos and tech news into one feed.">trang tải và bản phát hành. App cá nhân gom repo GitHub và tin công nghệ về một dòng.</p>
-          <span class="go" data-en="Visit &rarr;">Xem trang &rarr;</span>
-        </a>
-        <a class="card" href="https://mittohoa.github.io/media-kit/">
-          <div class="head"><img class="ico" src="data:image/svg+xml,&lt;svg xmlns=" alt="" loading="lazy" width="44" height="44"><h3>Media KIT</h3></div>
-          <p data-en="Tidies your photo library and points out which shots could look better. All analysis runs on device.">dọn gọn thư viện ảnh và chỉ ra ảnh nào có thể đẹp hơn. Phân tích chạy hoàn toàn trên thiết bị.</p>
-          <span class="go" data-en="Visit &rarr;">Xem trang &rarr;</span>
-        </a>
-        <a class="card" href="https://mittohoa.github.io/veo-kam/">
-          <div class="head"><img class="ico" src="data:image/svg+xml,&lt;svg xmlns=" alt="" loading="lazy" width="44" height="44"><h3>Veo-Kâm</h3></div>
-          <p data-en="Control a Windows PC from an Android phone over the local network.">Veo-Kam - dieu khien may tinh Windows tu dien thoai Android qua mang noi bo</p>
           <span class="go" data-en="Visit &rarr;">Xem trang &rarr;</span>
         </a>
       </div>
@@ -224,14 +293,35 @@ footer a:hover{text-decoration:underline}
     <section>
       <h2 data-en="Games">Game</h2>
       <div class="grid">
-        <a class="card" href="https://mittohoa.github.io/chinese-chess-web/">
-          <div class="head"><img class="ico" src="https://mittohoa.github.io/chinese-chess-web/anh/logo.png" alt="" loading="lazy" width="44" height="44"><h3>PHÁO đầu</h3></div>
-          <p data-en="Vietnamese chess (Cờ Tướng): landing page, play in browser, releases.">Trang gioi thieu game Co Tuong PHAO dau - landing page, ban choi thu, va cac ban phat hanh</p>
-          <span class="go" data-en="Visit &rarr;">Xem trang &rarr;</span>
-        </a>
         <a class="card" href="https://mittohoa.github.io/chess-game-web/">
           <div class="head"><img class="ico" src="https://mittohoa.github.io/chess-game-web/anh/logo.png" alt="" loading="lazy" width="44" height="44"><h3>TỐT thí</h3></div>
-          <p data-en="Chess in Vietnamese: landing page and releases.">Trang gioi thieu game Co Vua - chess-game landing page</p>
+          <p data-en="Chess in Vietnamese: a three-dimensional board, full FIDE rules, 8 engine levels, 5000 tactics puzzles, game analysis.">Game cờ vua tiếng Việt. Bàn cờ ba chiều, luật FIDE đầy đủ, máy đấu 8 mức, 5000 bài tập chiến thuật, phân tích ván. Chơi không cần mạng, không tài khoản, không quảng cáo.</p>
+          <span class="go" data-en="Visit &rarr;">Xem trang &rarr;</span>
+        </a>
+        <a class="card" href="https://mittohoa.github.io/chinese-chess-web/">
+          <div class="head"><img class="ico" src="https://mittohoa.github.io/chinese-chess-web/anh/logo.png" alt="" loading="lazy" width="44" height="44"><h3>PHÁO đầu</h3></div>
+          <div class="badges"><span class="badge play">Google Play</span></div><p data-en="Vietnamese chess in Vietnamese: learn the rules from scratch, 8 engine levels, play over the local network. No account, no ads.">App cờ tướng tiếng Việt: học luật từ đầu, máy đấu 8 mức, chơi cùng mạng nội bộ. Không tài khoản, không quảng cáo, không máy chủ nào.</p>
+          <span class="go" data-en="Visit &rarr;">Xem trang &rarr;</span>
+        </a>
+        <a class="card" href="https://mittohoa.github.io/starvelocity/">
+          <div class="head"><span class="ico ph">S</span><h3>StarVelocity</h3></div>
+          <p data-en="Ranking open source by total stars keeps the same decade-old projects on top forever. StarVelocity measures how fast a project is growing instead.">Ranking open source by total stars puts the same decade-old projects on top forever. StarVelocity measures how fast a repository is gaining stars right now, from its own daily record of every repo it tracks. 5000 repos.</p>
+          <span class="go" data-en="Visit &rarr;">Xem trang &rarr;</span>
+        </a>
+      </div>
+    </section>
+
+    <section>
+      <h2 data-en="Desktop tools">Công cụ máy tính</h2>
+      <div class="grid">
+        <a class="card" href="https://mittohoa.github.io/news-hub-releases/">
+          <div class="head"><img class="ico" src="data:image/svg+xml,&lt;svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1024 1024'&gt;&lt;rect width='1024' height='1024' rx='224' fill='%2316161A'/&gt;&lt;g fill='none' stroke='%23EDEDF0' stroke-width='88' stroke-linecap='round' stroke-linejoin='round'&gt;&lt;path d='M196 344H470L652 512'/&gt;&lt;path d='M196 680H470L652 512'/&gt;&lt;/g&gt;&lt;path d='M640 512H838' stroke='%23E0765A' stroke-width='112' stroke-linecap='round'/&gt;&lt;/svg&gt;" alt="" loading="lazy" width="44" height="44"><h3>News HUB</h3></div>
+          <p data-en="A personal app that pulls GitHub repositories and news on tech, programming, AI and digital transformation into one feed.">App cá nhân gom repo GitHub và tin công nghệ, lập trình, AI, chuyển đổi số về một dòng. Miễn phí, không quảng cáo, dữ liệu nằm trong máy bạn.</p>
+          <span class="go" data-en="Visit &rarr;">Xem trang &rarr;</span>
+        </a>
+        <a class="card" href="https://mittohoa.github.io/veo-kam/">
+          <div class="head"><img class="ico" src="data:image/svg+xml,&lt;svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'&gt;&lt;rect width='100' height='100' rx='22' fill='%232F6FED'/&gt;&lt;rect x='18' y='24' width='64' height='44' rx='6' fill='white'/&gt;&lt;rect x='44' y='68' width='12' height='10' fill='white'/&gt;&lt;rect x='30' y='78' width='40' height='8' rx='4' fill='white'/&gt;&lt;circle cx='53' cy='45' r='13' fill='none' stroke='%23FFBA49' stroke-width='5'/&gt;&lt;path d='M45 32 L45 54 L50 49 L54 58 L58 56 L54 47 L61 46 Z' fill='%2314245E'/&gt;&lt;/svg&gt;" alt="" loading="lazy" width="44" height="44"><h3>Veo-Kâm</h3></div>
+          <p data-en="Veo-Kam controls a Windows PC from an Android phone over the local network. TLS encrypted, and the PIN never leaves your devices.">Veo-Kâm cho phép điều khiển máy tính Windows từ điện thoại Android qua mạng nội bộ. Mã hoá TLS, mã PIN không bao giờ đi qua mạng, không thu thập dữ liệu.</p>
           <span class="go" data-en="Visit &rarr;">Xem trang &rarr;</span>
         </a>
       </div>
