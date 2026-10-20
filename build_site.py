@@ -167,6 +167,7 @@ UI = {
     "contact":  {"vi": "Liên hệ", "en": "Contact"},
     "featured": {"vi": "Nổi bật", "en": "Featured"},
     "downloads": {"vi": "lượt tải", "en": "downloads"},
+    "testing": {"vi": "Sắp lên Google Play", "en": "Coming to Google Play"},
     "stat1":    {"vi": "ứng dụng đang phát hành", "en": "apps published"},
     "stat2":    {"vi": "nền tảng: Android · Windows · Web", "en": "platforms: Android · Windows · Web"},
     "stat3":    {"vi": "dữ liệu nằm trên máy bạn", "en": "your data stays on your device"},
@@ -324,7 +325,12 @@ def collect(refresh=False):
             "vi": desc_vi,
             "en": DESC_EN.get(r["name"], desc_vi),
             "icon": meta.get("icon", ""),
-            "play": match_play(r["name"], packages),
+            # Công khai = chính trang app dẫn sang store. Có gói trên trang nhà
+            # phát triển mà trang app không dẫn sang -> còn thử nghiệm kín,
+            # người lạ bấm vào chỉ thấy "App not available".
+            "play": meta.get("play", "") if meta.get("play") in packages else "",
+            "testing": bool(match_play(r["name"], packages))
+                       and meta.get("play") not in packages,
             "downloads": meta.get("downloads", 0),
             "url": url,
             "pushed": r["pushed_at"][:10],
@@ -431,6 +437,7 @@ h2{margin:0;font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:u
   background:var(--accent-soft);color:var(--accent);white-space:nowrap
 }
 .badge.play{background:#1a7f3718;color:#1a9e45}
+.badge.soon{background:transparent;border:1px dashed var(--line);color:var(--muted)}
 
 /* khu Nổi bật: thẻ to hơn, logo lớn hơn */
 .grid.big{grid-template-columns:1fr}
@@ -481,6 +488,9 @@ def card(it):
                          it["downloads"], UI["downloads"]["vi"]))
     if it["play"]:
         badges.append('<span class="badge play">Google Play</span>')
+    elif it.get("testing"):
+        badges.append('<span class="badge soon" data-en="%s">%s</span>'
+                      % (UI["testing"]["en"], UI["testing"]["vi"]))
     badges = ('<div class="badges">%s</div>' % "".join(badges)) if badges else ""
 
     return ('        <a class="card" href="%s">\n'
