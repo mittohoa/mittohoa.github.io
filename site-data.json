@@ -1,4 +1,12 @@
 {
+ "_play": [
+  "com.mittohoa.cam_coach",
+  "com.mittohoa.chess_game",
+  "com.mittohoa.chinese_chess",
+  "com.mittohoa.khomi",
+  "com.mittohoa.toidi_app",
+  "com.mittohoa.ukeflow"
+ ],
  "cam-coach-web": {
   "desc": "App camera nói cho bạn biết nên chỉnh gì ngay lúc còn đang giơ máy. Sáu chế độ chụp, chạy hoàn toàn trên máy, không gửi ảnh đi đâu.",
   "downloads": 45,

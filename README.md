@@ -26,6 +26,9 @@ Cần `gh` CLI đã đăng nhập tài khoản `mittohoa`.
 
 Script tự lấy:
 
+- **app nào đã lên Google Play** từ trang nhà phát triển (`PLAY_DEV`) — không
+  tin link Play đặt trên trang app, vì link đó có thể trỏ vào gói đã gỡ;
+
 - **danh sách repo + mô tả** qua `gh api` — repo nào bật GitHub Pages và có
   `description` thì tự lên trang, không phải sửa code;
 - **tên app thật + logo** bằng cách đọc `<title>` và `<link rel="icon">` của

@@ -26,6 +26,10 @@ PHOTO = "me.jpg"           # chân dung tròn đầu trang
 OG = "og.jpg"              # ảnh 1200x630 hiện khi chia sẻ link lên FB/Zalo/LinkedIn
 ICON = "icon-180.png"      # favicon + icon khi lưu trang ra màn hình chính
 
+# Trang nhà phát triển trên Google Play — nguồn sự thật cho app nào đã phát hành
+PLAY_DEV = "https://play.google.com/store/apps/dev?id=8077286876070849594"
+PLAY_OVERRIDE = {}         # repo -> tên gói, dùng khi tên repo không khớp tên gói
+
 FEATURED = 3               # số app đưa lên khu Nổi bật, chọn theo lượt tải thật
 MIN_DOWNLOADS = 50         # dưới mức này thì không hiện huy hiệu lượt tải
 
@@ -74,6 +78,7 @@ ME = {
         ("GitHub", "https://github.com/mittohoa"),
         ("YouTube", "https://www.youtube.com/@mittoHOA"),
         ("Fanpage", "https://www.facebook.com/MrHoaOfficial"),
+        ("Google Play", "https://play.google.com/store/apps/dev?id=8077286876070849594"),
         # ("LinkedIn", "https://linkedin.com/in/TODO"),      # bỏ # nếu có
     ],
 }
@@ -180,6 +185,30 @@ def gh_repos():
     return json.loads(out)
 
 
+def fetch_play_packages():
+    """Danh sách gói đã phát hành, đọc thẳng từ trang nhà phát triển trên Play."""
+    try:
+        req = urllib.request.Request(PLAY_DEV, headers={
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"})
+        html = urllib.request.urlopen(req, timeout=15).read().decode("utf-8", "ignore")
+    except Exception as e:
+        print("  ! khong doc duoc trang Google Play (%s)" % e.__class__.__name__)
+        return []
+    return sorted(set(re.findall(r"store/apps/details\?id=([A-Za-z0-9_.]+)", html)))
+
+
+def match_play(repo, packages):
+    """Khớp repo với tên gói: chinese-chess-web <-> com.mittohoa.chinese_chess."""
+    if repo in PLAY_OVERRIDE:
+        return PLAY_OVERRIDE[repo]
+    key = re.sub(r"[^a-z0-9]", "", repo.lower())
+    for pkg in packages:
+        suf = re.sub(r"[^a-z0-9]", "", pkg.split(".")[-1].lower())
+        if len(suf) >= 5 and (key.startswith(suf) or suf.startswith(key)):
+            return pkg
+    return ""
+
+
 def url_ok(u):
     """Icon trỏ vào file không tồn tại thì trang sẽ hiện ô ảnh vỡ — kiểm trước."""
     try:
@@ -254,6 +283,13 @@ def gh_json(path):
 
 def collect(refresh=False):
     cache = json.load(open(CACHE, encoding="utf-8")) if os.path.exists(CACHE) else {}
+
+    # Chỉ tin trang nhà phát triển trên Play: link Play trên trang app có thể
+    # trỏ vào gói đã gỡ (WorkPilot từng để link 404 kiểu này).
+    if refresh or "_play" not in cache:
+        cache["_play"] = fetch_play_packages()
+    packages = cache.get("_play", [])
+
     groups = {}
     for r in gh_repos():
         if r["name"] in SKIP or r["fork"] or r["archived"]:
@@ -288,7 +324,7 @@ def collect(refresh=False):
             "vi": desc_vi,
             "en": DESC_EN.get(r["name"], desc_vi),
             "icon": meta.get("icon", ""),
-            "play": meta.get("play", ""),
+            "play": match_play(r["name"], packages),
             "downloads": meta.get("downloads", 0),
             "url": url,
             "pushed": r["pushed_at"][:10],
