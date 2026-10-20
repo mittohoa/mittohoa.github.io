@@ -1,0 +1,69 @@
+{
+ "cam-coach-web": {
+  "icon": "data:image/svg+xml,%3Csvg xmlns=",
+  "title": "CAM-Coach"
+ },
+ "chess-game-web": {
+  "icon": "https://mittohoa.github.io/chess-game-web/anh/logo.png",
+  "title": "TỐT thí"
+ },
+ "chinese-chess-web": {
+  "icon": "https://mittohoa.github.io/chinese-chess-web/anh/logo.png",
+  "title": "PHÁO đầu"
+ },
+ "el-coach": {
+  "title": "English Coach"
+ },
+ "examlab-web": {
+  "icon": "https://mittohoa.github.io/examlab-web/apple-touch-icon.png",
+  "title": "ExamLab"
+ },
+ "gio-chuan": {
+  "icon": "https://mittohoa.github.io/gio-chuan/icon.svg",
+  "title": "Giờ Chuẩn"
+ },
+ "media-kit": {
+  "icon": "data:image/svg+xml,<svg xmlns=",
+  "title": "Media KIT"
+ },
+ "media-tool": {
+  "icon": "https://mittohoa.github.io/media-tool/assets/winnow.png",
+  "title": "Media Hub"
+ },
+ "news-hub-releases": {
+  "icon": "data:image/svg+xml,<svg xmlns=",
+  "title": "News HUB"
+ },
+ "nhipnha": {
+  "icon": "https://mittohoa.github.io/nhipnha/icons/Icon-192.png",
+  "title": "Nhịp Nhà"
+ },
+ "rubik-resolved": {
+  "icon": "https://mittohoa.github.io/rubik-resolved/assets/icon.png",
+  "title": "RubikLab"
+ },
+ "toidi": {
+  "icon": "https://mittohoa.github.io/toidi/assets/img/icon-192.png",
+  "title": "TÔI ĐI"
+ },
+ "uke-flow": {
+  "icon": "data:image/svg+xml,<svg xmlns=",
+  "title": "UkeFlow"
+ },
+ "veo-kam": {
+  "icon": "data:image/svg+xml,<svg xmlns=",
+  "title": "Veo-Kâm"
+ },
+ "vung-dat-tri-thuc": {
+  "icon": "https://mittohoa.github.io/vung-dat-tri-thuc/icon.png",
+  "title": "Vùng Đất Tri Thức"
+ },
+ "xaxi-wallet": {
+  "icon": "https://mittohoa.github.io/xaxi-wallet/icon.svg",
+  "title": "Ví XAXI"
+ },
+ "zone-game": {
+  "icon": "https://mittohoa.github.io/zone-game/assets/icon.png",
+  "title": "Bé Chơi Bé Học"
+ }
+}

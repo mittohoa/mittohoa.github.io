@@ -1,5 +1,268 @@
 <!doctype html>
-<html lang="vi"><head><meta charset="utf-8"><title>TÔI ĐI</title>
-<meta http-equiv="refresh" content="0; url=/toidi/"><link rel="canonical" href="https://mittohoa.github.io/toidi/">
-<meta name="viewport" content="width=device-width,initial-scale=1"></head>
-<body><p><a href="/toidi/">TÔI ĐI — chỉ đường xe buýt &amp; metro</a></p></body></html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Dương Minh Hòa — Lập trình viên · Ứng dụng Android, Windows &amp; Web</title>
+<meta name="description" content="Mình làm ứng dụng nhỏ cho những việc hằng ngày — đi lại, học hành, dọn thư viện ảnh, chơi cờ. Phần lớn chạy offline ngay trên máy bạn, không thu thập ">
+<meta name="color-scheme" content="light dark">
+<link rel="icon" href="icon-180.png">
+<link rel="apple-touch-icon" href="icon-180.png">
+<link rel="canonical" href="https://mittohoa.github.io/">
+<meta property="og:title" content="Dương Minh Hòa — Mình làm phần mềm nhỏ bằng sự tò mò lớn">
+<meta property="og:description" content="Mình làm ứng dụng nhỏ cho những việc hằng ngày — đi lại, học hành, dọn thư viện ảnh, chơi cờ. Phần lớn chạy offline ngay trên máy bạn, không thu thập ">
+<meta property="og:url" content="https://mittohoa.github.io/">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://mittohoa.github.io/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<style>
+*,*::before,*::after{box-sizing:border-box}
+:root{
+  --bg:#f7f8fa; --surface:#fff; --line:#e4e8ee;
+  --ink:#171a20; --muted:#646c7a; --accent:#2f5fd0; --accent-soft:#eaf0fd;
+}
+@media (prefers-color-scheme:dark){
+  :root{
+    --bg:#0e1116; --surface:#161a22; --line:#242a35;
+    --ink:#e9edf3; --muted:#949db0; --accent:#7aa2f7; --accent-soft:#1b2436;
+  }
+}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;background:var(--bg);color:var(--ink);
+  font:16px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  -webkit-font-smoothing:antialiased
+}
+.wrap{max-width:960px;margin:0 auto;padding:0 20px}
+a{color:var(--accent)}
+
+/* nút đổi ngôn ngữ */
+#lang{
+  position:fixed;top:16px;right:16px;z-index:9;
+  padding:7px 14px;border:1px solid var(--line);border-radius:999px;
+  background:var(--surface);color:var(--ink);font:600 13px/1 inherit;cursor:pointer
+}
+#lang:hover{border-color:var(--accent);color:var(--accent)}
+
+/* hero */
+header{padding:72px 0 42px}
+.hero{display:flex;gap:30px;align-items:flex-start;flex-wrap:wrap}
+.portrait{
+  width:132px;height:132px;flex:0 0 132px;border-radius:50%;object-fit:cover;
+  border:3px solid var(--surface);box-shadow:0 2px 18px rgba(0,0,0,.14)
+}
+.hero-text{flex:1 1 380px;min-width:280px}
+.eyebrow{font-size:12.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--accent);margin:0 0 10px}
+h1{margin:0 0 4px;font-size:clamp(32px,6vw,46px);line-height:1.1;letter-spacing:-.02em}
+.sub{margin:0 0 14px;font-size:16px;color:var(--muted)}
+.slogan{margin:0 0 18px;font-size:clamp(19px,2.6vw,25px);line-height:1.35;letter-spacing:-.01em}
+.slogan em{color:var(--accent);font-style:italic}
+.intro{margin:0 0 24px;max-width:60ch;font-size:16.5px}
+.links{display:flex;flex-wrap:wrap;gap:10px}
+.links a{
+  display:inline-block;padding:8px 16px;border:1px solid var(--line);border-radius:999px;
+  background:var(--surface);color:var(--ink);text-decoration:none;font-size:14px;font-weight:600;
+  transition:border-color .15s,color .15s
+}
+.links a:hover{border-color:var(--accent);color:var(--accent)}
+.links a.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+
+/* stats */
+.stats{display:flex;flex-wrap:wrap;gap:34px;margin-top:42px;padding-top:26px;border-top:1px solid var(--line)}
+.stat b{display:block;font-size:26px;line-height:1.2;letter-spacing:-.01em}
+.stat span{font-size:13px;color:var(--muted)}
+
+/* nội dung */
+section{padding:44px 0 0}
+h2{margin:0;font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.about p{margin:14px 0 0;max-width:64ch}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px;margin-top:16px}
+.card{
+  display:flex;flex-direction:column;background:var(--surface);border:1px solid var(--line);
+  border-radius:12px;padding:18px 18px 15px;text-decoration:none;color:inherit;
+  transition:border-color .15s,transform .15s
+}
+.card:hover{border-color:var(--accent);transform:translateY(-2px)}
+.card .head{display:flex;align-items:center;gap:11px;margin:0 0 10px}
+.card .ico{width:44px;height:44px;flex:0 0 44px;border-radius:11px;object-fit:cover;
+  background:var(--accent-soft);border:1px solid var(--line)}
+.card .ico.ph{display:flex;align-items:center;justify-content:center;font-weight:700;font-size:19px;color:var(--accent)}
+.card h3{margin:0;font-size:16.5px;letter-spacing:-.01em}
+.card p{margin:0 0 14px;font-size:14px;color:var(--muted);line-height:1.55;flex:1}
+.card .go{font-size:13px;font-weight:600;color:var(--accent)}
+
+footer{margin-top:58px;padding:26px 0 56px;border-top:1px solid var(--line);font-size:14px;color:var(--muted)}
+footer a{color:var(--accent);text-decoration:none}
+footer a:hover{text-decoration:underline}
+.note{margin-top:8px;font-size:12.5px}
+</style>
+</head>
+<body>
+<button id="lang" type="button">English</button>
+<div class="wrap">
+  <header>
+    <div class="hero">
+      <img class="portrait" src="me.jpg" alt="Dương Minh Hòa" width="132" height="132">
+      <div class="hero-text">
+        <p class="eyebrow" data-en="Software Developer · Android, Windows &amp; Web apps">Lập trình viên · Ứng dụng Android, Windows &amp; Web</p>
+        <h1>Dương Minh Hòa</h1>
+        <p class="sub">Mít tờ HÒA</p>
+        <p class="slogan"><span data-en="I build small software">Mình làm phần mềm nhỏ</span>
+          <em data-en="with big curiosity">bằng sự tò mò lớn</em></p>
+        <p class="intro" data-en="I build small apps for everyday things — commuting, learning, photo cleanup, chess. Most of them run fully offline on your device and collect nothing.">Mình làm ứng dụng nhỏ cho những việc hằng ngày — đi lại, học hành, dọn thư viện ảnh, chơi cờ. Phần lớn chạy offline ngay trên máy bạn, không thu thập dữ liệu.</p>
+        <nav class="links"><a class="primary" href="https://github.com/mittohoa" rel="me noopener">GitHub</a><a href="https://www.youtube.com/@mittoHOA" rel="me noopener">YouTube</a><a href="https://www.facebook.com/MrHoaOfficial" rel="me noopener">Fanpage</a><a href="mailto:mittohoa@gmail.com">Email</a></nav>
+      </div>
+    </div>
+    <div class="stats">
+      <div class="stat"><b>17</b><span data-en="apps published">ứng dụng đang phát hành</span></div>
+      <div class="stat"><b>3</b><span data-en="platforms: Android · Windows · Web">nền tảng: Android · Windows · Web</span></div>
+      <div class="stat"><b data-en="Offline">Offline</b><span data-en="your data stays on your device">dữ liệu nằm trên máy bạn</span></div>
+    </div>
+  </header>
+
+  <section class="about">
+    <h2 data-en="About">Về mình</h2>
+    <p data-en="I build software in Ho Chi Minh City, mostly cross-platform apps with Flutter and .NET. But developers don't have to be the quiet type: off the clock I'm the one with a guitar, a chessboard, and a microphone whenever a room needs someone to liven it up. My habit is simple — whenever something repetitive annoys me, I go home and turn it into an app. That is how most of the things on this page were born. Questions about Android, Windows or the web? Message me, I answer with real enthusiasm.">Mình làm phần mềm ở TP.HCM, mạnh nhất là ứng dụng đa nền tảng với Flutter và .NET. Nhưng dân IT không nhất thiết phải khô khan: ngoài giờ code thì mình ôm đàn, chơi cờ, và hay bị đẩy lên làm người hoạt náo mỗi khi có sự kiện đông người. Thói quen của mình đơn giản — thấy việc gì cứ lặp đi lặp lại và phiền phiền là về làm luôn một cái app cho nhẹ đầu; phần lớn thứ trên trang này ra đời kiểu đó. Có gì cần hỏi về Android, Windows hay web thì cứ nhắn, mình trả lời nhiệt tình.</p>
+  </section>
+
+    <section>
+      <h2 data-en="Everyday life">Đi lại &amp; đời sống</h2>
+      <div class="grid">
+        <a class="card" href="https://mittohoa.github.io/nhipnha/">
+          <div class="head"><img class="ico" src="https://mittohoa.github.io/nhipnha/icons/Icon-192.png" alt="" loading="lazy" width="44" height="44"><h3>Nhịp Nhà</h3></div>
+          <p data-en="Web app and public pages (privacy policy, account deletion). Source code lives in a private repo.">web app &amp; trang công khai (chính sách quyền riêng tư, xóa tài khoản). Mã nguồn ở repo riêng tư.</p>
+          <span class="go" data-en="Visit &rarr;">Xem trang &rarr;</span>
+        </a>
+        <a class="card" href="https://mittohoa.github.io/xaxi-wallet/">
+          <div class="head"><img class="ico" src="https://mittohoa.github.io/xaxi-wallet/icon.svg" alt="" loading="lazy" width="44" height="44"><h3>Ví XAXI</h3></div>
+          <p data-en="Personal expense tracking on web, Windows and Android. Offline, your data stays on your device.">Quản lý thu chi cá nhân đa nền tảng — web, Windows, Android. Offline, dữ liệu nằm trên máy bạn.</p>
+          <span class="go" data-en="Visit &rarr;">Xem trang &rarr;</span>
+        </a>
+        <a class="card" href="https://mittohoa.github.io/toidi/">
+          <div class="head"><img class="ico" src="https://mittohoa.github.io/toidi/assets/img/icon-192.png" alt="" loading="lazy" width="44" height="44"><h3>TÔI ĐI</h3></div>
+          <p data-en="Buses and metro in Ho Chi Minh City and Hanoi: website, policies, downloads.">xe buýt &amp; metro TP.HCM · Hà Nội: website, chính sách, tải về</p>
+          <span class="go" data-en="Visit &rarr;">Xem trang &rarr;</span>
+        </a>
+        <a class="card" href="https://mittohoa.github.io/gio-chuan/">
+          <div class="head"><img class="ico" src="https://mittohoa.github.io/gio-chuan/icon.svg" alt="" loading="lazy" width="44" height="44"><h3>Giờ Chuẩn</h3></div>
+          <p data-en="An accurate clock for web, Android and Windows. It measures and publishes its own real sync error.">Đồng hồ chính xác đa nền tảng — web, Android, Windows. Đo và công bố sai số đồng bộ thật của chính nó.</p>
+          <span class="go" data-en="Visit &rarr;">Xem trang &rarr;</span>
+        </a>
+      </div>
+    </section>
+
+    <section>
+      <h2 data-en="Learn &amp; practice">Học &amp; luyện tập</h2>
+      <div class="grid">
+        <a class="card" href="https://mittohoa.github.io/vung-dat-tri-thuc/">
+          <div class="head"><img class="ico" src="https://mittohoa.github.io/vung-dat-tri-thuc/icon.png" alt="" loading="lazy" width="44" height="44"><h3>Vùng Đất Tri Thức</h3></div>
+          <p data-en="Landing page and privacy policy for the Vùng Đất Tri Thức game.">Trang giới thiệu và chính sách quyền riêng tư của game Vùng Đất Tri Thức</p>
+          <span class="go" data-en="Visit &rarr;">Xem trang &rarr;</span>
+        </a>
+        <a class="card" href="https://mittohoa.github.io/el-coach/">
+          <div class="head"><span class="ico ph">E</span><h3>English Coach</h3></div>
+          <p data-en="Public pages for the English Coach Android app.">Public pages for the English Coach Android app</p>
+          <span class="go" data-en="Visit &rarr;">Xem trang &rarr;</span>
+        </a>
+        <a class="card" href="https://mittohoa.github.io/examlab-web/">
+          <div class="head"><img class="ico" src="https://mittohoa.github.io/examlab-web/apple-touch-icon.png" alt="" loading="lazy" width="44" height="44"><h3>ExamLab</h3></div>
+          <p data-en="Prebuilt web version of ExamLab. Source in a private repo, updated by CI.">Bản web đã build của ExamLab. Mã nguồn ở repo riêng (private). Tự động cập nhật bởi CI.</p>
+          <span class="go" data-en="Visit &rarr;">Xem trang &rarr;</span>
+        </a>
+        <a class="card" href="https://mittohoa.github.io/rubik-resolved/">
+          <div class="head"><img class="ico" src="https://mittohoa.github.io/rubik-resolved/assets/icon.png" alt="" loading="lazy" width="44" height="44"><h3>RubikLab</h3></div>
+          <p data-en="Landing and download page for the 3x3 Rubik learn, solve and practice app.">trang gioi thieu va noi tai app hoc, giai va luyen Rubik 3x3</p>
+          <span class="go" data-en="Visit &rarr;">Xem trang &rarr;</span>
+        </a>
+        <a class="card" href="https://mittohoa.github.io/uke-flow/">
+          <div class="head"><img class="ico" src="data:image/svg+xml,&lt;svg xmlns=" alt="" loading="lazy" width="44" height="44"><h3>UkeFlow</h3></div>
+          <p data-en="A Vietnamese ukulele learning app. Landing page and installers.">ung dung hoc ukulele tieng Viet. Trang gioi thieu va tai ban cai.</p>
+          <span class="go" data-en="Visit &rarr;">Xem trang &rarr;</span>
+        </a>
+        <a class="card" href="https://mittohoa.github.io/zone-game/">
+          <div class="head"><img class="ico" src="https://mittohoa.github.io/zone-game/assets/icon.png" alt="" loading="lazy" width="44" height="44"><h3>Bé Chơi Bé Học</h3></div>
+          <p data-en="A Vietnamese educational game for ages 3-6. APK download and overview.">game giáo dục tiếng Việt cho trẻ 3-6 tuổi. Tải APK và xem giới thiệu.</p>
+          <span class="go" data-en="Visit &rarr;">Xem trang &rarr;</span>
+        </a>
+      </div>
+    </section>
+
+    <section>
+      <h2 data-en="Photos &amp; desktop tools">Ảnh &amp; công cụ máy tính</h2>
+      <div class="grid">
+        <a class="card" href="https://mittohoa.github.io/cam-coach-web/">
+          <div class="head"><img class="ico" src="data:image/svg+xml,%3Csvg xmlns=" alt="" loading="lazy" width="44" height="44"><h3>CAM-Coach</h3></div>
+          <p data-en="Overview, downloads and update channel.">trang giới thiệu, bản tải về và kênh cập nhật</p>
+          <span class="go" data-en="Visit &rarr;">Xem trang &rarr;</span>
+        </a>
+        <a class="card" href="https://mittohoa.github.io/media-tool/">
+          <div class="head"><img class="ico" src="https://mittohoa.github.io/media-tool/assets/winnow.png" alt="" loading="lazy" width="44" height="44"><h3>Media Hub</h3></div>
+          <p data-en="Winnow for Windows: finds duplicate photos, even the ones stripped of their metadata.">Winnow - tim anh trung tren Windows, bat duoc ca ban da bi xoa metadata</p>
+          <span class="go" data-en="Visit &rarr;">Xem trang &rarr;</span>
+        </a>
+        <a class="card" href="https://mittohoa.github.io/news-hub-releases/">
+          <div class="head"><img class="ico" src="data:image/svg+xml,&lt;svg xmlns=" alt="" loading="lazy" width="44" height="44"><h3>News HUB</h3></div>
+          <p data-en="Downloads and releases. A personal app that pulls GitHub repos and tech news into one feed.">trang tải và bản phát hành. App cá nhân gom repo GitHub và tin công nghệ về một dòng.</p>
+          <span class="go" data-en="Visit &rarr;">Xem trang &rarr;</span>
+        </a>
+        <a class="card" href="https://mittohoa.github.io/media-kit/">
+          <div class="head"><img class="ico" src="data:image/svg+xml,&lt;svg xmlns=" alt="" loading="lazy" width="44" height="44"><h3>Media KIT</h3></div>
+          <p data-en="Tidies your photo library and points out which shots could look better. All analysis runs on device.">dọn gọn thư viện ảnh và chỉ ra ảnh nào có thể đẹp hơn. Phân tích chạy hoàn toàn trên thiết bị.</p>
+          <span class="go" data-en="Visit &rarr;">Xem trang &rarr;</span>
+        </a>
+        <a class="card" href="https://mittohoa.github.io/veo-kam/">
+          <div class="head"><img class="ico" src="data:image/svg+xml,&lt;svg xmlns=" alt="" loading="lazy" width="44" height="44"><h3>Veo-Kâm</h3></div>
+          <p data-en="Control a Windows PC from an Android phone over the local network.">Veo-Kam - dieu khien may tinh Windows tu dien thoai Android qua mang noi bo</p>
+          <span class="go" data-en="Visit &rarr;">Xem trang &rarr;</span>
+        </a>
+      </div>
+    </section>
+
+    <section>
+      <h2 data-en="Games">Game</h2>
+      <div class="grid">
+        <a class="card" href="https://mittohoa.github.io/chinese-chess-web/">
+          <div class="head"><img class="ico" src="https://mittohoa.github.io/chinese-chess-web/anh/logo.png" alt="" loading="lazy" width="44" height="44"><h3>PHÁO đầu</h3></div>
+          <p data-en="Vietnamese chess (Cờ Tướng): landing page, play in browser, releases.">Trang gioi thieu game Co Tuong PHAO dau - landing page, ban choi thu, va cac ban phat hanh</p>
+          <span class="go" data-en="Visit &rarr;">Xem trang &rarr;</span>
+        </a>
+        <a class="card" href="https://mittohoa.github.io/chess-game-web/">
+          <div class="head"><img class="ico" src="https://mittohoa.github.io/chess-game-web/anh/logo.png" alt="" loading="lazy" width="44" height="44"><h3>TỐT thí</h3></div>
+          <p data-en="Chess in Vietnamese: landing page and releases.">Trang gioi thieu game Co Vua - chess-game landing page</p>
+          <span class="go" data-en="Visit &rarr;">Xem trang &rarr;</span>
+        </a>
+      </div>
+    </section>
+
+  <footer>
+    <span data-en="Contact">Liên hệ</span>:
+    <a href="mailto:mittohoa@gmail.com">mittohoa@gmail.com</a> ·
+    <a href="https://github.com/mittohoa">github.com/mittohoa</a>
+    <div class="note" data-en="This page is generated from the public repository list.">Trang tự sinh từ danh sách repo công khai.</div>
+  </footer>
+</div>
+<script>
+(function(){
+  var btn=document.getElementById('lang');
+  function apply(l){
+    document.documentElement.lang=l;
+    document.querySelectorAll('[data-en]').forEach(function(e){
+      if(e.dataset.vi===undefined) e.dataset.vi=e.textContent;
+      e.textContent = (l==='en') ? e.dataset.en : e.dataset.vi;
+    });
+    btn.textContent = (l==='en') ? 'Tiếng Việt' : 'English';
+    try{ localStorage.setItem('lang',l); }catch(e){}
+  }
+  var saved=null;
+  try{ saved=localStorage.getItem('lang'); }catch(e){}
+  apply(saved || ((navigator.language||'').slice(0,2)==='vi' ? 'vi' : 'en'));
+  btn.addEventListener('click',function(){
+    apply(document.documentElement.lang==='en' ? 'vi' : 'en');
+  });
+})();
+</script>
+</body>
+</html>
