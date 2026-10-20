@@ -153,9 +153,73 @@ html.festive .portrait{
 html.festive .slogan em{text-shadow:0 0 24px #ff4f9366}
 html.festive #lang{top:70px}
 
+/* ---------- popup ngày lễ ---------- */
+#fmodal{
+  position:fixed;inset:0;z-index:10;display:none;align-items:center;justify-content:center;
+  padding:20px;background:rgba(8,6,12,.62);backdrop-filter:blur(7px)
+}
+#fmodal.on{display:flex}
+.fm-card{
+  position:relative;width:min(540px,100%);padding:38px 30px 30px;text-align:center;
+  border-radius:22px;background:var(--surface);
+  border:1px solid #ff4f9355;box-shadow:0 24px 70px #00000066,0 0 60px #ff2d7e33;
+  animation:pop .45s cubic-bezier(.2,.9,.3,1.25) both
+}
+@keyframes pop{
+  0%{opacity:0;transform:scale(1.4);filter:blur(14px)}
+  55%{opacity:1;filter:blur(0)}
+  75%{transform:scale(.97)}
+  100%{transform:scale(1)}
+}
+/* quầng sáng loé lên phía sau thẻ ngay khi mở */
+.fm-card::before{
+  content:"";position:absolute;inset:-40% -25%;z-index:-1;border-radius:50%;
+  background:radial-gradient(circle,#ff2d7e55,transparent 62%);
+  animation:flash .9s ease-out both
+}
+@keyframes flash{0%{opacity:0;transform:scale(.4)}35%{opacity:1}100%{opacity:.25;transform:scale(1)}}
+.fm-art{
+  font-size:clamp(56px,13vw,104px);font-weight:800;line-height:.95;letter-spacing:-.03em;
+  background:linear-gradient(100deg,#ff2d7e,#ff8fb8,#ffc46b,#ff2d7e);
+  background-size:300% 100%;-webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;color:transparent;
+  animation:shimmer 5.5s linear infinite
+}
+@keyframes shimmer{to{background-position:300% 0}}
+/* h2 của trang là nhãn mục nhỏ (in hoa, xám) — tiêu đề popup phải tự khai lại */
+.fm-title{
+  margin:10px 0 10px;font-size:clamp(19px,4.4vw,25px);line-height:1.3;
+  letter-spacing:-.01em;text-transform:none;color:var(--ink);font-weight:700
+}
+.fm-title span{display:inline-block;opacity:0;transform:translateY(16px);animation:rise .5s cubic-bezier(.2,.9,.3,1.2) forwards}
+@keyframes rise{to{opacity:1;transform:none}}
+.fm-sub{margin:0 auto 18px;max-width:40ch;font-size:14.5px;color:var(--muted);line-height:1.6}
+.fm-run{
+  overflow:hidden;white-space:nowrap;margin:0 -30px 20px;padding:9px 0;
+  border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+  font-size:13px;color:var(--accent);font-weight:600;
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent);
+  mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent)
+}
+.fm-run span{display:inline-block;padding-left:100%;animation:run 17s linear infinite}
+@keyframes run{to{transform:translateX(-100%)}}
+.fm-ok{
+  border:0;border-radius:999px;padding:12px 30px;cursor:pointer;
+  font:700 15px/1 inherit;color:#fff;
+  background:linear-gradient(100deg,#ff2d7e,#ff8a5c);box-shadow:0 8px 22px #ff2d7e4d
+}
+.fm-ok:hover{filter:brightness(1.07)}
+.fm-x{
+  position:absolute;right:14px;top:12px;border:0;background:transparent;cursor:pointer;
+  color:var(--muted);font-size:22px;line-height:1;padding:4px 8px
+}
+.fm-x:hover{color:var(--ink)}
+
 @media (prefers-reduced-motion:reduce){
   #petals{display:none}
-  #festive .em{animation:none}
+  #festive .em,.fm-art,.fm-run span{animation:none}
+  .fm-card{animation:none}
+  .fm-title span{opacity:1;transform:none;animation:none}
 }
 @media (max-width:620px){
   #festive{font-size:13.5px;padding:12px 44px 12px 14px}
@@ -166,6 +230,16 @@ html.festive #lang{top:70px}
 <body>
 <canvas id="petals" aria-hidden="true"></canvas>
 <button id="lang" type="button">English</button>
+<div id="fmodal" role="dialog" aria-modal="true" aria-labelledby="fm-title">
+  <div class="fm-card">
+    <button class="fm-x" type="button" aria-label="Đóng">&times;</button>
+    <div class="fm-art"></div>
+    <h2 class="fm-title" id="fm-title"></h2>
+    <p class="fm-sub"></p>
+    <div class="fm-run"><span></span></div>
+    <button class="fm-ok" type="button"></button>
+  </div>
+</div>
 <div id="festive"><span class="em">🌸</span><span class="msg"></span>
 <span class="hint" data-en="tap anywhere for petals">bấm vào trang để hoa bung ra</span>
 <button class="x" type="button" aria-label="Đóng">&times;</button></div>
@@ -405,7 +479,7 @@ html.festive #lang{top:70px}
 })();
 
 (function(){
-  var EVENTS = [{"from": "2026-10-20T00:00:00", "to": "2026-10-20T23:59:59", "vi": "20/10 &mdash; Chúc mừng Ngày Phụ nữ Việt Nam", "en": "20 Oct &mdash; Happy Vietnamese Women's Day"}];
+  var EVENTS = [{"from": "2026-10-20T00:00:00", "to": "2026-10-20T23:59:59", "vi": "20/10 &mdash; Chúc mừng Ngày Phụ nữ Việt Nam", "en": "20 Oct &mdash; Happy Vietnamese Women's Day", "art": "20·10", "modal": {"vi": {"title": "Chúc mừng Ngày Phụ nữ Việt Nam", "sub": "Gửi tới những người phụ nữ quanh mình — mẹ, chị, em, đồng nghiệp — một ngày thật nhẹ nhàng.", "run": "Chúc các chị em luôn mạnh khoẻ, rực rỡ và được yêu thương 🌸 20 · 10 · 2026 🌸 ", "ok": "Cảm ơn 🌸"}, "en": {"title": "Happy Vietnamese Women's Day", "sub": "To all the women around us — mothers, sisters, colleagues — have a lovely day.", "run": "Wishing you health, joy and plenty of love 🌸 20 · 10 · 2026 🌸 ", "ok": "Thank you 🌸"}}}];
   var now = Date.now(), day = null, key = '';
   for (var i = 0; i < EVENTS.length; i++) {
     var e = EVENTS[i];
@@ -435,6 +509,55 @@ html.festive #lang{top:70px}
     try { sessionStorage.setItem('festive-off', key); } catch(e){}
   });
 
+  /* ---- popup ập đến khi vào trang ---- */
+  var modal = document.getElementById('fmodal');
+  var mArt = modal.querySelector('.fm-art'), mTitle = modal.querySelector('.fm-title'),
+      mSub = modal.querySelector('.fm-sub'), mRun = modal.querySelector('.fm-run span'),
+      mOk = modal.querySelector('.fm-ok');
+
+  function lang(){ return document.documentElement.lang === 'en' ? 'en' : 'vi'; }
+  function fill(){
+    var t = day.modal[lang()];
+    mArt.textContent = day.art;
+    mTitle.textContent = '';
+    /* từng chữ cái nổi lên lệch nhau một nhịp */
+    t.title.split('').forEach(function(ch, i){
+      var sp = document.createElement('span');
+      sp.textContent = ch === ' ' ? ' ' : ch;
+      sp.style.animationDelay = (0.25 + i * 0.022).toFixed(3) + 's';
+      mTitle.appendChild(sp);
+    });
+    mSub.textContent = t.sub;
+    mRun.textContent = t.run + t.run + t.run;
+    mOk.textContent = t.ok;
+  }
+  function openModal(){
+    if (sessionStorage.getItem('festive-modal') === key) return;
+    fill();
+    modal.classList.add('on');
+    var mx = innerWidth / 2, my = innerHeight / 2;
+    burst(mx, my, 30);
+    setTimeout(function(){ burst(mx - 160, my - 40, 16); }, 130);
+    setTimeout(function(){ burst(mx + 160, my - 20, 16); }, 260);
+  }
+  function closeModal(){
+    modal.classList.remove('on');
+    try { sessionStorage.setItem('festive-modal', key); } catch(e){}
+  }
+  modal.querySelector('.fm-x').addEventListener('click', closeModal);
+  mOk.addEventListener('click', function(ev){
+    var r = ev.currentTarget.getBoundingClientRect();
+    burst(r.left + r.width / 2, r.top + r.height / 2, 22);
+    closeModal();
+  });
+  modal.addEventListener('click', function(ev){ if (ev.target === modal) closeModal(); });
+  addEventListener('keydown', function(ev){ if (ev.key === 'Escape') closeModal(); });
+  /* đổi ngôn ngữ khi popup đang mở thì viết lại nội dung */
+  var langBtn = document.getElementById('lang');
+  if (langBtn) langBtn.addEventListener('click', function(){
+    if (modal.classList.contains('on')) setTimeout(fill, 0);
+  });
+
   /* ---- mưa cánh hoa + bung hoa khi bấm ---- */
   var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
   var cv = document.getElementById('petals'), cx = cv.getContext('2d');
@@ -460,8 +583,8 @@ html.festive #lang{top:70px}
       a: 0.6 + Math.random() * 0.4, life: 0
     };
   }
-  function burst(px, py){
-    for (var i = 0; i < 16; i++){
+  function burst(px, py, n){
+    for (var i = 0; i < (n || 16); i++){
       var ang = Math.random() * 6.283, sp = (1.5 + Math.random() * 4) * DPR;
       petals.push({
         x: px * DPR, y: py * DPR,
@@ -531,6 +654,7 @@ html.festive #lang{top:70px}
     burst(ev.clientX, ev.clientY);
   });
   if (!reduce) start();
+  setTimeout(openModal, 180);
 })();
 </script>
 </body>
