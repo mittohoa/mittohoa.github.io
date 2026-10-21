@@ -40,6 +40,14 @@ PALETTES = {
                  ["#ffffff", "#e8f7ff", "#e03131", "#1f9254", "#ffd43b"]),
     "vang_kim": ("#d4a017", ["#8a6d1a", "#d4a017", "#ffe08a"],
                  ["#ffe08a", "#d4a017", "#fff3c4", "#c2410c", "#ffffff"]),
+    "do_tim":   ("#e0245e", ["#a31545", "#e0245e", "#ff7aa8"],
+                 ["#e0245e", "#ff7aa8", "#ffd0e0", "#ffffff", "#c2185b"]),
+    "cam_bi":   ("#e8590c", ["#7c2d12", "#e8590c", "#ffa94d"],
+                 ["#e8590c", "#ffa94d", "#ffd8a8", "#2b2b2b", "#845ef7"]),
+    "lam":      ("#1e6091", ["#0b3954", "#1e6091", "#64b6ac"],
+                 ["#64b6ac", "#1e6091", "#a8dadc", "#f1faee", "#ffd166"]),
+    "sen":      ("#d6336c", ["#9c1f4d", "#d6336c", "#ffc9de"],
+                 ["#ffc9de", "#d6336c", "#ffe3ee", "#8ed6a8", "#ffffff"]),
     "tuyet":    ("#7fb3ff", ["#2b4fd8", "#7fb3ff", "#ffffff"],
                  ["#ffffff", "#dbeafe", "#7fb3ff", "#bfdbfe", "#e0f2fe"]),
 }
@@ -53,7 +61,7 @@ def look(palette, shape, direction, emoji):
 
 
 # Kiểu popup. Mỗi dịp có thể giới hạn bằng khoá "skins".
-SKINS = ["card", "splash", "ticket"]
+SKINS = ["card", "splash", "ticket", "neon", "postcard", "scroll"]
 
 
 # Mỗi mục:
@@ -69,7 +77,7 @@ FESTIVE = [
         "solar": "01-01",
         "before": 0, "after": 0,
         "art": "01·01",
-        "looks": [look("xanh_bien", "star", "down", "🎆"), look("tuyet", "dot", "down", "❄️")],
+        "looks": [look("xanh_bien", "star", "down", "🎆"), look("tuyet", "dot", "down", "❄️"), look("xanh_bien", "star", "fireworks", "🎇")],
         "vi": {"bar": "Chúc mừng năm mới",
                "title": "Chúc mừng năm mới",
                "sub": "Một năm mới gọn gàng, nhiều việc hay và ít việc phải sửa lại.",
@@ -86,7 +94,7 @@ FESTIVE = [
         "lunar": "01-01",
         "before": 2, "after": 3,
         "art": "Tết",
-        "looks": [look("do_vang", "petal", "down", "🧧"), look("vang_kim", "dot", "up", "✨")],
+        "looks": [look("do_vang", "petal", "down", "🧧"), look("vang_kim", "dot", "up", "✨"), look("do_vang", "confetti", "fireworks", "🎆")],
         "vi": {"bar": "Chúc mừng năm mới — An khang thịnh vượng",
                "title": "Chúc mừng năm mới",
                "sub": "Chúc cả nhà một năm mới an khang, thuận lợi và nhiều niềm vui.",
@@ -137,7 +145,7 @@ FESTIVE = [
         "solar": "04-30",
         "before": 0, "after": 1,
         "art": "30·4",
-        "looks": [look("co_do", "star", "down", "🇻🇳"), look("do_vang", "dot", "up", "🎉")],
+        "looks": [look("co_do", "star", "down", "🇻🇳"), look("do_vang", "dot", "up", "🎉"), look("co_do", "confetti", "fireworks", "🎆")],
         "vi": {"bar": "30/4 — 1/5 · Chúc mừng ngày lễ lớn",
                "title": "Ngày Giải phóng miền Nam & Quốc tế Lao động",
                "sub": "Chúc mọi người kỳ nghỉ vui vẻ, đi chơi an toàn và nghỉ ngơi thật đã.",
@@ -188,7 +196,7 @@ FESTIVE = [
         "solar": "09-02",
         "before": 0, "after": 0,
         "art": "02·09",
-        "looks": [look("co_do", "star", "down", "⭐"), look("do_vang", "star", "up", "🎆")],
+        "looks": [look("co_do", "star", "down", "⭐"), look("do_vang", "star", "up", "🎆"), look("co_do", "star", "fireworks", "🎇")],
         "vi": {"bar": "2/9 — Chúc mừng Quốc khánh",
                "title": "Chúc mừng Quốc khánh",
                "sub": "Chúc mọi người một ngày lễ bình an bên gia đình.",
@@ -250,6 +258,161 @@ FESTIVE = [
                "sub": "Wishing you a warm Christmas with the people you love.",
                "run": "Merry Christmas 🎄 ",
                "ok": "Thank you 🎄"},
+    },
+    {
+        "id": "ong-tao",
+        "lunar": "12-23",
+        "before": 0, "after": 0,
+        "art": "23 Chạp",
+        "looks": [look("cam", "coin", "up", "\U0001F41F"), look("vang_kim", "coin", "up", "\U0001F9E8")],
+        "vi": {"bar": "23 th\u00e1ng Ch\u1EA1p \u2014 \u00d4ng C\u00f4ng \u00d4ng T\u00e1o v\u1EC1 tr\u1EDDi",
+               "title": "Ti\u1EC5n \u00d4ng T\u00e1o v\u1EC1 tr\u1EDDi",
+               "sub": "D\u1ECDn nh\u00e0, d\u1ECDn lu\u00f4n m\u1EA5y nh\u00e1nh code t\u1EA1m b\u1EE3 \u0111\u1EC3 \u0111\u00f3n n\u0103m m\u1EDBi cho nh\u1EB9.",
+               "run": "C\u00e1 ch\u00e9p ho\u00e1 r\u1ED3ng \u00b7 B\u1EBFp \u1EA5m nh\u00e0 vui \U0001F41F ",
+               "ok": "Ti\u1EC5n T\u00e1o \U0001F41F"},
+        "en": {"bar": "Kitchen Gods Day",
+               "title": "Farewell to the Kitchen Gods",
+               "sub": "Tidy the house \u2014 and those temporary branches \u2014 before the new year.",
+               "run": "Carp turns into dragon \u00b7 A warm kitchen, a happy home \U0001F41F ",
+               "ok": "Farewell \U0001F41F"},
+    },
+    {
+        "id": "nguyen-tieu",
+        "lunar": "01-15",
+        "before": 0, "after": 0,
+        "art": "Nguy\u00ean ti\u00eau",
+        "looks": [look("vang_kim", "lantern", "up", "\U0001F315"), look("do_vang", "coin", "up", "\U0001F3EE")],
+        "vi": {"bar": "R\u1EB1m th\u00e1ng Gi\u00eang \u2014 T\u1EBFt Nguy\u00ean ti\u00eau",
+               "title": "T\u1EBFt Nguy\u00ean ti\u00eau",
+               "sub": "C\u00fang c\u1EA3 n\u0103m kh\u00f4ng b\u1EB1ng r\u1EB1m th\u00e1ng Gi\u00eang \u2014 ch\u00fac m\u1ED9t n\u0103m \u0111\u1EE7 \u0111\u1EA7y.",
+               "run": "Tr\u0103ng tr\u00f2n \u0111\u1EA7u n\u0103m \u00b7 V\u1EA1n s\u1EF1 hanh th\u00f4ng \U0001F315 ",
+               "ok": "An l\u00e0nh \U0001F315"},
+        "en": {"bar": "Lantern Festival \u2014 first full moon",
+               "title": "Lantern Festival",
+               "sub": "The first full moon of the lunar year \u2014 may it be a full one.",
+               "run": "First full moon \u00b7 May everything go smoothly \U0001F315 ",
+               "ok": "Thank you \U0001F315"},
+    },
+    {
+        "id": "valentine",
+        "solar": "02-14",
+        "before": 0, "after": 0,
+        "art": "14\u00b702",
+        "looks": [look("do_tim", "heart", "up", "\u2764\ufe0f"), look("hong", "heart", "down", "\U0001F49E"),
+                  look("do_hong", "confetti", "down", "\U0001F498")],
+        "vi": {"bar": "14/2 \u2014 Valentine",
+               "title": "Ch\u00fac m\u1EEBng Valentine",
+               "sub": "Ch\u00fac m\u1ECDi ng\u01B0\u1EDDi m\u1ED9t ng\u00e0y ng\u1ECDt ng\u00e0o \u2014 k\u1EC3 c\u1EA3 khi crush v\u1EABn ch\u01B0a rep.",
+               "run": "Y\u00eau th\u01B0\u01A1ng g\u1EEDi \u0111i r\u1ED3i s\u1EBD quay v\u1EC1 \u2764\ufe0f ",
+               "ok": "C\u1EA3m \u01A1n \u2764\ufe0f"},
+        "en": {"bar": "14 Feb \u2014 Valentine's Day",
+               "title": "Happy Valentine's Day",
+               "sub": "Have a sweet day \u2014 even if your crush still has not replied.",
+               "run": "Love sent out always finds its way back \u2764\ufe0f ",
+               "ok": "Thank you \u2764\ufe0f"},
+    },
+    {
+        "id": "thay-thuoc",
+        "solar": "02-27",
+        "before": 0, "after": 0,
+        "art": "27\u00b702",
+        "looks": [look("lam", "heart", "up", "\U0001FA7A"), look("ngoc", "dot", "down", "\U0001F499")],
+        "vi": {"bar": "27/2 \u2014 Ng\u00e0y Th\u1EA7y thu\u1ED1c Vi\u1EC7t Nam",
+               "title": "Ng\u00e0y Th\u1EA7y thu\u1ED1c Vi\u1EC7t Nam",
+               "sub": "C\u1EA3m \u01A1n nh\u1EEFng ng\u01B0\u1EDDi tr\u1EF1c \u0111\u00eam \u0111\u1EC3 ng\u01B0\u1EDDi kh\u00e1c \u0111\u01B0\u1EE3c ng\u1EE7 y\u00ean.",
+               "run": "L\u01B0\u01A1ng y nh\u01B0 t\u1EEB m\u1EABu \U0001FA7A Ch\u00fac c\u00e1c y b\u00e1c s\u0129 nhi\u1EC1u s\u1EE9c kho\u1EBB \U0001FA7A ",
+               "ok": "Tri \u00e2n \U0001FA7A"},
+        "en": {"bar": "27 Feb \u2014 Vietnamese Doctors' Day",
+               "title": "Vietnamese Doctors' Day",
+               "sub": "Thank you to everyone who works the night shift so others can sleep.",
+               "run": "With gratitude to our doctors and nurses \U0001FA7A ",
+               "ok": "Thank you \U0001FA7A"},
+    },
+    {
+        "id": "doan-ngo",
+        "lunar": "05-05",
+        "before": 0, "after": 0,
+        "art": "5\u00b75",
+        "looks": [look("luc", "dot", "down", "\U0001F348"), look("cam", "confetti", "down", "\U0001F33F")],
+        "vi": {"bar": "M\u00f9ng 5 th\u00e1ng 5 \u2014 T\u1EBFt \u0110oan Ng\u1ECD",
+               "title": "T\u1EBFt \u0110oan Ng\u1ECD",
+               "sub": "Ng\u00e0y gi\u1EBFt s\u00e2u b\u1ECD \u2014 ch\u00fac m\u1ECDi ng\u01B0\u1EDDi s\u1EA1ch b\u1EC7nh, s\u1EA1ch bug.",
+               "run": "C\u01A1m r\u01B0\u1EE3u \u00b7 B\u00e1nh tro \u00b7 Hoa qu\u1EA3 \u0111\u1EA7u m\u00f9a \U0001F33F ",
+               "ok": "M\u00e1t l\u00e0nh \U0001F33F"},
+        "en": {"bar": "Doan Ngo Festival",
+               "title": "Doan Ngo Festival",
+               "sub": "The day for clearing out pests \u2014 and bugs.",
+               "run": "Sweet fermented rice \u00b7 Ash cakes \u00b7 First fruits \U0001F33F ",
+               "ok": "Thank you \U0001F33F"},
+    },
+    {
+        "id": "gia-dinh",
+        "solar": "06-28",
+        "before": 0, "after": 0,
+        "art": "28\u00b706",
+        "looks": [look("sen", "heart", "up", "\U0001F3E1"), look("ngoc", "dot", "float", "\U0001F46A")],
+        "vi": {"bar": "28/6 \u2014 Ng\u00e0y Gia \u0111\u00ecnh Vi\u1EC7t Nam",
+               "title": "Ng\u00e0y Gia \u0111\u00ecnh Vi\u1EC7t Nam",
+               "sub": "T\u1EAFt m\u00e1y s\u1EDBm m\u1ED9t h\u00f4m, v\u1EC1 nh\u00e0 \u0103n c\u01A1m c\u00f9ng c\u1EA3 nh\u00e0.",
+               "run": "V\u1EC1 nh\u00e0 \u0103n c\u01A1m \U0001F3E1 Gia \u0111\u00ecnh l\u00e0 n\u01A1i \u0111\u1EC3 quay v\u1EC1 \U0001F3E1 ",
+               "ok": "V\u1EC1 nh\u00e0 \U0001F3E1"},
+        "en": {"bar": "28 Jun \u2014 Vietnamese Family Day",
+               "title": "Vietnamese Family Day",
+               "sub": "Log off early today and have dinner with the family.",
+               "run": "Home is where you come back to \U0001F3E1 ",
+               "ok": "Thank you \U0001F3E1"},
+    },
+    {
+        "id": "vu-lan",
+        "lunar": "07-15",
+        "before": 0, "after": 0,
+        "art": "Vu Lan",
+        "looks": [look("sen", "petal", "float", "\U0001FAB7"), look("vang_kim", "lantern", "up", "\U0001F56F\ufe0f")],
+        "vi": {"bar": "R\u1EB1m th\u00e1ng B\u1EA3y \u2014 L\u1EC5 Vu Lan b\u00e1o hi\u1EBFu",
+               "title": "L\u1EC5 Vu Lan",
+               "sub": "Ai c\u00f2n m\u1EB9 xin \u0111\u1EEBng l\u00e0m m\u1EB9 kh\u00f3c \u2014 h\u00f4m nay nh\u1EDB g\u1ECDi v\u1EC1 nh\u00e0 m\u1ED9t cu\u1ED9c.",
+               "run": "B\u00f4ng h\u1ED3ng c\u00e0i \u00e1o \U0001FAB7 Vu Lan b\u00e1o hi\u1EBFu \U0001FAB7 ",
+               "ok": "Nh\u1EDB nh\u00e0 \U0001FAB7"},
+        "en": {"bar": "Vu Lan \u2014 Parents' Day",
+               "title": "Vu Lan Festival",
+               "sub": "A day for gratitude to our parents \u2014 call home today.",
+               "run": "A rose for those who still have their mother \U0001FAB7 ",
+               "ok": "Thank you \U0001FAB7"},
+    },
+    {
+        "id": "halloween",
+        "solar": "10-31",
+        "before": 0, "after": 0,
+        "art": "31\u00b710",
+        "looks": [look("cam_bi", "star", "float", "\U0001F383"), look("cam_bi", "confetti", "down", "\U0001F47B")],
+        "skins": ["neon", "card", "ticket"],
+        "vi": {"bar": "31/10 \u2014 Halloween",
+               "title": "Happy Halloween",
+               "sub": "Trick or treat \u2014 ho\u1EB7c ch\u1ECDn c\u00e1ch th\u1EE9 ba: \u1EDF nh\u00e0 deploy.",
+               "run": "Trick or treat \U0001F383 \u0110\u00eam nay c\u00f3 g\u00ec \u0111\u00f3 h\u01A1i l\u1EA1 \U0001F47B ",
+               "ok": "H\u00fa h\u1ED3n \U0001F383"},
+        "en": {"bar": "31 Oct \u2014 Halloween",
+               "title": "Happy Halloween",
+               "sub": "Trick or treat \u2014 or option three: stay home and deploy.",
+               "run": "Trick or treat \U0001F383 Something feels off tonight \U0001F47B ",
+               "ok": "Boo \U0001F383"},
+    },
+    {
+        "id": "qdnd",
+        "solar": "12-22",
+        "before": 0, "after": 0,
+        "art": "22\u00b712",
+        "looks": [look("co_do", "star", "down", "\u2B50"), look("luc", "star", "down", "\U0001F396\ufe0f")],
+        "vi": {"bar": "22/12 \u2014 Ng\u00e0y th\u00e0nh l\u1EADp Qu\u00e2n \u0111\u1ED9i nh\u00e2n d\u00e2n Vi\u1EC7t Nam",
+               "title": "Ng\u00e0y th\u00e0nh l\u1EADp Qu\u00e2n \u0111\u1ED9i nh\u00e2n d\u00e2n Vi\u1EC7t Nam",
+               "sub": "G\u1EEDi l\u1EDDi tri \u00e2n t\u1EDBi nh\u1EEFng ng\u01B0\u1EDDi gi\u1EEF b\u00ecnh y\u00ean cho ng\u00e0y th\u01B0\u1EDDng c\u1EE7a ch\u00fang ta.",
+               "run": "Tri \u00e2n ng\u01B0\u1EDDi l\u00ednh \u2B50 22/12 \u2B50 ",
+               "ok": "Tri \u00e2n \u2B50"},
+        "en": {"bar": "22 Dec \u2014 Vietnam People's Army Day",
+               "title": "Vietnam People's Army Day",
+               "sub": "With gratitude to those who keep our ordinary days peaceful.",
+               "run": "Honouring our soldiers \u2B50 ",
+               "ok": "Thank you \u2B50"},
     },
 ]
 
@@ -388,6 +551,58 @@ html.festive #lang{top:70px}
   margin:0 -28px 18px;border-top:2px dashed var(--line);border-bottom:2px dashed var(--line)
 }
 .skin-ticket .fm-ok{border-radius:10px}
+
+/* ===== kiểu NEON: thẻ kính tối, viền phát sáng, chữ ART đổ quầng neon ===== */
+.skin-neon .fm-card{
+  background:rgba(12,10,18,.82);border:1px solid var(--fes-accent);
+  box-shadow:0 0 0 1px var(--fes-soft),0 0 48px var(--fes-glow),inset 0 0 60px rgba(0,0,0,.6);
+  backdrop-filter:blur(4px)
+}
+.skin-neon .fm-art{
+  background:none;-webkit-text-fill-color:#fff;color:#fff;letter-spacing:.04em;
+  text-shadow:0 0 10px #fff,0 0 28px var(--fes-accent),0 0 60px var(--fes-accent);
+  animation:neon 2.4s ease-in-out infinite
+}
+@keyframes neon{50%{opacity:.78}}
+.skin-neon .fm-title,.skin-neon .fm-sub{color:#fff}
+.skin-neon .fm-sub{opacity:.75}
+.skin-neon .fm-run{border-color:var(--fes-soft)}
+.skin-neon .fm-x{color:rgba(255,255,255,.7)}
+
+/* ===== kiểu POSTCARD: tấm bưu thiếp, có tem và dấu bưu điện ===== */
+.skin-postcard .fm-card{
+  padding:26px 26px 24px;border-radius:6px;border:1px solid var(--line);
+  background:var(--surface);
+  box-shadow:0 20px 50px rgba(0,0,0,.4),inset 0 0 0 6px var(--surface),
+             inset 0 0 0 7px var(--fes-soft)
+}
+.skin-postcard .fm-card::after{             /* con tem góc phải */
+  content:attr(data-stamp);position:absolute;top:16px;right:16px;
+  width:54px;height:62px;display:flex;align-items:center;justify-content:center;
+  font-size:22px;border:2px dashed var(--fes-accent);border-radius:3px;
+  background:var(--accent-soft);transform:rotate(4deg)
+}
+.skin-postcard .fm-art{
+  font-size:clamp(40px,9vw,70px);text-align:left;padding-left:4px
+}
+.skin-postcard .fm-title,.skin-postcard .fm-sub{text-align:left}
+.skin-postcard .fm-sub{margin-left:0}
+.skin-postcard .fm-run{margin:14px -26px 18px}
+.skin-postcard .fm-ok{float:left}
+.skin-postcard .fm-card::before{display:none}
+.skin-postcard .fm-x{right:82px;top:22px}
+
+/* ===== kiểu SCROLL: câu đối dọc hai bên, chữ ART ở giữa ===== */
+.skin-scroll .fm-card{
+  padding:34px 74px 28px;border:0;border-radius:14px;
+  background:
+    linear-gradient(var(--fes-g1),var(--fes-g2)) left/26px 100% no-repeat,
+    linear-gradient(var(--fes-g2),var(--fes-g1)) right/26px 100% no-repeat,
+    var(--surface);
+  box-shadow:0 20px 56px rgba(0,0,0,.45)
+}
+.skin-scroll .fm-art{letter-spacing:.06em}
+.skin-scroll .fm-run{margin:0 -74px 18px}
 
 @media (prefers-reduced-motion:reduce){
   #petals{display:none}
@@ -593,6 +808,7 @@ FESTIVE_JS = """
     if (!forced && sessionStorage.getItem('festive-modal') === key) return;
     fill();
     modal.className = 'skin-' + skin + ' on';
+    modal.querySelector('.fm-card').setAttribute('data-stamp', th.emoji);
     var mx = innerWidth / 2, my = innerHeight / 2;
     burst(mx, my, 30);
     setTimeout(function(){ burst(mx - 160, my - 40, 16); }, 130);
@@ -619,7 +835,9 @@ FESTIVE_JS = """
   var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
   var cv = document.getElementById('petals'), cx = cv.getContext('2d');
   var W, H, bits = [], raf = null, DPR = Math.min(devicePixelRatio || 1, 2);
-  var COLORS = th.colors, SHAPE = th.shape, UP = th.dir === 'up';
+  var COLORS = th.colors, SHAPE = th.shape;
+  var MODE = th.dir;                       /* down | up | float | fireworks */
+  var UP = MODE === 'up' || MODE === 'float';
 
   function size(){
     W = cv.width = innerWidth * DPR;
@@ -633,8 +851,11 @@ FESTIVE_JS = """
     return {
       x: Math.random() * W, y: y,
       r: (5 + Math.random() * 7) * DPR,
-      vx: 0, vy: (UP ? -1 : 1) * (0.45 + Math.random() * 0.95) * DPR,
-      sway: 0.6 + Math.random() * 1.4, phase: Math.random() * 6.283,
+      vx: 0,
+      vy: (UP ? -1 : 1) * (MODE === 'float' ? 0.18 + Math.random() * 0.3
+                                            : 0.45 + Math.random() * 0.95) * DPR,
+      sway: (MODE === 'float' ? 1.6 + Math.random() * 1.8 : 0.6 + Math.random() * 1.4),
+      phase: Math.random() * 6.283,
       spin: (Math.random() - 0.5) * (SHAPE === 'lantern' ? 0.012 : 0.05),
       ang: SHAPE === 'lantern' ? 0 : Math.random() * 6.283,
       c: COLORS[(Math.random() * COLORS.length) | 0],
@@ -664,6 +885,37 @@ FESTIVE_JS = """
         cx[i ? 'lineTo' : 'moveTo'](Math.cos(a) * rad, Math.sin(a) * rad);
       }
       cx.closePath(); cx.fill(); return;
+    }
+    if (SHAPE === 'heart'){
+      cx.beginPath();
+      cx.moveTo(0, r * 0.75);
+      cx.bezierCurveTo(-r * 1.3, -r * 0.3, -r * 0.5, -r * 1.1, 0, -r * 0.45);
+      cx.bezierCurveTo(r * 0.5, -r * 1.1, r * 1.3, -r * 0.3, 0, r * 0.75);
+      cx.fill(); return;
+    }
+    if (SHAPE === 'confetti'){
+      /* mảnh kim tuyến lật qua lật lại như rơi trong không khí */
+      cx.scale(Math.cos(p.phase * 2.2), 1);
+      cx.fillRect(-r * 0.45, -r * 0.8, r * 0.9, r * 1.6);
+      return;
+    }
+    if (SHAPE === 'snow'){
+      cx.strokeStyle = p.c; cx.lineWidth = Math.max(1, r * 0.16); cx.lineCap = 'round';
+      cx.beginPath();
+      for (var s6 = 0; s6 < 6; s6++){
+        var a6 = Math.PI / 3 * s6;
+        cx.moveTo(0, 0); cx.lineTo(Math.cos(a6) * r, Math.sin(a6) * r);
+        cx.moveTo(Math.cos(a6) * r * 0.6, Math.sin(a6) * r * 0.6);
+        cx.lineTo(Math.cos(a6 + 0.5) * r * 0.85, Math.sin(a6 + 0.5) * r * 0.85);
+      }
+      cx.stroke(); return;
+    }
+    if (SHAPE === 'coin'){
+      cx.beginPath(); cx.ellipse(0, 0, r * Math.abs(Math.cos(p.phase * 1.6)) + r * 0.12, r, 0, 0, 6.283);
+      cx.fill();
+      cx.globalAlpha = p.a * 0.5; cx.fillStyle = '#fff';
+      cx.beginPath(); cx.ellipse(-r * 0.2, -r * 0.25, r * 0.18, r * 0.3, 0, 0, 6.283); cx.fill();
+      return;
     }
     if (SHAPE === 'lantern'){
       cx.beginPath();
@@ -712,7 +964,7 @@ FESTIVE_JS = """
   function start(){
     if (raf) return;
     size();
-    if (!bits.length && !reduce){
+    if (!bits.length && !reduce && MODE !== 'fireworks'){
       var n = Math.min(44, Math.round(innerWidth / 28));
       for (var i = 0; i < n; i++) bits.push(spawn(false));
     }
@@ -730,6 +982,14 @@ FESTIVE_JS = """
     burst(ev.clientX, ev.clientY);
   });
   if (!reduce) start();
+  /* pháo hoa: tự bắn từng chùm ở vị trí ngẫu nhiên phía trên màn hình */
+  if (MODE === 'fireworks' && !reduce){
+    setInterval(function(){
+      if (document.hidden || !root.classList.contains('festive')) return;
+      burst(innerWidth * (0.15 + Math.random() * 0.7),
+            innerHeight * (0.12 + Math.random() * 0.4), 18);
+    }, 1400);
+  }
   setTimeout(openModal, 180);
 })();
 """

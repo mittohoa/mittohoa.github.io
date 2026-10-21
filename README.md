@@ -43,29 +43,25 @@ Thông tin cá nhân (tên, slogan, giới thiệu, link mạng xã hội) nằm
 
 ## Hiệu ứng ngày lễ
 
-`festive.py` giữ danh sách 11 dịp lễ Việt Nam, mỗi dịp một bản sắc riêng
-(màu chủ đạo, kiểu hạt rơi, biểu tượng, lời chúc song ngữ). Ngày dương lịch khai
-thẳng, ngày âm lịch (Tết, Giỗ Tổ, Trung thu) được quy đổi ngay trên trình duyệt
-bằng thuật toán âm lịch Hồ Ngọc Đức nên không phải sửa tay mỗi năm.
+`festive.py` giữ **20 dịp lễ** Việt Nam. Ngày dương lịch khai thẳng, ngày âm lịch
+(Tết, Ông Táo, Nguyên tiêu, Đoan Ngọ, Vu Lan, Giỗ Tổ, Trung thu) được quy đổi ngay
+trên trình duyệt bằng thuật toán âm lịch Hồ Ngọc Đức nên không phải sửa tay mỗi năm.
 
-Xem thử một dịp bất kỳ mà không cần đợi tới ngày:
+Mỗi lần vào trang, trang **bốc ngẫu nhiên** một diện mạo và một kiểu popup:
 
-```
-https://mittohoa.github.io/?festive=tet
-https://mittohoa.github.io/?festive=trung-thu
-https://mittohoa.github.io/?festive=off      # tắt hẳn
-```
-
-Mỗi lần vào trang, trang **bốc ngẫu nhiên** một diện mạo trong `looks` của dịp đó
-(bảng màu + hình hạt + hướng bay + biểu tượng) và một kiểu popup trong `SKINS`
-(`card` khung thẻ · `splash` tràn màn hình · `ticket` như tấm vé có răng cưa).
-Riêng 20/10 có 3 looks × 3 skins = 9 tổ hợp.
+- **46 diện mạo** (`looks`) dựng từ 17 bảng màu dùng chung — tổng **270 tổ hợp**
+- **7 hình hạt**: cánh hoa · ngôi sao · chấm tròn · đèn lồng · trái tim · kim tuyến · đồng xu
+- **4 kiểu chuyển động**: rơi xuống · bay lên · trôi lơ lửng · pháo hoa tự bắn
+- **6 kiểu popup**: `card` khung thẻ · `splash` tràn màn hình · `ticket` tấm vé răng cưa ·
+  `neon` thẻ kính viền phát sáng · `postcard` bưu thiếp có tem · `scroll` câu đối hai bên
 
 Ghim một tổ hợp để xem thử:
 
 ```
 ?festive=tet&skin=splash&look=0
-?festive=20-10&skin=ticket&look=1
+?festive=halloween&skin=neon
+?festive=valentine&skin=postcard
+?festive=off                      # tắt hẳn
 ```
 
 Thêm dịp mới: chèn một mục vào danh sách `FESTIVE` rồi chạy lại `build_site.py`.
