@@ -12,6 +12,7 @@ Chạy:
   python build_site.py --refresh   đọc lại tên/logo từ các trang app rồi dựng
   python build_site.py --dry       chỉ in danh sách, không ghi file
 """
+import datetime
 import json
 import os
 import re
@@ -23,6 +24,7 @@ import urllib.request
 from festive import FESTIVE, FESTIVE_CSS, FESTIVE_JS, SKINS
 from quotes import QUOTES
 
+YEAR = str(datetime.date.today().year)
 OWNER = "mittohoa"
 CACHE = "site-data.json"
 PHOTO = "me.jpg"           # chân dung tròn đầu trang
@@ -59,22 +61,29 @@ ME = {
               "cleanup, chess. Most of them run fully offline on your device and "
               "collect nothing.",
     },
-    "about": {
-        "vi": "Mình làm phần mềm ở TP.HCM, mạnh nhất là ứng dụng đa nền tảng với "
-              "Flutter và .NET. Nhưng dân IT không nhất thiết phải khô khan: ngoài "
-              "giờ code thì mình ôm đàn, chơi cờ, và hay bị đẩy lên làm người hoạt "
-              "náo mỗi khi có sự kiện đông người. Thói quen của mình đơn giản — thấy "
-              "việc gì cứ lặp đi lặp lại và phiền phiền là về làm luôn một cái app "
-              "cho nhẹ đầu; phần lớn thứ trên trang này ra đời kiểu đó. Có gì cần "
-              "hỏi về Android, Windows hay web thì cứ nhắn, mình trả lời nhiệt tình.",
-        "en": "I build software in Ho Chi Minh City, mostly cross-platform apps with "
-              "Flutter and .NET. But developers don't have to be the quiet type: off "
-              "the clock I'm the one with a guitar, a chessboard, and a microphone "
-              "whenever a room needs someone to liven it up. My habit is simple — "
-              "whenever something repetitive annoys me, I go home and turn it into an "
-              "app. That is how most of the things on this page were born. Questions "
-              "about Android, Windows or the web? Message me, I answer with real "
-              "enthusiasm.",
+    # "Về mình" viết theo kiểu nhật ký phiên bản, đánh số theo năm.
+    # SỬA LẠI MẤY MỐC NĂM Ở GIỮA CHO ĐÚNG VỚI BẠN. {n} = số app thật,
+    # {y} = năm hiện tại, cả hai tự điền khi chạy build_site.py.
+    "changelog": [
+        {"v": "1990",
+         "vi": "Bản phát hành đầu tiên. Chưa có tính năng nào, khóc là chính.",
+         "en": "First release. No features yet, mostly crying."},
+        {"v": "2008",
+         "vi": "Biết code. Phát hiện ra máy tính chịu làm hộ mấy việc lặp đi lặp lại.",
+         "en": "Learned to code. Discovered that computers will happily do the repetitive parts."},
+        {"v": "2014",
+         "vi": "Thêm mô-đun ôm đàn và mô-đun chơi cờ. Hai cái này chạy nền liên tục từ đó tới giờ.",
+         "en": "Added a guitar module and a chess module. Both have been running in the background ever since."},
+        {"v": "2019",
+         "vi": "Thêm khả năng cầm mic, tự kích hoạt mỗi khi phòng đông người mà im lặng hơi lâu.",
+         "en": "Added microphone support. Triggers automatically whenever a crowded room goes quiet for too long."},
+        {"v": "{y}",
+         "vi": "Bản hiện tại: {n} app đã phát hành, phần lớn chạy offline, không thu thập dữ liệu. Vẫn chưa có app nào nhắc mình đi ngủ sớm.",
+         "en": "Current build: {n} apps published, most of them fully offline, collecting nothing. Still no app that reminds me to go to bed."},
+    ],
+    "bug": {
+        "vi": "Lỗi đã biết: ngủ muộn. Đã ghi nhận từ bản 2008, chưa có bản vá.",
+        "en": "Known bug: goes to bed late. Logged since build 2008, still no fix.",
     },
     # Thứ tự hiện trên trang. Link đầu tiên được tô đậm.
     "links": [
@@ -466,6 +475,19 @@ h1{margin:0 0 4px;font-size:clamp(32px,6vw,46px);line-height:1.1;letter-spacing:
 section{padding:44px 0 0}
 h2{margin:0;font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
 .about p{margin:14px 0 0;max-width:64ch}
+.log{list-style:none;margin:18px 0 0;padding:0;display:grid;gap:11px}
+.log li{display:flex;gap:14px;align-items:flex-start}
+.log b{
+  flex:0 0 auto;min-width:62px;text-align:center;padding:4px 10px;border-radius:999px;
+  background:var(--accent-soft);color:var(--accent);
+  font:700 12.5px/1.5 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace
+}
+.log span{font-size:15.5px;line-height:1.6;max-width:60ch}
+.log li:last-child span{color:var(--ink);font-weight:600}
+.bug{
+  margin:18px 0 0;padding:12px 15px;border-radius:10px;border:1px dashed var(--line);
+  font-size:14px;color:var(--muted);max-width:62ch
+}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px;margin-top:16px}
 .card{
   display:flex;flex-direction:column;background:var(--surface);border:1px solid var(--line);
@@ -661,7 +683,10 @@ def render(groups):
 
   <section class="about">
     %(about_h)s
-    <p data-en="%(about_en)s">%(about_vi)s</p>
+    <ul class="log">
+%(log)s
+    </ul>
+    <p class="bug" data-en="%(bug_en)s">%(bug_vi)s</p>
   </section>
 
 %(body)s
@@ -687,7 +712,13 @@ def render(groups):
         "slogan_accent_vi": esc(ME["slogan"]["accent"]["vi"]),
         "slogan_accent_en": esc(ME["slogan"]["accent"]["en"]),
         "about_h": t(UI, "about", "h2"),
-        "about_vi": esc(ME["about"]["vi"]), "about_en": esc(ME["about"]["en"]),
+        "log": "\n".join(
+            '      <li><b>%s</b><span data-en="%s">%s</span></li>'
+            % (e["v"].replace("{y}", YEAR),
+               esc(e["en"].replace("{n}", str(total)).replace("{y}", YEAR)),
+               esc(e["vi"].replace("{n}", str(total)).replace("{y}", YEAR)))
+            for e in ME["changelog"]),
+        "bug_vi": esc(ME["bug"]["vi"]), "bug_en": esc(ME["bug"]["en"]),
         "stat1_vi": esc(UI["stat1"]["vi"]), "stat1_en": esc(UI["stat1"]["en"]),
         "stat2_vi": esc(UI["stat2"]["vi"]), "stat2_en": esc(UI["stat2"]["en"]),
         "stat3_vi": esc(UI["stat3"]["vi"]), "stat3_en": esc(UI["stat3"]["en"]),
@@ -827,7 +858,7 @@ if __name__ == "__main__":
             print("%-24s %-22s %s" % (GROUPS[key]["vi"], it["title"], it["url"]))
     print("\nTong cong: %d du an" % sum(len(v) for v in groups.values()))
 
-    todo = [k for k, v in {"email": ME["email"], "about": ME["about"]["vi"]}.items()
+    todo = [k for k, v in {"email": ME["email"]}.items()
             if "TODO" in v] + \
            [n for n, u in ME["links"] if "TODO" in u]
     if todo:
