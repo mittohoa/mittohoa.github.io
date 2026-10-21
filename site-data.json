@@ -18,6 +18,7 @@
   "desc": "TỐT thí: game cờ vua tiếng Việt. Bàn cờ ba chiều, luật FIDE đầy đủ, máy đấu 8 mức, 5000 bài tập chiến thuật, phân tích ván. Chơi không cần mạng, không tài khoản, không quảng cáo.",
   "downloads": 33,
   "icon": "https://mittohoa.github.io/chess-game-web/anh/logo.png",
+  "play": "com.mittohoa.chess_game",
   "title": "TỐT thí"
  },
  "chinese-chess-web": {
@@ -112,14 +113,15 @@
   "title": "RubikLab"
  },
  "starvelocity": {
-  "desc": "Ranking open source by total stars puts the same decade-old projects on top forever. StarVelocity measures how fast a repository is gaining stars right now, from its own daily record of every repo it tracks. 5000 repos.",
-  "downloads": 2,
+  "desc": "Ranking open source by total stars puts the same decade-old projects on top forever. StarVelocity measures how fast a repository is gaining stars right now, from its own daily record of every repo it tracks. 4998 repos.",
+  "downloads": 1,
   "title": "StarVelocity"
  },
  "toidi": {
   "desc": "Chỉ đường xe buýt, metro TP.HCM và Hà Nội: nhắc xuống trạm, nhiều điểm dừng, tiện ích quanh đây, chạy cả khi mất mạng. Không quảng cáo.",
   "downloads": 16,
   "icon": "https://mittohoa.github.io/toidi/assets/img/icon-192.png",
+  "play": "com.mittohoa.toidi_app",
   "title": "TÔI ĐI"
  },
  "tudu-app": {
@@ -132,6 +134,7 @@
   "desc": "Ứng dụng Android học ukulele bằng tiếng Việt. Lộ trình cho người chưa từng cầm đàn, 28 hợp âm kèm hướng dẫn bấm từng ngón, máy lên dây, metronome. Miễn phí, chạy offline.",
   "downloads": 18,
   "icon": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎸</text></svg>",
+  "play": "com.mittohoa.ukeflow",
   "title": "UkeFlow"
  },
  "veo-kam": {
@@ -148,9 +151,8 @@
  },
  "workpilot-app": {
   "desc": "WorkPilot AI: bấm giờ công việc, ghi số lượng, báo cáo AI, đồng bộ đa thiết bị (realtime, offline-first). Tải cho Android & Windows.",
-  "downloads": 513,
+  "downloads": 515,
   "icon": "https://mittohoa.github.io/workpilot-app/assets/icon.png",
-  "play": "com.mittohoa.workpilot_ai",
   "title": "WorkPilot AI"
  },
  "xaxi-app": {
