@@ -64,37 +64,37 @@ ME = {
     # "Về mình" viết theo kiểu nhật ký phiên bản, đánh số theo năm.
     # {n} = số app thật, {y} = năm hiện tại — cả hai tự điền khi chạy build_site.py.
     "changelog": [
-        {"v": "1990",
+        {"v": "1990", "icon": "\U0001F476",
          "vi": "Bản phát hành đầu tiên. Chưa có tính năng nào, khóc là chính.",
          "en": "First release. No features yet, mostly crying."},
-        {"v": "1996",
+        {"v": "1996", "icon": "\u270F\ufe0f",
          "vi": "Vào lớp 1. Bản cập nhật lớn: biết đọc, biết viết. Chữ lúc tròn lúc méo, tuỳ tâm trạng.",
          "en": "Started primary school. Major update: reading and writing. Handwriting quality varied by mood."},
-        {"v": "2001",
+        {"v": "2001", "icon": "\U0001F5A5\ufe0f",
          "vi": "Lên cấp 2. Lần đầu ngồi trước máy tính ở phòng tin học — mỗi tuần một tiết, và hiếm khi dùng đúng mục đích.",
          "en": "Secondary school. First time in front of a computer in the school lab — one period a week, rarely used for its intended purpose."},
-        {"v": "2005",
+        {"v": "2005", "icon": "\u2328\ufe0f",
          "vi": "Cấp 3. Làm quen Pascal, viết chương trình giải phương trình bậc hai. Lần đầu thấy máy chịu làm đúng thứ mình bảo nó làm.",
          "en": "High school. Met Pascal and wrote a quadratic equation solver. First time a machine did exactly what I told it to."},
-        {"v": "2008",
+        {"v": "2008", "icon": "\U0001F393",
          "vi": "Vào ngành Công nghệ thông tin, chuyên ngành Hệ thống thông tin — học về hệ thống là chính, gõ code là phụ.",
          "en": "Started an IT degree, majoring in Information Systems — a lot about systems, not that much typing code."},
-        {"v": "2012",
+        {"v": "2012", "icon": "\U0001F4A1",
          "vi": "Năm cuối mới thật sự chăm code. Ngôn ngữ gắn bó đầu tiên: .NET.",
          "en": "Final year, and only then did the coding habit kick in. First real language: .NET."},
-        {"v": "2013",
+        {"v": "2013", "icon": "\U0001F4BC", "major": True,
          "vi": "Đi làm. Từ đây code không còn là bài tập mà là việc có người đang chờ.",
          "en": "Started working. Code stopped being homework and became something people were waiting for."},
-        {"v": "2021",
+        {"v": "2021", "icon": "\U0001F680", "major": True,
          "vi": "Đăng ký tài khoản Google Play Developer. Lần đầu bấm nút Phát hành.",
          "en": "Registered a Google Play Developer account. First time hitting Publish."},
-        {"v": "2024",
+        {"v": "2024", "icon": "\U0001F512", "major": True,
          "vi": "Tài khoản nhà phát triển bị khoá. Không có bản vá, chỉ có đường vòng: phát hành APK thẳng cho người dùng.",
          "en": "Developer account locked. No patch available, only a workaround: ship APKs straight to users."},
-        {"v": "2026.0",
+        {"v": "2026.0", "icon": "\U0001F98B", "major": True,
          "vi": "Khởi động lại với Flutter. Cuộc chuyển nền lớn nhất từ trước tới nay.",
          "en": "Rebooted with Flutter. The biggest migration so far."},
-        {"v": "{y}.x",
+        {"v": "{y}.x", "icon": "\u26A1", "major": True,
          "vi": "Bản hiện tại: {n} app đã phát hành, phần lớn chạy offline, không thu thập dữ liệu. Chạy song song ba tiến trình: viết code, phát hành và hỗ trợ người dùng. Vẫn chưa có app nào nhắc mình đi ngủ sớm.",
          "en": "Current build: {n} apps published, most of them fully offline, collecting nothing. Three processes running in parallel: writing code, shipping it, and supporting the people who use it. Still no app that reminds me to go to bed."},
     ],
@@ -492,15 +492,47 @@ h1{margin:0 0 4px;font-size:clamp(32px,6vw,46px);line-height:1.1;letter-spacing:
 section{padding:44px 0 0}
 h2{margin:0;font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
 .about p{margin:14px 0 0;max-width:64ch}
-.log{list-style:none;margin:18px 0 0;padding:0;display:grid;gap:11px}
-.log li{display:flex;gap:14px;align-items:flex-start}
-.log b{
-  flex:0 0 auto;min-width:62px;text-align:center;padding:4px 10px;border-radius:999px;
-  background:var(--accent-soft);color:var(--accent);
-  font:700 12.5px/1.5 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace
+.tl{position:relative;list-style:none;margin:24px 0 0;padding:0 0 0 56px}
+/* trục dọc mảnh, nhạt dần về cuối */
+.tl::before{
+  content:"";position:absolute;left:20px;top:10px;bottom:12px;width:2px;border-radius:2px;
+  background:linear-gradient(var(--accent),var(--accent) 12%,var(--line) 92%,transparent)
 }
-.log span{font-size:15.5px;line-height:1.6;max-width:60ch}
-.log li:last-child span{color:var(--ink);font-weight:600}
+.tl li{position:relative;padding:0 0 24px}
+.tl li:last-child{padding-bottom:0}
+.tl .dot{
+  position:absolute;left:-56px;top:-4px;width:40px;height:40px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;font-size:18px;
+  background:var(--surface);border:2px solid var(--line);
+  box-shadow:0 0 0 5px var(--bg)
+}
+.tl li.major .dot{border-color:var(--accent);background:var(--accent-soft)}
+.tl .yr{
+  font:700 12.5px/1 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  letter-spacing:.06em;color:var(--accent)
+}
+.tl .txt{display:block;margin-top:6px;font-size:15.5px;line-height:1.62;max-width:58ch}
+.tl li:last-child .txt{font-weight:600;color:var(--ink)}
+.tl li:last-child .dot{animation:tlpulse 2.6s ease-out infinite}
+@keyframes tlpulse{
+  0%{box-shadow:0 0 0 5px var(--bg),0 0 0 0 var(--accent-soft)}
+  70%{box-shadow:0 0 0 5px var(--bg),0 0 0 16px transparent}
+  100%{box-shadow:0 0 0 5px var(--bg),0 0 0 0 transparent}
+}
+/* Hiện dần khi cuộn tới. Mặc định các mốc LUÔN hiện; chỉ khi JS bật được chế độ
+   reveal mới ẩn đi để chạy hiệu ứng — hỏng JS thì nội dung vẫn đọc được. */
+.tl.reveal li{opacity:0;transform:translateY(16px);
+  transition:opacity .55s ease,transform .55s cubic-bezier(.2,.9,.3,1)}
+.tl.reveal li.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){
+  .tl.reveal li{opacity:1;transform:none;transition:none}
+  .tl li:last-child .dot{animation:none}
+}
+@media (max-width:560px){
+  .tl{padding-left:46px}
+  .tl::before{left:15px}
+  .tl .dot{left:-46px;width:32px;height:32px;font-size:15px}
+}
 .bug{
   margin:18px 0 0;padding:12px 15px;border-radius:10px;border:1px dashed var(--line);
   font-size:14px;color:var(--muted);max-width:62ch
@@ -545,6 +577,40 @@ footer a:hover{text-decoration:underline}
 """
 
 JS = """
+/* timeline: hiện dần từng mốc khi cuộn tới, lệch nhịp cho có nhịp điệu */
+(function(){
+  var list = document.querySelector('.tl');
+  if (!list) return;
+  var items = list.querySelectorAll('li');
+  var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  /* không đủ điều kiện chạy hiệu ứng thì thôi — các mốc vẫn hiện bình thường */
+  if (!items.length || reduce || !('IntersectionObserver' in window)) return;
+
+  list.classList.add('reveal');
+  /* Gỡ hẳn lớp reveal chứ không chỉ gắn .in: nếu trình duyệt đang bị bóp
+     (tab nền, thiết bị yếu) thì transition có thể không chạy, gắn .in vẫn
+     không hiện. Bỏ reveal là quy tắc ẩn biến mất ngay lập tức. */
+  function showAll(){
+    list.classList.remove('reveal');
+    for (var k = 0; k < items.length; k++) items[k].classList.add('in');
+  }
+  /* phao cứu sinh: observer không chạy vì lý do gì thì 1,5 giây sau vẫn hiện hết */
+  var guard = setTimeout(showAll, 1500);
+
+  var io = new IntersectionObserver(function(entries){
+    for (var j = 0; j < entries.length; j++){
+      var en = entries[j];
+      if (!en.isIntersecting) continue;
+      var i = [].indexOf.call(items, en.target);
+      en.target.style.transitionDelay = (Math.min(i, 6) * 0.07) + 's';
+      en.target.classList.add('in');
+      io.unobserve(en.target);
+    }
+    if (!list.querySelector('li:not(.in)')) clearTimeout(guard);
+  }, {rootMargin: '0px 0px -10% 0px', threshold: 0.12});
+  for (var i = 0; i < items.length; i++) io.observe(items[i]);
+})();
+
 (function(){
   var btn=document.getElementById('lang');
   function apply(l){
@@ -700,9 +766,9 @@ def render(groups):
 
   <section class="about">
     %(about_h)s
-    <ul class="log">
+    <ol class="tl">
 %(log)s
-    </ul>
+    </ol>
     <p class="bug" data-en="%(bug_en)s">%(bug_vi)s</p>
   </section>
 
@@ -730,8 +796,12 @@ def render(groups):
         "slogan_accent_en": esc(ME["slogan"]["accent"]["en"]),
         "about_h": t(UI, "about", "h2"),
         "log": "\n".join(
-            '      <li><b>%s</b><span data-en="%s">%s</span></li>'
-            % (e["v"].replace("{y}", YEAR),
+            '      <li%s><span class="dot">%s</span>'
+            '<span class="yr">%s</span>'
+            '<span class="txt" data-en="%s">%s</span></li>'
+            % (' class="major"' if e.get("major") else "",
+               e.get("icon", ""),
+               e["v"].replace("{y}", YEAR),
                esc(e["en"].replace("{n}", str(total)).replace("{y}", YEAR)),
                esc(e["vi"].replace("{n}", str(total)).replace("{y}", YEAR)))
             for e in ME["changelog"]),

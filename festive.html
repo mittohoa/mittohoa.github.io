@@ -69,15 +69,47 @@ h1{margin:0 0 4px;font-size:clamp(32px,6vw,46px);line-height:1.1;letter-spacing:
 section{padding:44px 0 0}
 h2{margin:0;font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
 .about p{margin:14px 0 0;max-width:64ch}
-.log{list-style:none;margin:18px 0 0;padding:0;display:grid;gap:11px}
-.log li{display:flex;gap:14px;align-items:flex-start}
-.log b{
-  flex:0 0 auto;min-width:62px;text-align:center;padding:4px 10px;border-radius:999px;
-  background:var(--accent-soft);color:var(--accent);
-  font:700 12.5px/1.5 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace
+.tl{position:relative;list-style:none;margin:24px 0 0;padding:0 0 0 56px}
+/* trục dọc mảnh, nhạt dần về cuối */
+.tl::before{
+  content:"";position:absolute;left:20px;top:10px;bottom:12px;width:2px;border-radius:2px;
+  background:linear-gradient(var(--accent),var(--accent) 12%,var(--line) 92%,transparent)
 }
-.log span{font-size:15.5px;line-height:1.6;max-width:60ch}
-.log li:last-child span{color:var(--ink);font-weight:600}
+.tl li{position:relative;padding:0 0 24px}
+.tl li:last-child{padding-bottom:0}
+.tl .dot{
+  position:absolute;left:-56px;top:-4px;width:40px;height:40px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;font-size:18px;
+  background:var(--surface);border:2px solid var(--line);
+  box-shadow:0 0 0 5px var(--bg)
+}
+.tl li.major .dot{border-color:var(--accent);background:var(--accent-soft)}
+.tl .yr{
+  font:700 12.5px/1 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  letter-spacing:.06em;color:var(--accent)
+}
+.tl .txt{display:block;margin-top:6px;font-size:15.5px;line-height:1.62;max-width:58ch}
+.tl li:last-child .txt{font-weight:600;color:var(--ink)}
+.tl li:last-child .dot{animation:tlpulse 2.6s ease-out infinite}
+@keyframes tlpulse{
+  0%{box-shadow:0 0 0 5px var(--bg),0 0 0 0 var(--accent-soft)}
+  70%{box-shadow:0 0 0 5px var(--bg),0 0 0 16px transparent}
+  100%{box-shadow:0 0 0 5px var(--bg),0 0 0 0 transparent}
+}
+/* Hiện dần khi cuộn tới. Mặc định các mốc LUÔN hiện; chỉ khi JS bật được chế độ
+   reveal mới ẩn đi để chạy hiệu ứng — hỏng JS thì nội dung vẫn đọc được. */
+.tl.reveal li{opacity:0;transform:translateY(16px);
+  transition:opacity .55s ease,transform .55s cubic-bezier(.2,.9,.3,1)}
+.tl.reveal li.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){
+  .tl.reveal li{opacity:1;transform:none;transition:none}
+  .tl li:last-child .dot{animation:none}
+}
+@media (max-width:560px){
+  .tl{padding-left:46px}
+  .tl::before{left:15px}
+  .tl .dot{left:-46px;width:32px;height:32px;font-size:15px}
+}
 .bug{
   margin:18px 0 0;padding:12px 15px;border-radius:10px;border:1px dashed var(--line);
   font-size:14px;color:var(--muted);max-width:62ch
