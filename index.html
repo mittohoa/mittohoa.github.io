@@ -117,6 +117,25 @@ footer a{color:var(--accent);text-decoration:none}
 footer a:hover{text-decoration:underline}
 .note{margin-top:8px;font-size:12.5px}
 
+#quote{
+  margin:44px 0 0;padding:20px 22px;border-radius:14px;
+  background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--accent)
+}
+#quote .qk{
+  font-size:11.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--muted);display:flex;align-items:center;gap:10px
+}
+#quote .qtext{
+  margin:10px 0 0;font-size:clamp(16px,2.4vw,19px);line-height:1.55;font-style:italic;
+  letter-spacing:-.01em
+}
+#quote .qby{display:block;margin-top:8px;font-size:13.5px;font-style:normal;color:var(--muted)}
+#quote .qnew{
+  margin-left:auto;border:1px solid var(--line);background:transparent;color:var(--muted);
+  border-radius:999px;padding:5px 12px;font:600 12px/1 inherit;cursor:pointer
+}
+#quote .qnew:hover{border-color:var(--accent);color:var(--accent)}
+
 /* Chỉ bật khi <html> có class festive — ngoài ngày lễ thì trang y như cũ.
    Màu lấy từ biến --fes-* do JS gán theo từng dịp. */
 html.festive{--accent:var(--fes-accent);--accent-soft:var(--fes-soft)}
@@ -352,6 +371,12 @@ html.festive #lang{top:70px}
     </div>
   </header>
 
+  <section id="quote">
+    <div class="qk"><span data-en="Quote of the day">Câu hôm nay</span>
+      <button class="qnew" type="button" data-en="another one">đổi câu khác</button></div>
+    <p class="qtext">&nbsp;<span class="qby"></span></p>
+  </section>
+
   <section class="about">
     <h2 data-en="About">Về mình</h2>
     <p data-en="I build software in Ho Chi Minh City, mostly cross-platform apps with Flutter and .NET. But developers don't have to be the quiet type: off the clock I'm the one with a guitar, a chessboard, and a microphone whenever a room needs someone to liven it up. My habit is simple — whenever something repetitive annoys me, I go home and turn it into an app. That is how most of the things on this page were born. Questions about Android, Windows or the web? Message me, I answer with real enthusiasm.">Mình làm phần mềm ở TP.HCM, mạnh nhất là ứng dụng đa nền tảng với Flutter và .NET. Nhưng dân IT không nhất thiết phải khô khan: ngoài giờ code thì mình ôm đàn, chơi cờ, và hay bị đẩy lên làm người hoạt náo mỗi khi có sự kiện đông người. Thói quen của mình đơn giản — thấy việc gì cứ lặp đi lặp lại và phiền phiền là về làm luôn một cái app cho nhẹ đầu; phần lớn thứ trên trang này ra đời kiểu đó. Có gì cần hỏi về Android, Windows hay web thì cứ nhắn, mình trả lời nhiệt tình.</p>
@@ -565,6 +590,30 @@ html.festive #lang{top:70px}
   btn.addEventListener('click',function(){
     apply(document.documentElement.lang==='en' ? 'vi' : 'en');
   });
+})();
+
+(function(){
+  var Q = [{"vi": "Có công mài sắt, có ngày nên kim.", "en": "Grind long enough and iron becomes a needle."}, {"vi": "Đi một ngày đàng, học một sàng khôn.", "en": "A day of travelling brings a basketful of wisdom."}, {"vi": "Một cây làm chẳng nên non, ba cây chụm lại nên hòn núi cao.", "en": "One tree makes no hill; three together make a mountain."}, {"vi": "Chậm mà chắc.", "en": "Slow, but certain."}, {"vi": "Thua keo này, bày keo khác.", "en": "Lost this round? Set up the next one."}, {"vi": "Nước chảy đá mòn.", "en": "Running water wears the stone away."}, {"vi": "Ăn quả nhớ kẻ trồng cây.", "en": "When you eat the fruit, remember who planted the tree."}, {"vi": "Học thầy không tày học bạn.", "en": "Learning from a teacher is good; learning from a friend is often better."}, {"vi": "Khéo ăn thì no, khéo co thì ấm.", "en": "Eat wisely and you are full; tuck in well and you stay warm."}, {"vi": "Cần cù bù thông minh.", "en": "Diligence makes up for cleverness."}, {"vi": "Góp gió thành bão.", "en": "Gather enough breezes and you get a storm."}, {"vi": "Dục tốc bất đạt.", "en": "Haste does not get you there."}, {"vi": "Có chí thì nên.", "en": "Where there is will, there is a way."}, {"vi": "Một nụ cười bằng mười thang thuốc bổ.", "en": "One smile is worth ten doses of medicine."}, {"vi": "Lửa thử vàng, gian nan thử sức.", "en": "Fire tests gold; hardship tests people."}, {"vi": "Tích tiểu thành đại.", "en": "Small amounts, saved patiently, become large ones."}, {"vi": "Cách tốt nhất để bắt đầu là thôi nói và bắt tay vào làm.", "en": "The way to get started is to quit talking and begin doing.", "by": "Walt Disney"}, {"vi": "Đơn giản là mức tinh tế cao nhất.", "en": "Simplicity is the ultimate sophistication.", "by": "Leonardo da Vinci"}, {"vi": "Hoàn thành tốt hơn hoàn hảo.", "en": "Done is better than perfect."}, {"vi": "Chương trình phải viết cho người đọc, máy chạy được chỉ là tiện thể.", "en": "Programs must be written for people to read, and only incidentally for machines to execute.", "by": "Harold Abelson"}, {"vi": "Code sạch luôn trông như được viết bởi người thật sự quan tâm.", "en": "Clean code always looks like it was written by someone who cares.", "by": "Robert C. Martin"}, {"vi": "Cách duy nhất để làm việc lớn là yêu việc mình làm.", "en": "The only way to do great work is to love what you do.", "by": "Steve Jobs"}, {"vi": "Đừng đếm số ngày, hãy làm cho từng ngày đáng kể.", "en": "Don't count the days, make the days count.", "by": "Muhammad Ali"}, {"vi": "Thành công là đi từ thất bại này sang thất bại khác mà không mất nhiệt huyết.", "en": "Success is going from failure to failure without losing enthusiasm.", "by": "Winston Churchill"}, {"vi": "Điều quan trọng không phải là bạn chậm đến đâu, miễn là đừng dừng lại.", "en": "It does not matter how slowly you go, as long as you do not stop.", "by": "Khổng Tử"}, {"vi": "Hành trình vạn dặm bắt đầu từ một bước chân.", "en": "A journey of a thousand miles begins with a single step.", "by": "Lão Tử"}, {"vi": "Thời điểm tốt nhất để trồng một cái cây là hai mươi năm trước. Thời điểm tốt thứ hai là hôm nay.", "en": "The best time to plant a tree was twenty years ago. The second best time is now."}, {"vi": "Bạn không cần giỏi để bắt đầu, nhưng phải bắt đầu thì mới giỏi được.", "en": "You don't have to be great to start, but you have to start to be great.", "by": "Zig Ziglar"}, {"vi": "Làm điều khó khi nó còn dễ.", "en": "Do the difficult things while they are easy.", "by": "Lão Tử"}, {"vi": "Mỗi chuyên gia đều từng là người mới bắt đầu.", "en": "Every expert was once a beginner."}, {"vi": "Hãy tử tế, vì ai cũng đang chiến đấu với một trận chiến bạn không nhìn thấy.", "en": "Be kind, for everyone you meet is fighting a battle you know nothing about."}, {"vi": "Hạnh phúc không có sẵn, nó đến từ chính việc mình làm.", "en": "Happiness is not something ready made. It comes from your own actions.", "by": "Dalai Lama"}, {"vi": "Điều bạn cho đi sẽ quay lại theo cách bạn không ngờ.", "en": "What you give away comes back in ways you never expect."}, {"vi": "Người lạc quan thấy cơ hội trong mỗi khó khăn.", "en": "An optimist sees the opportunity in every difficulty.", "by": "Winston Churchill"}, {"vi": "Không ai có thể khiến bạn thấy mình kém cỏi nếu bạn không đồng ý.", "en": "No one can make you feel inferior without your consent.", "by": "Eleanor Roosevelt"}, {"vi": "Biết ơn biến những gì đang có thành đủ đầy.", "en": "Gratitude turns what we have into enough."}, {"vi": "Hãy là thay đổi mà bạn muốn thấy trên đời.", "en": "Be the change you wish to see in the world.", "by": "Mahatma Gandhi"}, {"vi": "Một ngày tồi tệ không phải là một đời tồi tệ.", "en": "A bad day is not a bad life."}, {"vi": "Nghỉ ngơi cũng là một phần của công việc.", "en": "Rest is part of the work, not a break from it."}, {"vi": "Điều tốt đẹp cần thời gian, và thời gian thì vẫn đang trôi.", "en": "Good things take time, and time is passing anyway."}, {"vi": "So sánh là kẻ cắp của niềm vui.", "en": "Comparison is the thief of joy.", "by": "Theodore Roosevelt"}, {"vi": "Cứ đi rồi sẽ tới.", "en": "Keep walking and you will arrive."}];
+  var box = document.getElementById('quote');
+  var txt = box.querySelector('.qtext'), by = box.querySelector('.qby');
+  /* chọn theo ngày: mọi người vào cùng ngày thấy cùng câu, hôm sau tự đổi */
+  var d = new Date();
+  var dayNo = Math.floor(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()) / 86400000);
+  var idx = dayNo % Q.length;
+
+  function show(){
+    var q = Q[idx], en = document.documentElement.lang === 'en';
+    txt.firstChild.nodeValue = '“' + (en ? q.en : q.vi) + '”';
+    by.textContent = q.by ? '— ' + q.by : (en ? 'Vietnamese proverb' : 'Tục ngữ Việt Nam');
+  }
+  show();
+  box.querySelector('.qnew').addEventListener('click', function(){
+    var next;
+    do { next = (Math.random() * Q.length) | 0; } while (next === idx && Q.length > 1);
+    idx = next; show();
+  });
+  var lang = document.getElementById('lang');
+  if (lang) lang.addEventListener('click', function(){ setTimeout(show, 0); });
 })();
 
 (function(){

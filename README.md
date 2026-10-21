@@ -41,6 +41,13 @@ hiện thì thêm vào `SKIP`.
 Thông tin cá nhân (tên, slogan, giới thiệu, link mạng xã hội) nằm trong khối
 `ME` ở đầu `build_site.py`.
 
+## Câu nói hằng ngày
+
+`quotes.py` giữ 42 câu ca dao, tục ngữ và danh ngôn song ngữ. Trang chủ chọn câu
+**theo ngày** nên ai vào cùng ngày cũng thấy cùng một câu, hôm sau tự đổi; nút
+"đổi câu khác" bốc ngẫu nhiên. Thêm câu: chèn một mục vào `QUOTES`, bản tiếng
+Anh bắt buộc có, `by` để trống nghĩa là ca dao tục ngữ.
+
 ## Hiệu ứng ngày lễ
 
 `festive.py` giữ **20 dịp lễ** Việt Nam. Ngày dương lịch khai thẳng, ngày âm lịch
@@ -55,7 +62,10 @@ Mỗi lần vào trang, trang **bốc ngẫu nhiên** một diện mạo và m�
 - **6 kiểu popup**: `card` khung thẻ · `splash` tràn màn hình · `ticket` tấm vé răng cưa ·
   `neon` thẻ kính viền phát sáng · `postcard` bưu thiếp có tem · `scroll` câu đối hai bên
 
-Ghim một tổ hợp để xem thử:
+Trang **festive.html** liệt kê toàn bộ kho mẫu — bấm một thẻ là xem thử **ngay tại
+chỗ** (băng rôn, hạt rơi và popup áp lên chính trang đó), không phải rời trang.
+
+Hoặc ghim một tổ hợp bằng tham số:
 
 ```
 ?festive=tet&skin=splash&look=0

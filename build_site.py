@@ -21,6 +21,7 @@ import urllib.parse
 import urllib.request
 
 from festive import FESTIVE, FESTIVE_CSS, FESTIVE_JS, SKINS
+from quotes import QUOTES
 
 OWNER = "mittohoa"
 CACHE = "site-data.json"
@@ -355,6 +356,54 @@ def t(el, key, tag="span", cls=""):
     return '<%s%s data-en="%s">%s</%s>' % (tag, cls, esc(el[key]["en"]), esc(el[key]["vi"]), tag)
 
 
+QUOTE_CSS = """
+#quote{
+  margin:44px 0 0;padding:20px 22px;border-radius:14px;
+  background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--accent)
+}
+#quote .qk{
+  font-size:11.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--muted);display:flex;align-items:center;gap:10px
+}
+#quote .qtext{
+  margin:10px 0 0;font-size:clamp(16px,2.4vw,19px);line-height:1.55;font-style:italic;
+  letter-spacing:-.01em
+}
+#quote .qby{display:block;margin-top:8px;font-size:13.5px;font-style:normal;color:var(--muted)}
+#quote .qnew{
+  margin-left:auto;border:1px solid var(--line);background:transparent;color:var(--muted);
+  border-radius:999px;padding:5px 12px;font:600 12px/1 inherit;cursor:pointer
+}
+#quote .qnew:hover{border-color:var(--accent);color:var(--accent)}
+"""
+
+QUOTE_JS = """
+(function(){
+  var Q = __QUOTES__;
+  var box = document.getElementById('quote');
+  var txt = box.querySelector('.qtext'), by = box.querySelector('.qby');
+  /* chọn theo ngày: mọi người vào cùng ngày thấy cùng câu, hôm sau tự đổi */
+  var d = new Date();
+  var dayNo = Math.floor(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()) / 86400000);
+  var idx = dayNo % Q.length;
+
+  function show(){
+    var q = Q[idx], en = document.documentElement.lang === 'en';
+    txt.firstChild.nodeValue = '\u201c' + (en ? q.en : q.vi) + '\u201d';
+    by.textContent = q.by ? '\u2014 ' + q.by : (en ? 'Vietnamese proverb' : 'Tục ngữ Việt Nam');
+  }
+  show();
+  box.querySelector('.qnew').addEventListener('click', function(){
+    var next;
+    do { next = (Math.random() * Q.length) | 0; } while (next === idx && Q.length > 1);
+    idx = next; show();
+  });
+  var lang = document.getElementById('lang');
+  if (lang) lang.addEventListener('click', function(){ setTimeout(show, 0); });
+})();
+"""
+
+
 CSS = """
 *,*::before,*::after{box-sizing:border-box}
 :root{
@@ -565,7 +614,7 @@ def render(groups):
 <meta property="og:description" content="%(intro_short)s">
 <meta property="og:url" content="https://%(owner)s.github.io/">
 <meta property="og:type" content="website">%(og_image)s
-<style>%(css)s%(festive_css)s</style>
+<style>%(css)s%(quote_css)s%(festive_css)s</style>
 </head>
 <body>
 <canvas id="petals" aria-hidden="true"></canvas>
@@ -604,6 +653,12 @@ def render(groups):
     </div>
   </header>
 
+  <section id="quote">
+    <div class="qk"><span data-en="Quote of the day">Câu hôm nay</span>
+      <button class="qnew" type="button" data-en="another one">đổi câu khác</button></div>
+    <p class="qtext">&nbsp;<span class="qby"></span></p>
+  </section>
+
   <section class="about">
     %(about_h)s
     <p data-en="%(about_en)s">%(about_vi)s</p>
@@ -619,7 +674,7 @@ def render(groups):
     <div class="note" data-en="%(auto_en)s">%(auto_vi)s</div>
   </footer>
 </div>
-<script>%(js)s%(festive_js)s</script>
+<script>%(js)s%(quote_js)s%(festive_js)s</script>
 </body>
 </html>
 """ % {
@@ -640,6 +695,9 @@ def render(groups):
         "contact_vi": esc(UI["contact"]["vi"]), "contact_en": esc(UI["contact"]["en"]),
         "auto_vi": esc(UI["auto"]["vi"]), "auto_en": esc(UI["auto"]["en"]),
         "slogan_full": esc(ME["slogan"]["lead"]["vi"] + " " + ME["slogan"]["accent"]["vi"]),
+        "quote_css": QUOTE_CSS,
+        "quote_js": QUOTE_JS.replace("__QUOTES__",
+                                     json.dumps(QUOTES, ensure_ascii=False)),
         "festive_css": FESTIVE_CSS,
         "festive_js": (FESTIVE_JS
                        .replace("__FESTIVE__", json.dumps(FESTIVE, ensure_ascii=False))
@@ -663,7 +721,7 @@ def render_gallery():
                "%s/%s" % tuple(reversed(ev["solar"].split("-"))))
         skins = ev.get("skins", SKINS)
         cards.append(
-            '    <a class="fcard" href="./?festive=%s" style="--c:%s">\n'
+            '    <a class="fcard" href="?festive=%s" style="--c:%s">\n'
             '      <div class="fc-top"><span class="fc-em">%s</span>'
             '<div><b>%s</b><span class="fc-when">%s</span></div></div>\n'
             '      <div class="fc-sw">%s</div>\n'
@@ -683,7 +741,7 @@ def render_gallery():
 <meta name="robots" content="noindex">
 <meta name="color-scheme" content="light dark">
 <link rel="icon" href="%(icon)s">
-<style>%(css)s
+<style>%(css)s%(festive_css)s
 .fgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px;margin-top:18px}
 .fcard{
   display:block;padding:16px 16px 14px;border-radius:12px;text-decoration:none;color:inherit;
@@ -707,6 +765,20 @@ def render_gallery():
 </style>
 </head>
 <body>
+<canvas id="petals" aria-hidden="true"></canvas>
+<div id="fmodal" role="dialog" aria-modal="true" aria-labelledby="fm-title">
+  <div class="fm-card">
+    <button class="fm-x" type="button" aria-label="Đóng">&times;</button>
+    <div class="fm-art"></div>
+    <h2 class="fm-title" id="fm-title"></h2>
+    <p class="fm-sub"></p>
+    <div class="fm-run"><span></span></div>
+    <button class="fm-ok" type="button"></button>
+  </div>
+</div>
+<div id="festive"><span class="em">🌸</span><span class="msg"></span>
+<span class="hint">bấm vào trang để bung hiệu ứng</span>
+<button class="x" type="button" aria-label="Đóng">&times;</button></div>
 <div class="wrap">
   <header style="padding:54px 0 10px">
     <p class="eyebrow">Kho mẫu ngày lễ</p>
@@ -730,13 +802,18 @@ def render_gallery():
 <script>
 var IDS = %(ids)s;
 document.getElementById('rand').addEventListener('click', function(){
-  location.href = './?festive=' + IDS[(Math.random() * IDS.length) | 0];
+  location.href = '?festive=' + IDS[(Math.random() * IDS.length) | 0];
 });
+%(festive_js)s
 </script>
 </body>
 </html>
 """ % {
         "name": esc(ME["name"]), "css": CSS, "icon": ICON,
+        "festive_css": FESTIVE_CSS,
+        "festive_js": (FESTIVE_JS
+                       .replace("__FESTIVE__", json.dumps(FESTIVE, ensure_ascii=False))
+                       .replace("__SKINS__", json.dumps(SKINS))),
         "count": len(FESTIVE), "total": total,
         "cards": "\n".join(cards),
         "ids": json.dumps([e["id"] for e in FESTIVE]),
