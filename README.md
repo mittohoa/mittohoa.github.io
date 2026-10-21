@@ -41,6 +41,23 @@ hiện thì thêm vào `SKIP`.
 Thông tin cá nhân (tên, slogan, giới thiệu, link mạng xã hội) nằm trong khối
 `ME` ở đầu `build_site.py`.
 
+## Hiệu ứng ngày lễ
+
+`festive.py` giữ danh sách 11 dịp lễ Việt Nam, mỗi dịp một bản sắc riêng
+(màu chủ đạo, kiểu hạt rơi, biểu tượng, lời chúc song ngữ). Ngày dương lịch khai
+thẳng, ngày âm lịch (Tết, Giỗ Tổ, Trung thu) được quy đổi ngay trên trình duyệt
+bằng thuật toán âm lịch Hồ Ngọc Đức nên không phải sửa tay mỗi năm.
+
+Xem thử một dịp bất kỳ mà không cần đợi tới ngày:
+
+```
+https://mittohoa.github.io/?festive=tet
+https://mittohoa.github.io/?festive=trung-thu
+https://mittohoa.github.io/?festive=off      # tắt hẳn
+```
+
+Thêm dịp mới: chèn một mục vào danh sách `FESTIVE` rồi chạy lại `build_site.py`.
+
 ## Ảnh
 
 | File | Kích thước | Dùng cho |
