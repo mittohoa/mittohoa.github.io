@@ -74,6 +74,7 @@ SKINS = ["card", "splash", "ticket", "neon", "postcard", "scroll"]
 FESTIVE = [
     {
         "id": "tet-duong-lich",
+        "name": "Tết Dương lịch",
         "solar": "01-01",
         "before": 0, "after": 0,
         "art": "01·01",
@@ -91,6 +92,7 @@ FESTIVE = [
     },
     {
         "id": "tet",
+        "name": "Tết Nguyên Đán",
         "lunar": "01-01",
         "before": 2, "after": 3,
         "art": "Tết",
@@ -125,6 +127,7 @@ FESTIVE = [
     },
     {
         "id": "gio-to",
+        "name": "Giỗ Tổ Hùng Vương",
         "lunar": "03-10",
         "before": 0, "after": 0,
         "art": "10·3",
@@ -142,6 +145,7 @@ FESTIVE = [
     },
     {
         "id": "30-4",
+        "name": "30/4 – 1/5",
         "solar": "04-30",
         "before": 0, "after": 1,
         "art": "30·4",
@@ -193,6 +197,7 @@ FESTIVE = [
     },
     {
         "id": "2-9",
+        "name": "Quốc khánh 2/9",
         "solar": "09-02",
         "before": 0, "after": 0,
         "art": "02·09",
@@ -399,6 +404,7 @@ FESTIVE = [
     },
     {
         "id": "qdnd",
+        "name": "Ngày Quân đội nhân dân",
         "solar": "12-22",
         "before": 0, "after": 0,
         "art": "22\u00b712",

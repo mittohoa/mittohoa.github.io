@@ -1,0 +1,259 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Kho mẫu ngày lễ — Dương Minh Hòa</title>
+<meta name="robots" content="noindex">
+<meta name="color-scheme" content="light dark">
+<link rel="icon" href="icon-180.png">
+<style>
+*,*::before,*::after{box-sizing:border-box}
+:root{
+  --bg:#f7f8fa; --surface:#fff; --line:#e4e8ee;
+  --ink:#171a20; --muted:#646c7a; --accent:#2f5fd0; --accent-soft:#eaf0fd;
+}
+@media (prefers-color-scheme:dark){
+  :root{
+    --bg:#0e1116; --surface:#161a22; --line:#242a35;
+    --ink:#e9edf3; --muted:#949db0; --accent:#7aa2f7; --accent-soft:#1b2436;
+  }
+}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;background:var(--bg);color:var(--ink);
+  font:16px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  -webkit-font-smoothing:antialiased
+}
+.wrap{max-width:960px;margin:0 auto;padding:0 20px}
+a{color:var(--accent)}
+
+/* nút đổi ngôn ngữ */
+#lang{
+  position:fixed;top:16px;right:16px;z-index:9;
+  padding:7px 14px;border:1px solid var(--line);border-radius:999px;
+  background:var(--surface);color:var(--ink);font:600 13px/1 inherit;cursor:pointer
+}
+#lang:hover{border-color:var(--accent);color:var(--accent)}
+
+/* hero */
+header{padding:72px 0 42px}
+.hero{display:flex;gap:30px;align-items:flex-start;flex-wrap:wrap}
+.portrait{
+  width:132px;height:132px;flex:0 0 132px;border-radius:50%;object-fit:cover;
+  border:3px solid var(--surface);box-shadow:0 2px 18px rgba(0,0,0,.14)
+}
+.hero-text{flex:1 1 380px;min-width:280px}
+.eyebrow{font-size:12.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--accent);margin:0 0 10px}
+h1{margin:0 0 4px;font-size:clamp(32px,6vw,46px);line-height:1.1;letter-spacing:-.02em}
+.sub{margin:0 0 14px;font-size:16px;color:var(--muted)}
+.slogan{margin:0 0 18px;font-size:clamp(19px,2.6vw,25px);line-height:1.35;letter-spacing:-.01em}
+.slogan em{color:var(--accent);font-style:italic}
+.intro{margin:0 0 24px;max-width:60ch;font-size:16.5px}
+.links{display:flex;flex-wrap:wrap;gap:10px}
+.links a{
+  display:inline-block;padding:8px 16px;border:1px solid var(--line);border-radius:999px;
+  background:var(--surface);color:var(--ink);text-decoration:none;font-size:14px;font-weight:600;
+  transition:border-color .15s,color .15s
+}
+.links a:hover{border-color:var(--accent);color:var(--accent)}
+.links a.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+
+/* stats */
+.stats{display:flex;flex-wrap:wrap;gap:34px;margin-top:42px;padding-top:26px;border-top:1px solid var(--line)}
+.stat b{display:block;font-size:26px;line-height:1.2;letter-spacing:-.01em}
+.stat span{font-size:13px;color:var(--muted)}
+
+/* nội dung */
+section{padding:44px 0 0}
+h2{margin:0;font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.about p{margin:14px 0 0;max-width:64ch}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px;margin-top:16px}
+.card{
+  display:flex;flex-direction:column;background:var(--surface);border:1px solid var(--line);
+  border-radius:12px;padding:18px 18px 15px;text-decoration:none;color:inherit;
+  transition:border-color .15s,transform .15s
+}
+.card:hover{border-color:var(--accent);transform:translateY(-2px)}
+.card .head{display:flex;align-items:center;gap:11px;margin:0 0 10px}
+.card .ico{width:44px;height:44px;flex:0 0 44px;border-radius:11px;object-fit:cover;
+  background:var(--accent-soft);border:1px solid var(--line)}
+.card .ico.ph{display:flex;align-items:center;justify-content:center;font-weight:700;font-size:19px;color:var(--accent)}
+.card h3{margin:0;font-size:16.5px;letter-spacing:-.01em}
+.card p{margin:0 0 14px;font-size:14px;color:var(--muted);line-height:1.55;flex:1}
+.card .go{font-size:13px;font-weight:600;color:var(--accent)}
+
+/* huy hiệu lượt tải / Google Play */
+.badges{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 12px}
+.badge{
+  font-size:11.5px;font-weight:600;padding:3px 9px;border-radius:999px;
+  background:var(--accent-soft);color:var(--accent);white-space:nowrap
+}
+.badge.play{background:#1a7f3718;color:#1a9e45}
+.badge.soon{background:transparent;border:1px dashed var(--line);color:var(--muted)}
+
+/* khu Nổi bật: thẻ to hơn, logo lớn hơn */
+.grid.big{grid-template-columns:1fr}
+@media (min-width:620px){.grid.big{grid-template-columns:repeat(3,1fr)}}
+.grid.big .card{padding:22px 22px 18px;border-color:var(--accent);
+  background:linear-gradient(180deg,var(--accent-soft) 0%,var(--surface) 46%)}
+.grid.big .ico{width:58px;height:58px;flex:0 0 58px;border-radius:14px}
+.grid.big h3{font-size:19px}
+.grid.big p{font-size:14.5px}
+
+footer{margin-top:58px;padding:26px 0 56px;border-top:1px solid var(--line);font-size:14px;color:var(--muted)}
+footer a{color:var(--accent);text-decoration:none}
+footer a:hover{text-decoration:underline}
+.note{margin-top:8px;font-size:12.5px}
+
+.fgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px;margin-top:18px}
+.fcard{
+  display:block;padding:16px 16px 14px;border-radius:12px;text-decoration:none;color:inherit;
+  background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--c);
+  transition:transform .15s,border-color .15s
+}
+.fcard:hover{transform:translateY(-2px);border-color:var(--c)}
+.fc-top{display:flex;gap:11px;align-items:center;margin-bottom:10px}
+.fc-em{font-size:26px;line-height:1}
+.fc-top b{display:block;font-size:15px;line-height:1.3}
+.fc-when{font-size:12.5px;color:var(--muted)}
+.fc-sw{display:flex;gap:4px;margin-bottom:9px}
+.fc-sw i{width:26px;height:9px;border-radius:3px}
+.fc-meta{font-size:12px;color:var(--muted)}
+.frow{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:16px}
+.fbtn{
+  border:0;border-radius:999px;padding:11px 22px;cursor:pointer;font:700 14px/1 inherit;
+  color:#fff;background:var(--accent)
+}
+.fbtn.ghost{background:transparent;border:1px solid var(--line);color:var(--ink)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header style="padding:54px 0 10px">
+    <p class="eyebrow">Kho mẫu ngày lễ</p>
+    <h1 style="font-size:clamp(26px,5vw,38px)">20 dịp · 270 tổ hợp</h1>
+    <p class="intro">Tới ngày lễ, trang chủ <b>tự bốc ngẫu nhiên</b> một diện mạo và một
+      kiểu popup — khách vào không phải làm gì. Trang này để xem trước toàn bộ kho mẫu:
+      bấm vào một dịp là mở trang chủ với mẫu của dịp đó.</p>
+    <div class="frow">
+      <button class="fbtn" id="rand" type="button">Bốc ngẫu nhiên một dịp</button>
+      <a class="fbtn ghost" href="./">Về trang chủ</a>
+    </div>
+  </header>
+  <div class="fgrid">
+    <a class="fcard" href="./?festive=tet-duong-lich" style="--c:#5b8cff">
+      <div class="fc-top"><span class="fc-em">🎆</span><div><b>Tết Dương lịch</b><span class="fc-when">01/01</span></div></div>
+      <div class="fc-sw"><i style="background:#8ad4ff"></i><i style="background:#5b8cff"></i><i style="background:#c9e4ff"></i><i style="background:#ffd36b"></i><i style="background:#ffffff"></i></div>
+      <div class="fc-meta">3 diện mạo · 6 kiểu popup · 18 tổ hợp</div>
+    </a>
+    <a class="fcard" href="./?festive=tet" style="--c:#e8352f">
+      <div class="fc-top"><span class="fc-em">🧧</span><div><b>Tết Nguyên Đán</b><span class="fc-when">âm lịch 01/01</span></div></div>
+      <div class="fc-sw"><i style="background:#f2b705"></i><i style="background:#ffd95e"></i><i style="background:#e8352f"></i><i style="background:#ff7a7a"></i><i style="background:#ffe9a8"></i></div>
+      <div class="fc-meta">3 diện mạo · 6 kiểu popup · 18 tổ hợp</div>
+    </a>
+    <a class="fcard" href="./?festive=8-3" style="--c:#c661e8">
+      <div class="fc-top"><span class="fc-em">💐</span><div><b>Chúc mừng Ngày Quốc tế Phụ nữ</b><span class="fc-when">08/03</span></div></div>
+      <div class="fc-sw"><i style="background:#c661e8"></i><i style="background:#e3a8f5"></i><i style="background:#ff8fb8"></i><i style="background:#ffd6e4"></i><i style="background:#ffc46b"></i></div>
+      <div class="fc-meta">2 diện mạo · 6 kiểu popup · 12 tổ hợp</div>
+    </a>
+    <a class="fcard" href="./?festive=gio-to" style="--c:#c2410c">
+      <div class="fc-top"><span class="fc-em">🪷</span><div><b>Giỗ Tổ Hùng Vương</b><span class="fc-when">âm lịch 10/03</span></div></div>
+      <div class="fc-sw"><i style="background:#d8a657"></i><i style="background:#c2410c"></i><i style="background:#e8c07d"></i><i style="background:#8b5e34"></i><i style="background:#f0d9a8"></i></div>
+      <div class="fc-meta">2 diện mạo · 6 kiểu popup · 12 tổ hợp</div>
+    </a>
+    <a class="fcard" href="./?festive=30-4" style="--c:#e11d2e">
+      <div class="fc-top"><span class="fc-em">🇻🇳</span><div><b>30/4 – 1/5</b><span class="fc-when">30/04</span></div></div>
+      <div class="fc-sw"><i style="background:#ffd23f"></i><i style="background:#e11d2e"></i><i style="background:#ff8a8a"></i><i style="background:#ffe9a8"></i><i style="background:#ffffff"></i></div>
+      <div class="fc-meta">3 diện mạo · 6 kiểu popup · 18 tổ hợp</div>
+    </a>
+    <a class="fcard" href="./?festive=1-6" style="--c:#22a6b3">
+      <div class="fc-top"><span class="fc-em">🎈</span><div><b>Quốc tế Thiếu nhi</b><span class="fc-when">01/06</span></div></div>
+      <div class="fc-sw"><i style="background:#ff6b6b"></i><i style="background:#ffd166"></i><i style="background:#22c3d6"></i><i style="background:#a0e86f"></i><i style="background:#c77dff"></i></div>
+      <div class="fc-meta">2 diện mạo · 6 kiểu popup · 12 tổ hợp</div>
+    </a>
+    <a class="fcard" href="./?festive=trung-thu" style="--c:#f08c00">
+      <div class="fc-top"><span class="fc-em">🏮</span><div><b>Chúc mừng Tết Trung thu</b><span class="fc-when">âm lịch 15/08</span></div></div>
+      <div class="fc-sw"><i style="background:#ffd43b"></i><i style="background:#f08c00"></i><i style="background:#ff922b"></i><i style="background:#ffe8a3"></i><i style="background:#ff6b6b"></i></div>
+      <div class="fc-meta">2 diện mạo · 6 kiểu popup · 12 tổ hợp</div>
+    </a>
+    <a class="fcard" href="./?festive=2-9" style="--c:#e11d2e">
+      <div class="fc-top"><span class="fc-em">⭐</span><div><b>Quốc khánh 2/9</b><span class="fc-when">02/09</span></div></div>
+      <div class="fc-sw"><i style="background:#ffd23f"></i><i style="background:#e11d2e"></i><i style="background:#ff8a8a"></i><i style="background:#ffe9a8"></i><i style="background:#ffffff"></i></div>
+      <div class="fc-meta">3 diện mạo · 6 kiểu popup · 18 tổ hợp</div>
+    </a>
+    <a class="fcard" href="./?festive=20-10" style="--c:#ff4f93">
+      <div class="fc-top"><span class="fc-em">🌸</span><div><b>Chúc mừng Ngày Phụ nữ Việt Nam</b><span class="fc-when">20/10</span></div></div>
+      <div class="fc-sw"><i style="background:#ff4f93"></i><i style="background:#ff8fb8"></i><i style="background:#ffb3cd"></i><i style="background:#ffd6e4"></i><i style="background:#ffc46b"></i></div>
+      <div class="fc-meta">3 diện mạo · 6 kiểu popup · 18 tổ hợp</div>
+    </a>
+    <a class="fcard" href="./?festive=20-11" style="--c:#2f8f6b">
+      <div class="fc-top"><span class="fc-em">🎓</span><div><b>Chúc mừng Ngày Nhà giáo Việt Nam</b><span class="fc-when">20/11</span></div></div>
+      <div class="fc-sw"><i style="background:#8ed6a8"></i><i style="background:#2f8f6b"></i><i style="background:#cdeedb"></i><i style="background:#ffd166"></i><i style="background:#ffffff"></i></div>
+      <div class="fc-meta">2 diện mạo · 6 kiểu popup · 12 tổ hợp</div>
+    </a>
+    <a class="fcard" href="./?festive=noel" style="--c:#1f9254">
+      <div class="fc-top"><span class="fc-em">🎄</span><div><b>Giáng sinh an lành</b><span class="fc-when">24/12</span></div></div>
+      <div class="fc-sw"><i style="background:#ffffff"></i><i style="background:#e8f7ff"></i><i style="background:#e03131"></i><i style="background:#1f9254"></i><i style="background:#ffd43b"></i></div>
+      <div class="fc-meta">2 diện mạo · 6 kiểu popup · 12 tổ hợp</div>
+    </a>
+    <a class="fcard" href="./?festive=ong-tao" style="--c:#f08c00">
+      <div class="fc-top"><span class="fc-em">🐟</span><div><b>Tiễn Ông Táo về trời</b><span class="fc-when">âm lịch 23/12</span></div></div>
+      <div class="fc-sw"><i style="background:#ffd43b"></i><i style="background:#f08c00"></i><i style="background:#ff922b"></i><i style="background:#ffe8a3"></i><i style="background:#ff6b6b"></i></div>
+      <div class="fc-meta">2 diện mạo · 6 kiểu popup · 12 tổ hợp</div>
+    </a>
+    <a class="fcard" href="./?festive=nguyen-tieu" style="--c:#d4a017">
+      <div class="fc-top"><span class="fc-em">🌕</span><div><b>Tết Nguyên tiêu</b><span class="fc-when">âm lịch 15/01</span></div></div>
+      <div class="fc-sw"><i style="background:#ffe08a"></i><i style="background:#d4a017"></i><i style="background:#fff3c4"></i><i style="background:#c2410c"></i><i style="background:#ffffff"></i></div>
+      <div class="fc-meta">2 diện mạo · 6 kiểu popup · 12 tổ hợp</div>
+    </a>
+    <a class="fcard" href="./?festive=valentine" style="--c:#e0245e">
+      <div class="fc-top"><span class="fc-em">❤️</span><div><b>Chúc mừng Valentine</b><span class="fc-when">14/02</span></div></div>
+      <div class="fc-sw"><i style="background:#e0245e"></i><i style="background:#ff7aa8"></i><i style="background:#ffd0e0"></i><i style="background:#ffffff"></i><i style="background:#c2185b"></i></div>
+      <div class="fc-meta">3 diện mạo · 6 kiểu popup · 18 tổ hợp</div>
+    </a>
+    <a class="fcard" href="./?festive=thay-thuoc" style="--c:#1e6091">
+      <div class="fc-top"><span class="fc-em">🩺</span><div><b>Ngày Thầy thuốc Việt Nam</b><span class="fc-when">27/02</span></div></div>
+      <div class="fc-sw"><i style="background:#64b6ac"></i><i style="background:#1e6091"></i><i style="background:#a8dadc"></i><i style="background:#f1faee"></i><i style="background:#ffd166"></i></div>
+      <div class="fc-meta">2 diện mạo · 6 kiểu popup · 12 tổ hợp</div>
+    </a>
+    <a class="fcard" href="./?festive=doan-ngo" style="--c:#2f8f6b">
+      <div class="fc-top"><span class="fc-em">🍈</span><div><b>Tết Đoan Ngọ</b><span class="fc-when">âm lịch 05/05</span></div></div>
+      <div class="fc-sw"><i style="background:#8ed6a8"></i><i style="background:#2f8f6b"></i><i style="background:#cdeedb"></i><i style="background:#ffd166"></i><i style="background:#ffffff"></i></div>
+      <div class="fc-meta">2 diện mạo · 6 kiểu popup · 12 tổ hợp</div>
+    </a>
+    <a class="fcard" href="./?festive=gia-dinh" style="--c:#d6336c">
+      <div class="fc-top"><span class="fc-em">🏡</span><div><b>Ngày Gia đình Việt Nam</b><span class="fc-when">28/06</span></div></div>
+      <div class="fc-sw"><i style="background:#ffc9de"></i><i style="background:#d6336c"></i><i style="background:#ffe3ee"></i><i style="background:#8ed6a8"></i><i style="background:#ffffff"></i></div>
+      <div class="fc-meta">2 diện mạo · 6 kiểu popup · 12 tổ hợp</div>
+    </a>
+    <a class="fcard" href="./?festive=vu-lan" style="--c:#d6336c">
+      <div class="fc-top"><span class="fc-em">🪷</span><div><b>Lễ Vu Lan</b><span class="fc-when">âm lịch 15/07</span></div></div>
+      <div class="fc-sw"><i style="background:#ffc9de"></i><i style="background:#d6336c"></i><i style="background:#ffe3ee"></i><i style="background:#8ed6a8"></i><i style="background:#ffffff"></i></div>
+      <div class="fc-meta">2 diện mạo · 6 kiểu popup · 12 tổ hợp</div>
+    </a>
+    <a class="fcard" href="./?festive=halloween" style="--c:#e8590c">
+      <div class="fc-top"><span class="fc-em">🎃</span><div><b>Happy Halloween</b><span class="fc-when">31/10</span></div></div>
+      <div class="fc-sw"><i style="background:#e8590c"></i><i style="background:#ffa94d"></i><i style="background:#ffd8a8"></i><i style="background:#2b2b2b"></i><i style="background:#845ef7"></i></div>
+      <div class="fc-meta">2 diện mạo · 3 kiểu popup · 6 tổ hợp</div>
+    </a>
+    <a class="fcard" href="./?festive=qdnd" style="--c:#e11d2e">
+      <div class="fc-top"><span class="fc-em">⭐</span><div><b>Ngày Quân đội nhân dân</b><span class="fc-when">22/12</span></div></div>
+      <div class="fc-sw"><i style="background:#ffd23f"></i><i style="background:#e11d2e"></i><i style="background:#ff8a8a"></i><i style="background:#ffe9a8"></i><i style="background:#ffffff"></i></div>
+      <div class="fc-meta">2 diện mạo · 6 kiểu popup · 12 tổ hợp</div>
+    </a>
+  </div>
+  <footer style="margin-top:40px">
+    Ngày âm lịch được quy đổi ngay trên trình duyệt nên tự đúng theo từng năm.
+    Thêm dịp mới: sửa <code>festive.py</code> rồi chạy <code>build_site.py</code>.
+  </footer>
+</div>
+<script>
+var IDS = ["tet-duong-lich", "tet", "8-3", "gio-to", "30-4", "1-6", "trung-thu", "2-9", "20-10", "20-11", "noel", "ong-tao", "nguyen-tieu", "valentine", "thay-thuoc", "doan-ngo", "gia-dinh", "vu-lan", "halloween", "qdnd"];
+document.getElementById('rand').addEventListener('click', function(){
+  location.href = './?festive=' + IDS[(Math.random() * IDS.length) | 0];
+});
+</script>
+</body>
+</html>

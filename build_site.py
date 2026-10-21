@@ -614,7 +614,8 @@ def render(groups):
   <footer>
     <span data-en="%(contact_en)s">%(contact_vi)s</span>:
     <a href="mailto:%(email)s">%(email)s</a> ·
-    <a href="https://github.com/%(owner)s">github.com/%(owner)s</a>
+    <a href="https://github.com/%(owner)s">github.com/%(owner)s</a> ·
+    <a href="festive.html" data-en="Holiday themes">Kho mẫu ngày lễ</a>
     <div class="note" data-en="%(auto_en)s">%(auto_vi)s</div>
   </footer>
 </div>
@@ -649,6 +650,99 @@ def render(groups):
     }
 
 
+
+# ============================ TRANG KHO MẪU NGÀY LỄ ============================
+def render_gallery():
+    """festive.html — xem toàn bộ mẫu ngày lễ, bấm chuột thay vì gõ tham số."""
+    cards = []
+    for ev in FESTIVE:
+        lk = ev["looks"][0]
+        sw = "".join('<i style="background:%s"></i>' % c for c in lk["colors"][:5])
+        khi = ("âm lịch %s/%s" % tuple(reversed(ev["lunar"].split("-")))
+               if ev.get("lunar") else
+               "%s/%s" % tuple(reversed(ev["solar"].split("-"))))
+        skins = ev.get("skins", SKINS)
+        cards.append(
+            '    <a class="fcard" href="./?festive=%s" style="--c:%s">\n'
+            '      <div class="fc-top"><span class="fc-em">%s</span>'
+            '<div><b>%s</b><span class="fc-when">%s</span></div></div>\n'
+            '      <div class="fc-sw">%s</div>\n'
+            '      <div class="fc-meta">%d diện mạo · %d kiểu popup · %d tổ hợp</div>\n'
+            '    </a>'
+            % (ev["id"], lk["accent"], lk["emoji"], esc(ev.get("name") or ev["vi"]["title"]), khi, sw,
+               len(ev["looks"]), len(skins), len(ev["looks"]) * len(skins))
+        )
+
+    total = sum(len(e["looks"]) * len(e.get("skins", SKINS)) for e in FESTIVE)
+    return """<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Kho mẫu ngày lễ — %(name)s</title>
+<meta name="robots" content="noindex">
+<meta name="color-scheme" content="light dark">
+<link rel="icon" href="%(icon)s">
+<style>%(css)s
+.fgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px;margin-top:18px}
+.fcard{
+  display:block;padding:16px 16px 14px;border-radius:12px;text-decoration:none;color:inherit;
+  background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--c);
+  transition:transform .15s,border-color .15s
+}
+.fcard:hover{transform:translateY(-2px);border-color:var(--c)}
+.fc-top{display:flex;gap:11px;align-items:center;margin-bottom:10px}
+.fc-em{font-size:26px;line-height:1}
+.fc-top b{display:block;font-size:15px;line-height:1.3}
+.fc-when{font-size:12.5px;color:var(--muted)}
+.fc-sw{display:flex;gap:4px;margin-bottom:9px}
+.fc-sw i{width:26px;height:9px;border-radius:3px}
+.fc-meta{font-size:12px;color:var(--muted)}
+.frow{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:16px}
+.fbtn{
+  border:0;border-radius:999px;padding:11px 22px;cursor:pointer;font:700 14px/1 inherit;
+  color:#fff;background:var(--accent)
+}
+.fbtn.ghost{background:transparent;border:1px solid var(--line);color:var(--ink)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header style="padding:54px 0 10px">
+    <p class="eyebrow">Kho mẫu ngày lễ</p>
+    <h1 style="font-size:clamp(26px,5vw,38px)">%(count)d dịp · %(total)d tổ hợp</h1>
+    <p class="intro">Tới ngày lễ, trang chủ <b>tự bốc ngẫu nhiên</b> một diện mạo và một
+      kiểu popup — khách vào không phải làm gì. Trang này để xem trước toàn bộ kho mẫu:
+      bấm vào một dịp là mở trang chủ với mẫu của dịp đó.</p>
+    <div class="frow">
+      <button class="fbtn" id="rand" type="button">Bốc ngẫu nhiên một dịp</button>
+      <a class="fbtn ghost" href="./">Về trang chủ</a>
+    </div>
+  </header>
+  <div class="fgrid">
+%(cards)s
+  </div>
+  <footer style="margin-top:40px">
+    Ngày âm lịch được quy đổi ngay trên trình duyệt nên tự đúng theo từng năm.
+    Thêm dịp mới: sửa <code>festive.py</code> rồi chạy <code>build_site.py</code>.
+  </footer>
+</div>
+<script>
+var IDS = %(ids)s;
+document.getElementById('rand').addEventListener('click', function(){
+  location.href = './?festive=' + IDS[(Math.random() * IDS.length) | 0];
+});
+</script>
+</body>
+</html>
+""" % {
+        "name": esc(ME["name"]), "css": CSS, "icon": ICON,
+        "count": len(FESTIVE), "total": total,
+        "cards": "\n".join(cards),
+        "ids": json.dumps([e["id"] for e in FESTIVE]),
+    }
+
+
 if __name__ == "__main__":
     groups = collect(refresh="--refresh" in sys.argv)
     for key in GROUP_ORDER:
@@ -667,4 +761,6 @@ if __name__ == "__main__":
     if "--dry" not in sys.argv:
         with open("index.html", "w", encoding="utf-8") as f:
             f.write(render(groups))
-        print("Da ghi index.html")
+        with open("festive.html", "w", encoding="utf-8") as f:
+            f.write(render_gallery())
+        print("Da ghi index.html + festive.html")
