@@ -20,7 +20,7 @@ import sys
 import urllib.parse
 import urllib.request
 
-from festive import FESTIVE, FESTIVE_CSS, FESTIVE_JS
+from festive import FESTIVE, FESTIVE_CSS, FESTIVE_JS, SKINS
 
 OWNER = "mittohoa"
 CACHE = "site-data.json"
@@ -640,8 +640,9 @@ def render(groups):
         "auto_vi": esc(UI["auto"]["vi"]), "auto_en": esc(UI["auto"]["en"]),
         "slogan_full": esc(ME["slogan"]["lead"]["vi"] + " " + ME["slogan"]["accent"]["vi"]),
         "festive_css": FESTIVE_CSS,
-        "festive_js": FESTIVE_JS.replace("__FESTIVE__",
-                                         json.dumps(FESTIVE, ensure_ascii=False)),
+        "festive_js": (FESTIVE_JS
+                       .replace("__FESTIVE__", json.dumps(FESTIVE, ensure_ascii=False))
+                       .replace("__SKINS__", json.dumps(SKINS))),
         "owner": OWNER, "css": CSS, "js": JS, "links": "".join(links),
         "total": total, "body": "\n\n".join(body),
         "photo": photo_tag, "og_image": og_image, "icon": ICON,

@@ -56,7 +56,20 @@ https://mittohoa.github.io/?festive=trung-thu
 https://mittohoa.github.io/?festive=off      # tắt hẳn
 ```
 
+Mỗi lần vào trang, trang **bốc ngẫu nhiên** một diện mạo trong `looks` của dịp đó
+(bảng màu + hình hạt + hướng bay + biểu tượng) và một kiểu popup trong `SKINS`
+(`card` khung thẻ · `splash` tràn màn hình · `ticket` như tấm vé có răng cưa).
+Riêng 20/10 có 3 looks × 3 skins = 9 tổ hợp.
+
+Ghim một tổ hợp để xem thử:
+
+```
+?festive=tet&skin=splash&look=0
+?festive=20-10&skin=ticket&look=1
+```
+
 Thêm dịp mới: chèn một mục vào danh sách `FESTIVE` rồi chạy lại `build_site.py`.
+Thêm bảng màu: khai vào `PALETTES`, rồi dùng `look("ten_bang_mau", "petal", "down", "🌸")`.
 
 ## Ảnh
 

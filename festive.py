@@ -11,6 +11,51 @@ Xem thử một dịp bất kỳ: thêm ?festive=<id> vào địa chỉ, ví d�
 Tắt hẳn: ?festive=off
 """
 
+
+# ======================= BẢNG MÀU & BỘ HẠT DÙNG CHUNG =======================
+# Mỗi dịp bốc ngẫu nhiên một "look" trong danh sách looks của nó, nên vào trang
+# hai lần có thể thấy hai diện mạo khác nhau.
+PALETTES = {
+    "hong":     ("#ff4f93", ["#ff2d7e", "#ff6fa5", "#ffab5e"],
+                 ["#ff4f93", "#ff8fb8", "#ffb3cd", "#ffd6e4", "#ffc46b"]),
+    "do_hong":  ("#e8356d", ["#b3124a", "#e8356d", "#ff9ec4"],
+                 ["#e8356d", "#ff9ec4", "#ffd0e0", "#ffffff", "#ffc46b"]),
+    "tim":      ("#c661e8", ["#9b2fd1", "#c661e8", "#ff8fb8"],
+                 ["#c661e8", "#e3a8f5", "#ff8fb8", "#ffd6e4", "#ffc46b"]),
+    "do_vang":  ("#e8352f", ["#c81e1e", "#e8352f", "#f2b705"],
+                 ["#f2b705", "#ffd95e", "#e8352f", "#ff7a7a", "#ffe9a8"]),
+    "co_do":    ("#e11d2e", ["#b91122", "#e11d2e", "#ffd23f"],
+                 ["#ffd23f", "#e11d2e", "#ff8a8a", "#ffe9a8", "#ffffff"]),
+    "cam":      ("#f08c00", ["#d9480f", "#f08c00", "#ffd43b"],
+                 ["#ffd43b", "#f08c00", "#ff922b", "#ffe8a3", "#ff6b6b"]),
+    "nau_dong": ("#c2410c", ["#7c2d12", "#c2410c", "#d8a657"],
+                 ["#d8a657", "#c2410c", "#e8c07d", "#8b5e34", "#f0d9a8"]),
+    "xanh_bien":("#5b8cff", ["#2b4fd8", "#5b8cff", "#8ad4ff"],
+                 ["#8ad4ff", "#5b8cff", "#c9e4ff", "#ffd36b", "#ffffff"]),
+    "ngoc":     ("#22a6b3", ["#0ea5a5", "#22c3d6", "#ffd166"],
+                 ["#ff6b6b", "#ffd166", "#22c3d6", "#a0e86f", "#c77dff"]),
+    "luc":      ("#2f8f6b", ["#166b4e", "#2f8f6b", "#8ed6a8"],
+                 ["#8ed6a8", "#2f8f6b", "#cdeedb", "#ffd166", "#ffffff"]),
+    "noel":     ("#1f9254", ["#0f6b3a", "#1f9254", "#e03131"],
+                 ["#ffffff", "#e8f7ff", "#e03131", "#1f9254", "#ffd43b"]),
+    "vang_kim": ("#d4a017", ["#8a6d1a", "#d4a017", "#ffe08a"],
+                 ["#ffe08a", "#d4a017", "#fff3c4", "#c2410c", "#ffffff"]),
+    "tuyet":    ("#7fb3ff", ["#2b4fd8", "#7fb3ff", "#ffffff"],
+                 ["#ffffff", "#dbeafe", "#7fb3ff", "#bfdbfe", "#e0f2fe"]),
+}
+
+
+def look(palette, shape, direction, emoji):
+    """Một diện mạo: bảng màu + hình hạt + hướng bay + biểu tượng."""
+    accent, grad, colors = PALETTES[palette]
+    return {"accent": accent, "grad": grad, "colors": colors,
+            "shape": shape, "dir": direction, "emoji": emoji}
+
+
+# Kiểu popup. Mỗi dịp có thể giới hạn bằng khoá "skins".
+SKINS = ["card", "splash", "ticket"]
+
+
 # Mỗi mục:
 #   id       : tên để xem thử qua ?festive=<id>
 #   solar    : "MM-DD" theo dương lịch   | lunar: "MM-DD" theo âm lịch
@@ -24,11 +69,7 @@ FESTIVE = [
         "solar": "01-01",
         "before": 0, "after": 0,
         "art": "01·01",
-        "theme": {
-            "accent": "#5b8cff", "grad": ["#2b4fd8", "#5b8cff", "#8ad4ff"],
-            "colors": ["#8ad4ff", "#5b8cff", "#c9e4ff", "#ffd36b", "#ffffff"],
-            "shape": "star", "dir": "down", "emoji": "🎆",
-        },
+        "looks": [look("xanh_bien", "star", "down", "🎆"), look("tuyet", "dot", "down", "❄️")],
         "vi": {"bar": "Chúc mừng năm mới",
                "title": "Chúc mừng năm mới",
                "sub": "Một năm mới gọn gàng, nhiều việc hay và ít việc phải sửa lại.",
@@ -45,11 +86,7 @@ FESTIVE = [
         "lunar": "01-01",
         "before": 2, "after": 3,
         "art": "Tết",
-        "theme": {
-            "accent": "#e8352f", "grad": ["#c81e1e", "#e8352f", "#f2b705"],
-            "colors": ["#f2b705", "#ffd95e", "#e8352f", "#ff7a7a", "#ffe9a8"],
-            "shape": "petal", "dir": "down", "emoji": "🧧",
-        },
+        "looks": [look("do_vang", "petal", "down", "🧧"), look("vang_kim", "dot", "up", "✨")],
         "vi": {"bar": "Chúc mừng năm mới — An khang thịnh vượng",
                "title": "Chúc mừng năm mới",
                "sub": "Chúc cả nhà một năm mới an khang, thuận lợi và nhiều niềm vui.",
@@ -66,11 +103,7 @@ FESTIVE = [
         "solar": "03-08",
         "before": 0, "after": 0,
         "art": "08·03",
-        "theme": {
-            "accent": "#c661e8", "grad": ["#9b2fd1", "#c661e8", "#ff8fb8"],
-            "colors": ["#c661e8", "#e3a8f5", "#ff8fb8", "#ffd6e4", "#ffc46b"],
-            "shape": "petal", "dir": "down", "emoji": "💐",
-        },
+        "looks": [look("tim", "petal", "down", "💐"), look("do_hong", "dot", "up", "💗")],
         "vi": {"bar": "8/3 — Chúc mừng Ngày Quốc tế Phụ nữ",
                "title": "Chúc mừng Ngày Quốc tế Phụ nữ",
                "sub": "Gửi tới những người phụ nữ quanh mình một ngày thật nhẹ nhàng.",
@@ -87,11 +120,7 @@ FESTIVE = [
         "lunar": "03-10",
         "before": 0, "after": 0,
         "art": "10·3",
-        "theme": {
-            "accent": "#c2410c", "grad": ["#7c2d12", "#c2410c", "#d8a657"],
-            "colors": ["#d8a657", "#c2410c", "#e8c07d", "#8b5e34", "#f0d9a8"],
-            "shape": "dot", "dir": "down", "emoji": "🪷",
-        },
+        "looks": [look("nau_dong", "dot", "down", "🪷"), look("vang_kim", "star", "down", "🪘")],
         "vi": {"bar": "Giỗ Tổ Hùng Vương — mùng 10 tháng 3",
                "title": "Giỗ Tổ Hùng Vương",
                "sub": "Dù ai đi ngược về xuôi, nhớ ngày Giỗ Tổ mùng mười tháng ba.",
@@ -108,11 +137,7 @@ FESTIVE = [
         "solar": "04-30",
         "before": 0, "after": 1,
         "art": "30·4",
-        "theme": {
-            "accent": "#e11d2e", "grad": ["#b91122", "#e11d2e", "#ffd23f"],
-            "colors": ["#ffd23f", "#e11d2e", "#ff8a8a", "#ffe9a8", "#ffffff"],
-            "shape": "star", "dir": "down", "emoji": "🇻🇳",
-        },
+        "looks": [look("co_do", "star", "down", "🇻🇳"), look("do_vang", "dot", "up", "🎉")],
         "vi": {"bar": "30/4 — 1/5 · Chúc mừng ngày lễ lớn",
                "title": "Ngày Giải phóng miền Nam & Quốc tế Lao động",
                "sub": "Chúc mọi người kỳ nghỉ vui vẻ, đi chơi an toàn và nghỉ ngơi thật đã.",
@@ -129,11 +154,7 @@ FESTIVE = [
         "solar": "06-01",
         "before": 0, "after": 0,
         "art": "01·06",
-        "theme": {
-            "accent": "#22a6b3", "grad": ["#0ea5a5", "#22c3d6", "#ffd166"],
-            "colors": ["#ff6b6b", "#ffd166", "#22c3d6", "#a0e86f", "#c77dff"],
-            "shape": "dot", "dir": "up", "emoji": "🎈",
-        },
+        "looks": [look("ngoc", "dot", "up", "🎈"), look("hong", "star", "up", "🍭")],
         "vi": {"bar": "1/6 — Quốc tế Thiếu nhi",
                "title": "Quốc tế Thiếu nhi",
                "sub": "Chúc các bạn nhỏ một ngày đầy bóng bay, kem và tiếng cười.",
@@ -150,11 +171,7 @@ FESTIVE = [
         "lunar": "08-15",
         "before": 1, "after": 0,
         "art": "Trung thu",
-        "theme": {
-            "accent": "#f08c00", "grad": ["#d9480f", "#f08c00", "#ffd43b"],
-            "colors": ["#ffd43b", "#f08c00", "#ff922b", "#ffe8a3", "#ff6b6b"],
-            "shape": "lantern", "dir": "up", "emoji": "🏮",
-        },
+        "looks": [look("cam", "lantern", "up", "🏮"), look("vang_kim", "dot", "up", "🌕")],
         "vi": {"bar": "Tết Trung thu — rằm tháng tám",
                "title": "Chúc mừng Tết Trung thu",
                "sub": "Chúc cả nhà một đêm rằm sáng trăng, đủ đầy và quây quần.",
@@ -171,11 +188,7 @@ FESTIVE = [
         "solar": "09-02",
         "before": 0, "after": 0,
         "art": "02·09",
-        "theme": {
-            "accent": "#d92323", "grad": ["#a81111", "#d92323", "#ffcf33"],
-            "colors": ["#ffcf33", "#d92323", "#ffe9a8", "#ff8a8a", "#ffffff"],
-            "shape": "star", "dir": "down", "emoji": "⭐",
-        },
+        "looks": [look("co_do", "star", "down", "⭐"), look("do_vang", "star", "up", "🎆")],
         "vi": {"bar": "2/9 — Chúc mừng Quốc khánh",
                "title": "Chúc mừng Quốc khánh",
                "sub": "Chúc mọi người một ngày lễ bình an bên gia đình.",
@@ -192,11 +205,7 @@ FESTIVE = [
         "solar": "10-20",
         "before": 0, "after": 0,
         "art": "20·10",
-        "theme": {
-            "accent": "#ff4f93", "grad": ["#ff2d7e", "#ff6fa5", "#ffab5e"],
-            "colors": ["#ff4f93", "#ff8fb8", "#ffb3cd", "#ffd6e4", "#ffc46b"],
-            "shape": "petal", "dir": "down", "emoji": "🌸",
-        },
+        "looks": [look("hong", "petal", "down", "🌸"), look("do_hong", "dot", "up", "💗"), look("tim", "star", "down", "💜")],
         "vi": {"bar": "20/10 — Chúc mừng Ngày Phụ nữ Việt Nam",
                "title": "Chúc mừng Ngày Phụ nữ Việt Nam",
                "sub": "Gửi tới những người phụ nữ quanh mình — mẹ, chị, em, đồng nghiệp — một ngày thật nhẹ nhàng.",
@@ -213,11 +222,7 @@ FESTIVE = [
         "solar": "11-20",
         "before": 0, "after": 0,
         "art": "20·11",
-        "theme": {
-            "accent": "#2f8f6b", "grad": ["#166b4e", "#2f8f6b", "#8ed6a8"],
-            "colors": ["#8ed6a8", "#2f8f6b", "#cdeedb", "#ffd166", "#ffffff"],
-            "shape": "petal", "dir": "down", "emoji": "🎓",
-        },
+        "looks": [look("luc", "petal", "down", "🎓"), look("xanh_bien", "dot", "down", "📘")],
         "vi": {"bar": "20/11 — Chúc mừng Ngày Nhà giáo Việt Nam",
                "title": "Chúc mừng Ngày Nhà giáo Việt Nam",
                "sub": "Cảm ơn những người đã dạy mình cách học, chứ không chỉ dạy bài.",
@@ -234,11 +239,7 @@ FESTIVE = [
         "solar": "12-24",
         "before": 0, "after": 1,
         "art": "Noel",
-        "theme": {
-            "accent": "#1f9254", "grad": ["#0f6b3a", "#1f9254", "#e03131"],
-            "colors": ["#ffffff", "#e8f7ff", "#e03131", "#1f9254", "#ffd43b"],
-            "shape": "dot", "dir": "down", "emoji": "🎄",
-        },
+        "looks": [look("noel", "dot", "down", "🎄"), look("tuyet", "dot", "down", "❄️")],
         "vi": {"bar": "Giáng sinh an lành",
                "title": "Giáng sinh an lành",
                "sub": "Chúc một mùa Giáng sinh ấm áp bên những người thương.",
@@ -350,6 +351,44 @@ html.festive #lang{top:70px}
 }
 .fm-x:hover{color:var(--ink)}
 
+/* ===== kiểu SPLASH: tràn màn hình, chữ ART khổng lồ, không khung thẻ ===== */
+#fmodal.skin-splash{
+  background:linear-gradient(140deg,var(--fes-g1),var(--fes-g2) 48%,var(--fes-g3));
+  backdrop-filter:none
+}
+.skin-splash .fm-card{
+  background:transparent;border:0;box-shadow:none;width:min(760px,100%);padding:20px
+}
+.skin-splash .fm-card::before{display:none}
+.skin-splash .fm-art{
+  font-size:clamp(76px,20vw,180px);background:none;-webkit-text-fill-color:#fff;color:#fff;
+  text-shadow:0 10px 40px rgba(0,0,0,.28);animation:none
+}
+.skin-splash .fm-title{color:#fff;font-size:clamp(22px,5vw,34px)}
+.skin-splash .fm-sub{color:rgba(255,255,255,.88);max-width:46ch;font-size:16px}
+.skin-splash .fm-run{
+  color:#fff;border-color:rgba(255,255,255,.35);margin-left:-20px;margin-right:-20px
+}
+.skin-splash .fm-ok{background:#fff;color:var(--fes-accent);box-shadow:0 10px 30px rgba(0,0,0,.25)}
+.skin-splash .fm-x{position:fixed;top:16px;right:20px;font-size:26px;color:rgba(255,255,255,.85)}
+.skin-splash .fm-x:hover{color:#fff}
+
+/* ===== kiểu TICKET: như tấm vé / bao lì xì, có răng cưa hai bên ===== */
+.skin-ticket .fm-card{
+  padding:34px 28px 28px;border:0;border-radius:18px;
+  background:
+    radial-gradient(circle at 0 54%,transparent 13px,var(--surface) 13px) left/51% 100% no-repeat,
+    radial-gradient(circle at 100% 54%,transparent 13px,var(--surface) 13px) right/51% 100% no-repeat;
+  filter:drop-shadow(0 20px 50px rgba(0,0,0,.4)) drop-shadow(0 0 30px var(--fes-soft))
+}
+.skin-ticket .fm-art{
+  display:inline-block;padding:0 26px 10px;border-bottom:2px dashed var(--line)
+}
+.skin-ticket .fm-run{
+  margin:0 -28px 18px;border-top:2px dashed var(--line);border-bottom:2px dashed var(--line)
+}
+.skin-ticket .fm-ok{border-radius:10px}
+
 @media (prefers-reduced-motion:reduce){
   #petals{display:none}
   #festive .em,.fm-art,.fm-run span{animation:none}
@@ -365,7 +404,8 @@ html.festive #lang{top:70px}
 
 FESTIVE_JS = """
 (function(){
-  var EVENTS = __FESTIVE__;
+  var EVENTS = __FESTIVE__, SKINS = __SKINS__;
+  function pick(a){ return a[(Math.random() * a.length) | 0]; }
 
   /* ============ âm lịch Việt Nam (thuật toán Hồ Ngọc Đức, múi giờ +7) ============ */
   var TZ = 7;
@@ -472,10 +512,13 @@ FESTIVE_JS = """
     return [base - (ev.before || 0) * DAY, base + ((ev.after || 0) + 1) * DAY - 1];
   }
 
-  var forced = null, off = false;
+  var forced = null, off = false, wantSkin = null, wantLook = null;
   try {
-    var q = new URLSearchParams(location.search).get('festive');
+    var qs = new URLSearchParams(location.search);
+    var q = qs.get('festive');
     if (q === 'off') off = true; else if (q) forced = q;
+    wantSkin = qs.get('skin');
+    wantLook = qs.get('look');
   } catch(e){}
   if (off) return;
 
@@ -491,8 +534,10 @@ FESTIVE_JS = """
   }
   if (!day) return;
 
-  /* ============ gán bản sắc của dịp ============ */
-  var th = day.theme, root = document.documentElement, S = root.style;
+  /* ============ bốc ngẫu nhiên diện mạo + kiểu popup ============ */
+  var th = (wantLook !== null && day.looks[wantLook]) ? day.looks[wantLook] : pick(day.looks);
+  var skin = wantSkin || pick(day.skins || SKINS);
+  var root = document.documentElement, S = root.style;
   S.setProperty('--fes-accent', th.accent);
   S.setProperty('--fes-soft', th.accent + '2b');
   S.setProperty('--fes-glow', th.accent + '66');
@@ -547,7 +592,7 @@ FESTIVE_JS = """
   function openModal(){
     if (!forced && sessionStorage.getItem('festive-modal') === key) return;
     fill();
-    modal.classList.add('on');
+    modal.className = 'skin-' + skin + ' on';
     var mx = innerWidth / 2, my = innerHeight / 2;
     burst(mx, my, 30);
     setTimeout(function(){ burst(mx - 160, my - 40, 16); }, 130);
